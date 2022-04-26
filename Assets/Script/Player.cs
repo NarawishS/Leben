@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IShopCustomer
     private int goldAmount;
     public float moveSpeed;
     public Rigidbody2D rb;
-    private Vector2 moveDirection;
+    private Vector2 lastClickedPos;
     private bool moving;
 
     private void Awake()
@@ -50,11 +50,24 @@ public class Player : MonoBehaviour, IShopCustomer
 
     private void Update()
     {
-        
+        DOMouseMovement();
     }
 
-    private void mouseMovement()
+    private void DOMouseMovement()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            moving = true;
+        }
+
+        if (moving && (Vector2)transform.position != lastClickedPos)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, lastClickedPos, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            moving = false;
+        }
     }
 }
