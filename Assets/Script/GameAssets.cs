@@ -15,5 +15,4 @@ public class GameAssets : MonoBehaviour
 
     public Sprite Slider;
     public Sprite Bench;
-    public Sprite Home;
 }

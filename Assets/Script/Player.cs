@@ -8,10 +8,7 @@ public class Player : MonoBehaviour, IShopCustomer
     public static Player Instance { get; private set; }
     public event EventHandler OnGoldAmountChanged;
     private int goldAmount;
-    public float moveSpeed;
     public Rigidbody2D rb;
-    private Vector2 moveDirection;
-    private bool moving;
 
     private void Awake()
     {
@@ -46,15 +43,5 @@ public class Player : MonoBehaviour, IShopCustomer
         {
             return false;
         }
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    private void mouseMovement()
-    {
-        
     }
 }
