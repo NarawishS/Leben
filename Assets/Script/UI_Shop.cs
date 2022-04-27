@@ -24,6 +24,9 @@ public class UI_Shop : MonoBehaviour
         CreateActionButton(Action.ActionType.Bench, Action.GetSprite(Action.ActionType.Bench), "Bench",
             Action.GetCost(Action.ActionType.Bench), 1);
         Hide();
+        CreateActionButton(Action.ActionType.Work, Action.GetSprite(Action.ActionType.Work), "Work",
+            Action.GetCost(Action.ActionType.Work), 2);
+        Hide();
     }
 
     private void CreateActionButton(Action.ActionType actionType, Sprite actionSprite, string actionName,
@@ -46,7 +49,10 @@ public class UI_Shop : MonoBehaviour
 
     public void TryDoAction(Action.ActionType actionType)
     {
-        shopCustomer.BoughtItem(actionType);
+        if (shopCustomer.TrySpendGoldAmount(Action.GetCost(actionType)))
+        {
+            shopCustomer.BoughtItem(actionType);
+        }
     }
 
     public void Show(IShopCustomer shopCustomer)
