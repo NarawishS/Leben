@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -15,4 +16,5 @@ public class GameAssets : MonoBehaviour
 
     public Sprite Slider;
     public Sprite Bench;
+    public Sprite Work;
 }

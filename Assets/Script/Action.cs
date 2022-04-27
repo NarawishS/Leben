@@ -7,7 +7,8 @@ public class Action
     public enum ActionType
     {
         Slider,
-        Bench
+        Bench,
+        Work
     }
 
     public static int GetCost(ActionType actionType)
@@ -17,6 +18,7 @@ public class Action
             default:
             case ActionType.Slider: return 0;
             case ActionType.Bench: return 0;
+            case ActionType.Work: return 0;
         }
     }
 
@@ -27,6 +29,7 @@ public class Action
             default:
             case ActionType.Slider: return GameAssets.i.Slider;
             case ActionType.Bench: return GameAssets.i.Bench;
+            case ActionType.Work: return GameAssets.i.Work;
         }
     }
 }
