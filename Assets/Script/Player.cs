@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IShopCustomer
     {
         goldAmount += addGoldAmount;
         OnGoldAmountChanged?.Invoke(this, EventArgs.Empty);
+        Debug.Log($"gold: {goldAmount}");
     }
 
     public void AddMentalAmount(int addMentalAmount)
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour, IShopCustomer
         mentalAmount += addMentalAmount;
         if (mentalAmount > 2500) mentalAmount = 2500;
         OnMentalAmountChanged?.Invoke(this, EventArgs.Empty);
+        Debug.Log($"mental: {mentalAmount}");
     }
 
     public int GetGoldAmount()
