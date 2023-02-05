@@ -22,7 +22,16 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            timeValue = 0;
+            switch (GameManager.Instance.state)
+            {
+                case GameState.P1Turn:
+                    GameManager.Instance.UpdateGameState(GameState.P2Turn);
+                    break;
+                case GameState.P2Turn:
+                    GameManager.Instance.UpdateGameState(GameState.P1Turn);
+                    break;
+            }
+            timeValue = 120;
         }
         
         if (elapsed >= 1f) {
