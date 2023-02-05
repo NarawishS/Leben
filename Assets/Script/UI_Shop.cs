@@ -21,9 +21,11 @@ public class UI_Shop : MonoBehaviour
     {
         CreateActionButton(Action.ActionType.Slider, Action.GetSprite(Action.ActionType.Slider), "Slider",
             Action.GetCost(Action.ActionType.Slider), 0);
+        
         CreateActionButton(Action.ActionType.Bench, Action.GetSprite(Action.ActionType.Bench), "Bench",
             Action.GetCost(Action.ActionType.Bench), 1);
         Hide();
+        
         CreateActionButton(Action.ActionType.Work, Action.GetSprite(Action.ActionType.Work), "Work",
             Action.GetCost(Action.ActionType.Work), 2);
         Hide();
