@@ -2,86 +2,110 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IShopCustomer
+namespace Script
 {
-    public static Player Instance { get; private set; }
-    public event EventHandler OnGoldAmountChanged;
-    public event EventHandler OnMentalAmountChanged;
-    private int goldAmount;
-    private int mentalAmount;
-    public Rigidbody2D rb;
-
-    private void Awake()
+    public class Player : MonoBehaviour
     {
-        Instance = this;
-        goldAmount += 100;
-    }
+        public static Player Instance { get; private set; }
 
-    public void AddGoldAmount(int addGoldAmount)
-    {
-        goldAmount += addGoldAmount;
-        OnGoldAmountChanged?.Invoke(this, EventArgs.Empty);
-        Debug.Log($"gold: {goldAmount}");
-    }
+        // Money
+        private int _wealth;
 
-    public void AddMentalAmount(int addMentalAmount)
-    {
-        mentalAmount += addMentalAmount;
-        if (mentalAmount > 2500) mentalAmount = 2500;
-        OnMentalAmountChanged?.Invoke(this, EventArgs.Empty);
-        Debug.Log($"mental: {mentalAmount}");
-    }
+        // Healthy
+        private int _health;
 
-    public int GetGoldAmount()
-    {
-        return goldAmount;
-    }
+        // Happiness
+        private int _happy;
 
-    public int GetMentalAmount()
-    {
-        return mentalAmount;
-    }
+        // Education
+        private int _education;
 
-    public void ParkBench()
-    {
-        AddMentalAmount(10);
-    }
+        // Work Exp
+        private int _workExp;
 
-    public void DoJob()
-    {
-        AddGoldAmount(100);
-        AddMentalAmount(-1);
-    }
+        // Job
+        private string _job;
 
-    public void BoughtItem(Action.ActionType actionType)
-    {
-        Debug.Log("Do action: " + actionType);
-        switch (actionType)
+        public Rigidbody2D rb;
+
+        private void Awake()
         {
-            case Action.ActionType.Slider:
-
-                break;
-            case Action.ActionType.Bench:
-                ParkBench();
-                break;
-            case Action.ActionType.Work:
-                DoJob();
-                break;
+            Instance = this;
+            SetWealth(500);
         }
-    }
 
-    public bool TrySpendGoldAmount(int spendGoldAmount)
-    {
-        if (GetGoldAmount() >= spendGoldAmount)
+        //Get money
+        public int GetWealth()
         {
-            goldAmount -= spendGoldAmount;
-            OnGoldAmountChanged?.Invoke(this, EventArgs.Empty);
-            return true;
+            return _wealth;
         }
-        else
+
+        //Set money
+        public void SetWealth(int amount)
         {
-            return false;
+            _wealth += amount;
+        }
+
+        //Get Health
+        public int GetHealth()
+        {
+            return _health;
+        }
+
+        //Set Health
+        public void SetHealth(int amount)
+        {
+            _health += amount;
+            if (_health < 0) _health = 0;
+        }
+
+        //Get Happiness
+        public int GetHappy()
+        {
+            return _happy;
+        }
+
+        //Set Happiness
+        public void SetHappy(int amount)
+        {
+            _happy += amount;
+            if (_happy < 0) _happy = 0;
+        }
+
+        //Get Education
+        public int GetEducation()
+        {
+            return _education;
+        }
+
+        //Set Education
+        public void SetEducation(int amount)
+        {
+            _education += amount;
+        }
+
+        //Get Work Experience
+        public int GetWorkExp()
+        {
+            return _workExp;
+        }
+
+        //Set Work Experience
+        public void SetWorkExp(int amount)
+        {
+            _workExp += amount;
+        }
+
+        public string GetJob()
+        {
+            return _job;
+        }
+
+        public void SetJob(string newJob)
+        {
+            _job = newJob;
         }
     }
 }
