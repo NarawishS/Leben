@@ -7,7 +7,8 @@ public class PlayerFrame : MonoBehaviour
 {
     public GameObject statusWindow;
     public GameObject board;
-    private void OnMouseDown()
+    
+    public void OpenStatus()
     {
         statusWindow.SetActive(true);
         DODisableBoard();
@@ -18,10 +19,8 @@ public class PlayerFrame : MonoBehaviour
         for (int i = 0; i < board.transform.childCount; i++)
         {
             GameObject child = board.transform.GetChild(i).gameObject;
-            if (child.name != gameObject.name)
-            {
-                child.GetComponent<BoxCollider2D>().enabled = false;
-            }
+            child.GetComponent<BoxCollider2D>().enabled = false;
+            child.GetComponent<BoxCollider2D>().isTrigger = false;
         }
     }
 }
