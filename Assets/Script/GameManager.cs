@@ -14,6 +14,8 @@ namespace Script
         public GameState state;
         public GameObject p1;
         public GameObject p2;
+        public GameObject p1frame;
+        public GameObject p2frame;
         public Player player1;
         public Player player2;
         public static event Action<GameState> OnGameStateChanged;
@@ -51,12 +53,16 @@ namespace Script
         {
             p1.SetActive(false);
             p2.SetActive(true);
+            p2frame.SetActive(true);
+            p1frame.SetActive(false);
         }
 
         private void HandleP1Turn()
         {
             p2.SetActive(false);
             p1.SetActive(true);
+            p1frame.SetActive(true);
+            p2frame.SetActive(false);
         }
     }
 }
