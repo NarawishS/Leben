@@ -19,6 +19,7 @@ public class StatusCollider : MonoBehaviour
         {
             GameObject child = board.transform.GetChild(i).gameObject;
             child.GetComponent<BoxCollider2D>().enabled = true;
+            child.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 }
