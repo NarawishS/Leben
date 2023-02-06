@@ -3,53 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LocationCollider : MonoBehaviour
+namespace Script
 {
-    public GameObject locationPanel;
-    public GameObject board;
-
-    private void OnTriggerEnter2D(Collider2D col)
+    public class LocationCollider : MonoBehaviour
     {
-        Debug.Log($"Player Enter {gameObject.name}");
-        if (locationPanel != null)
+        public GameObject locationPanel;
+        public GameObject board;
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            locationPanel.SetActive(true);
+            Debug.Log($"Player Enter {gameObject.name}");
+            if (locationPanel != null)
+            {
+                locationPanel.SetActive(true);
+            }
+
+            DODisableBoard();
         }
 
-        disbleBoard();
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        Debug.Log($"Player Exit {gameObject.name}");
-        locationPanel.SetActive(false);
-        enableBoard();
-    }
-
-    public void ExitLocation()
-    {
-        locationPanel.SetActive(false);
-        enableBoard();
-    }
-
-    private void disbleBoard()
-    {
-        for (int i = 0; i < board.transform.childCount; i++)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            GameObject child = board.transform.GetChild(i).gameObject;
-            if (child.name != gameObject.name)
+            Debug.Log($"Player Exit {gameObject.name}");
+            locationPanel.SetActive(false);
+            DOEnableBoard();
+        }
+
+        public void ExitLocation()
+        {
+            locationPanel.SetActive(false);
+            DOEnableBoard();
+        }
+
+        private void DODisableBoard()
+        {
+            for (int i = 0; i < board.transform.childCount; i++)
             {
-                child.GetComponent<BoxCollider2D>().enabled = false;
+                GameObject child = board.transform.GetChild(i).gameObject;
+                if (child.name != gameObject.name)
+                {
+                    child.GetComponent<BoxCollider2D>().enabled = false;
+                }
             }
         }
-    }
-    
-    private void enableBoard()
-    {
-        for (int i = 0; i < board.transform.childCount; i++)
+
+        private void DOEnableBoard()
         {
-            GameObject child = board.transform.GetChild(i).gameObject;
-            child.GetComponent<BoxCollider2D>().enabled = true;
+            for (int i = 0; i < board.transform.childCount; i++)
+            {
+                GameObject child = board.transform.GetChild(i).gameObject;
+                child.GetComponent<BoxCollider2D>().enabled = true;
+            }
         }
     }
 }
