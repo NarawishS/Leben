@@ -72,7 +72,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for this Job");
+                Debug.Log($"{player.name}: You did not apply for jobOffice");
             }
         }
     }
