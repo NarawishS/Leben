@@ -12,9 +12,9 @@ namespace Script.Locations
         public void DoPanel1()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            int price = 100;
+            int health = 5;
+            int happy = 5;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -29,7 +29,16 @@ namespace Script.Locations
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+
+                if (ProbabilityManager.ProbabilityCheckByPercent(50))
+                {
+                    player.SetWealth(+(price*2));
+                    player.SetHappy(+happy);
+                }
+                else
+                {
+                    player.SetHappy(-happy);
+                }
                 
                 Debug.Log($"{player.name}: Do Panel 1");
                 timer.DecreaseTime(2);

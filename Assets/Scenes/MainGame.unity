@@ -22188,7 +22188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 100 G Buy
 --- !u!222 &1342447954
 CanvasRenderer:
   m_ObjectHideFlags: 0
