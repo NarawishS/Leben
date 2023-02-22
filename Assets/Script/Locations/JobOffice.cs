@@ -9,46 +9,57 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void ApplyFastFood()
+        public void ApplyBank()
         {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            player.SetJob("fastfood");
-            
-            Debug.Log($"{player.name}: apply job for fastfood shop");
-            timer.DecreaseTime(2);
-        }
-
-        public void ApplyJobOffice()
-        {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            player.SetJob("jobOffice");
-            
-            Debug.Log($"{player.name}: apply job for jobOffice");
-            timer.DecreaseTime(2);
+            ApplyJob("bank");
         }
         
+        public void ApplyCasino()
+        {
+            ApplyJob("casino");
+        }
+        
+        public void ApplyGym()
+        {
+            ApplyJob("gym");
+        }
+        
+        public void ApplyFastFood()
+        {
+            ApplyJob("fastfood");
+        }
+        
+        public void ApplyHospital()
+        {
+            ApplyJob("hospital");
+        }
+        
+        public void ApplyMall()
+        {
+            ApplyJob("mall");
+        }
+        
+        public void ApplyMarket()
+        {
+            ApplyJob("market");
+        }
+        
+        public void ApplyPetShop()
+        {
+            ApplyJob("petshop");
+        }
+        
+        public void ApplyUniversity()
+        {
+            ApplyJob("university");
+        }
+        
+        public void ApplyVehicle()
+        {
+            ApplyJob("vehicle");
+        }
 
-        public void Work()
+        private void ApplyJob(string jobName)
         {
             Player player;
 
@@ -61,19 +72,11 @@ namespace Script.Locations
                 player = GameManager.Instance.player2;
             }
 
-            if (player.GetJob() == "jobOffice")
-            {
-                Debug.Log($"{player.name}: work at jobOffice");
+            player.SetJob(jobName);
 
-                player.SetWealth(50);
-                player.SetWorkExp(10);
+            Debug.Log($"{player.name}: apply job for  {jobName}");
 
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log($"{player.name}: You did not apply for jobOffice");
-            }
+            timer.DecreaseTime(2);
         }
     }
 }
