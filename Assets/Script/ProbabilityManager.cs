@@ -8,7 +8,7 @@ namespace Script
     {
         public static bool ProbabilityCheckByPercent(int percentProbability)
         {
-            float rnd = Random.Range(1, 101);
+            int rnd = Random.Range(1, 101);
             return rnd <= percentProbability;
         }
     }
