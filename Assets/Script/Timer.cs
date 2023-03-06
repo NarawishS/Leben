@@ -29,10 +29,12 @@ namespace Script
                     case GameState.P1Turn:
                         GameManager.Instance.player1.transform.DOMove(home.transform.position, 0.5f).SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P2Turn);
+                        GameManager.Instance.UpdateTurn();
                         break;
                     case GameState.P2Turn:
                         GameManager.Instance.player2.transform.DOMove(home.transform.position, 0.5f).SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P1Turn);
+                        GameManager.Instance.UpdateTurn();
                         break;
                 }
 

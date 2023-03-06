@@ -18,6 +18,8 @@ namespace Script
         public GameObject p2frame;
         public Player player1;
         public Player player2;
+        public double turnCount = 1;
+        public int maxTurn = 2;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -42,6 +44,9 @@ namespace Script
                 case GameState.P2Turn:
                     HandleP2Turn();
                     break;
+                case GameState.Ended:
+                    HandleEnded();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
             }
@@ -64,6 +69,23 @@ namespace Script
             p1frame.SetActive(true);
             p2frame.SetActive(false);
         }
+        
+        private void HandleEnded()
+        {
+            ScreenChanger.GameEnd();
+            turnCount = 1;
+        }
+        
+        public void UpdateTurn()
+        {
+            turnCount += 0.5;
+            Debug.Log($"Turn count =" + $" {turnCount}");
+
+            if (turnCount.Equals(maxTurn))
+            {
+                UpdateGameState(GameState.Ended);
+            }
+        }
     }
 }
 
@@ -71,5 +93,6 @@ namespace Script
 public enum GameState
 {
     P1Turn,
-    P2Turn
+    P2Turn,
+    Ended
 }

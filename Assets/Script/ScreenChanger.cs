@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class ScreenChanger : MonoBehaviour
 {
 
     public void ClickToStart()
@@ -18,4 +18,15 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
     
+    public void BackToMenu()
+    {
+        Debug.Log("Back to Menu");
+        SceneManager.LoadScene("Scenes/MainMenu");
+    }
+    
+    public static void GameEnd()
+    {
+        Debug.Log("Game Ended");
+        SceneManager.LoadScene("Scenes/EndGame");
+    }
 }
