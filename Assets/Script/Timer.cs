@@ -8,60 +8,94 @@ namespace Script
 {
     public class Timer : MonoBehaviour
     {
-        private float timeValue = 60f;
+        private float _timeValue = 60f;
         public Text timeText;
-        private float elapsed = 0f;
+        private float _elapsed = 0f;
         public GameObject home;
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            elapsed += Time.deltaTime;
+            _elapsed += Time.deltaTime;
 
-            if (timeValue > 0)
+            if (_timeValue > 0)
             {
-                timeValue -= Time.deltaTime;
+                _timeValue -= Time.deltaTime;
             }
             else
             {
                 switch (GameManager.Instance.state)
                 {
                     case GameState.P1Turn:
-                        GameManager.Instance.player1.transform.DOMove(new Vector3(-0.1839f,2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        GameManager.Instance.player1.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f)
+                            .SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P2Turn);
                         GameManager.Instance.UpdateTurn();
                         break;
                     case GameState.P2Turn:
-                        GameManager.Instance.player2.transform.DOMove(new Vector3(-0.1839f,2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        GameManager.Instance.player2.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f)
+                            .SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P1Turn);
                         GameManager.Instance.UpdateTurn();
                         break;
                 }
 
-                timeValue = 60;
+                _timeValue = 60;
+                Player player;
+                switch (GameManager.Instance.state)
+                {
+                    case GameState.P1Turn:
+                        player = GameManager.Instance.player1;
+                        break;
+
+                    case GameState.P2Turn:
+                        player = GameManager.Instance.player2;
+                        break;
+                    default:
+                        player = GameManager.Instance.player1;
+                        break;
+                }
+                
+                if (player.GetInfectionStatus())
+                {
+                    Debug.Log($"{player.name} is infected");
+                    _timeValue /= 2;
+                }
+                else
+                {
+                    player.SetInfectionStatus(
+                        ProbabilityManager.ProbabilityCheckByPercent(player.GetInfectionChance()));
+                    if (player.GetInfectionStatus())
+                    {
+                        Debug.Log($"{player.name} is infected");
+                        _timeValue /= 2;
+                    }
+                }
+
+                player.SetInfectionChance(0);
             }
 
-            if (elapsed >= 1f)
+            if (_elapsed >= 1f)
             {
-                elapsed %= 1f;
+                _elapsed %= 1f;
                 GetComponent<Text>().color = Color.black;
             }
 
-            DisplayTime(timeValue);
+            DisplayTime(_timeValue);
         }
 
         public void DecreaseTime(int t)
         {
             GetComponent<Text>().color = Color.red;
-            timeValue -= t;
+            _timeValue -= t;
         }
 
         public void ResetTime()
         {
-            timeValue = 0;
+            _timeValue = 0;
         }
 
-        void DisplayTime(float timeToDisplay)
+        private void DisplayTime(float timeToDisplay)
         {
             if (timeToDisplay < 0)
             {
@@ -75,4 +109,3 @@ namespace Script
         }
     }
 }
-
