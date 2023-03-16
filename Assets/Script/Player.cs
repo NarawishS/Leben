@@ -27,6 +27,12 @@ namespace Script
 
         // Job
         private string _job;
+        
+        // Infection Chance
+        private int _infectionChance;
+        
+        // Infection Status
+        private bool _infected;
 
         public Rigidbody2D rb;
 
@@ -98,14 +104,40 @@ namespace Script
             _workExp += amount;
         }
 
+        //Get Current Job
         public string GetJob()
         {
             return _job;
         }
 
+        //Set Current Job
         public void SetJob(string newJob)
         {
             _job = newJob;
+        }
+
+        //Get Accumulate infection chance
+        public int GetInfectionChance()
+        {
+            return _infectionChance;
+        }
+
+        //Set Accumulate infection chance
+        public void SetInfectionChance(int amount)
+        {
+            _infectionChance += amount;
+        }
+
+        //Get Current Infected status
+        public bool GetInfectionStatus()
+        {
+            return _infected;
+        }
+
+        //Set Current Infected status
+        public void SetInfectionStatus(bool infection)
+        {
+            _infected = infection;
         }
     }
 }
