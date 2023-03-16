@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Script
 {
@@ -17,6 +18,8 @@ namespace Script
         {
             _currentLocation = gameObject.name;
             Player player;
+            int infectionChance = Random.Range(0, GameManager.Instance.GetTurn());
+            Debug.Log($"Infection rate = {infectionChance}%");
             switch (GameManager.Instance.state)
             {
                 case GameState.P1Turn:

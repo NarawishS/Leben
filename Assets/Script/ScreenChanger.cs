@@ -9,6 +9,7 @@ public class ScreenChanger : MonoBehaviour
     public void ClickToStart()
     {
         Debug.Log("Start Game");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Scenes/MainGame");
     }
 
@@ -21,12 +22,14 @@ public class ScreenChanger : MonoBehaviour
     public void BackToMenu()
     {
         Debug.Log("Back to Menu");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Scenes/MainMenu");
     }
     
     public static void GameEnd()
     {
         Debug.Log("Game Ended");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Scenes/EndGame");
     }
 }

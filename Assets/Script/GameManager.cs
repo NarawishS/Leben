@@ -18,8 +18,8 @@ namespace Script
         public GameObject p2frame;
         public Player player1;
         public Player player2;
-        public double turnCount = 1;
-        public int maxTurn = 2;
+        private float turnCount = 1f;
+        private float maxTurn = 5f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -78,13 +78,18 @@ namespace Script
         
         public void UpdateTurn()
         {
-            turnCount += 0.5;
+            turnCount += 0.5f;
             Debug.Log($"Turn count =" + $" {turnCount}");
 
-            if (turnCount.Equals(maxTurn))
+            if (turnCount.Equals(maxTurn + 1))
             {
                 UpdateGameState(GameState.Ended);
             }
+        }
+
+        public int GetTurn()
+        {
+            return  Mathf.FloorToInt(turnCount);
         }
     }
 }

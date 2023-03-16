@@ -8,9 +8,9 @@ namespace Script
 {
     public class Timer : MonoBehaviour
     {
-        public float timeValue = 30;
+        private float timeValue = 60f;
         public Text timeText;
-        public float elapsed = 0f;
+        private float elapsed = 0f;
         public GameObject home;
 
         // Update is called once per frame
@@ -27,18 +27,18 @@ namespace Script
                 switch (GameManager.Instance.state)
                 {
                     case GameState.P1Turn:
-                        GameManager.Instance.player1.transform.DOMove(home.transform.position, 0.5f).SetEase(Ease.InOutQuad);
+                        GameManager.Instance.player1.transform.DOMove(new Vector3(-0.1839f,2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P2Turn);
                         GameManager.Instance.UpdateTurn();
                         break;
                     case GameState.P2Turn:
-                        GameManager.Instance.player2.transform.DOMove(home.transform.position, 0.5f).SetEase(Ease.InOutQuad);
+                        GameManager.Instance.player2.transform.DOMove(new Vector3(-0.1839f,2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         GameManager.Instance.UpdateGameState(GameState.P1Turn);
                         GameManager.Instance.UpdateTurn();
                         break;
                 }
 
-                timeValue = 30;
+                timeValue = 60;
             }
 
             if (elapsed >= 1f)
@@ -54,6 +54,11 @@ namespace Script
         {
             GetComponent<Text>().color = Color.red;
             timeValue -= t;
+        }
+
+        public void ResetTime()
+        {
+            timeValue = 0;
         }
 
         void DisplayTime(float timeToDisplay)
