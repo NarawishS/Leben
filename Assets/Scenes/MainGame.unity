@@ -8733,7 +8733,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 200 G Bet
 --- !u!222 &542310124
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9901,8 +9901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000024319, y: 0.000045776}
-  m_SizeDelta: {x: 43.3826, y: 73.8413}
+  m_AnchoredPosition: {x: 0.17148, y: 0.00012112}
+  m_SizeDelta: {x: 99.657, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &588079224
 MonoBehaviour:
@@ -9924,7 +9924,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: ee29586706b41794282d887c9ee7e270, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -11022,8 +11022,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000012398, y: -0.000012398}
-  m_SizeDelta: {x: 69.2656, y: 69.2656}
+  m_AnchoredPosition: {x: 0.79076, y: -0.7908}
+  m_SizeDelta: {x: 92.921, y: 92.9204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613801856
 MonoBehaviour:
@@ -11045,7 +11045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 709b5744a1ae1784cb8b11124e61691c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -12385,8 +12385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 0.000030518}
-  m_SizeDelta: {x: 61.9864, y: 75.736}
+  m_AnchoredPosition: {x: 0.000025749, y: -2.2297}
+  m_SizeDelta: {x: 99.313, y: 101.9754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680219009
 MonoBehaviour:
@@ -12408,7 +12408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: a9def98f824209343ac5413b115a5814, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -16565,8 +16565,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000047684, y: 0.000030994}
-  m_SizeDelta: {x: 70.6257, y: 91.3024}
+  m_AnchoredPosition: {x: 0.17155, y: -0.000005722}
+  m_SizeDelta: {x: 99.657, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921198970
 MonoBehaviour:
@@ -16588,7 +16588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: bffc0fcfcd2719847a37c7d589b6c1c5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -17569,8 +17569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 103.60837, y: 0.000034332}
-  m_SizeDelta: {x: 96.5265, y: 97.516}
+  m_AnchoredPosition: {x: 161.16855, y: 0.000034332}
+  m_SizeDelta: {x: 211.647, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978952669
 MonoBehaviour:
@@ -17605,7 +17605,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WIP
+  m_Text: 'ALL IN!
+
+
+    NO MORE REGRET JUST DO IT
+
+
+    1% Chance to win back tripple
 
 '
 --- !u!222 &978952670
@@ -23660,7 +23666,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100 G Buy
+  m_Text: 100 G Bet
 --- !u!222 &1342447954
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26290,7 +26296,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: ALL G Bet
 --- !u!222 &1517128563
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27190,7 +27196,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: 'Play Slot
+
+
+    25 % chance to win'
 --- !u!222 &1568057604
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27416,7 +27425,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: 'Play Card
+
+
+    10 % Chance to win'
 --- !u!222 &1569137286
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28246,7 +28258,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: '500 G Bet
+
+
+    10 % chance to win'
 --- !u!222 &1646051459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32099,6 +32114,8 @@ MonoBehaviour:
   p2frame: {fileID: 780933145}
   player1: {fileID: 1536731022}
   player2: {fileID: 1715603780}
+  turnCount: 1
+  maxTurn: 2
 --- !u!4 &1796320420
 Transform:
   m_ObjectHideFlags: 0
@@ -34869,9 +34886,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WIP
-
-'
+  m_Text: Play Roulette
 --- !u!222 &2005275494
 CanvasRenderer:
   m_ObjectHideFlags: 0
