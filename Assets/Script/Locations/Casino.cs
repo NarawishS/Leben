@@ -30,17 +30,18 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(50))
+                if (ProbabilityManager.ProbabilityCheckByPercent(25))
                 {
                     player.SetWealth(+(price*2));
                     player.SetHappy(+happy);
+                    Debug.Log($"{player.name}: WIN Slot {price*2} G");
                 }
                 else
                 {
+                    Debug.Log($"{player.name}: LOSE Slot -{price} G");
                     player.SetHappy(-happy);
                 }
                 
-                Debug.Log($"{player.name}: Do Panel 1");
                 timer.DecreaseTime(2);
             }
             else
@@ -52,9 +53,9 @@ namespace Script.Locations
         public void DoPanel2()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            int price = 200;
+            int health = 5;
+            int happy = 10;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -69,9 +70,19 @@ namespace Script.Locations
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+
+                if (ProbabilityManager.ProbabilityCheckByPercent(10))
+                {
+                    player.SetWealth(+(price*2));
+                    player.SetHappy(+happy);
+                    Debug.Log($"{player.name}: WIN Card {price*2} G");
+                }
+                else
+                {
+                    Debug.Log($"{player.name}: LOSE card -{price} G");
+                    player.SetHappy(-happy);
+                }
                 
-                Debug.Log($"{player.name}: Do Panel 2");
                 timer.DecreaseTime(2);
             }
             else
@@ -83,9 +94,9 @@ namespace Script.Locations
         public void DoPanel3()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            int price = 500;
+            int health = 5;
+            int happy = 25;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -100,9 +111,18 @@ namespace Script.Locations
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 3");
+
+                if (ProbabilityManager.ProbabilityCheckByPercent(5))
+                {
+                    player.SetWealth(+(price*2));
+                    player.SetHappy(+happy);
+                    Debug.Log($"{player.name}: WIN Roulette {price*2} G");
+                }
+                else
+                {
+                    Debug.Log($"{player.name}: LOSE Roulette -{price} G");
+                    player.SetHappy(-happy);
+                }
                 timer.DecreaseTime(2);
             }
             else
@@ -114,9 +134,9 @@ namespace Script.Locations
         public void DoPanel4()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            int price;
+            int health = 5;
+            int happy;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -127,13 +147,26 @@ namespace Script.Locations
                 player = GameManager.Instance.player2;
             }
 
-            if (player.GetWealth() >= price)
+            price = player.GetWealth();
+            happy = price/100*5;
+
+            if (player.GetWealth() > 0)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 4");
+
+                if (ProbabilityManager.ProbabilityCheckByPercent(1))
+                {
+                    player.SetWealth(+(price*3));
+                    player.SetHappy(+happy);
+                    
+                    Debug.Log($"{player.name}: JACKPOT WIN {price*3} G");
+                }
+                else
+                {
+                    Debug.Log($"{player.name}: LOSE ALL IN -{price} G");
+                    player.SetHappy(-happy);
+                }
                 timer.DecreaseTime(2);
             }
             else
