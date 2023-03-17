@@ -37,12 +37,16 @@ namespace Script
         // Mask in inventory
         private int _mask;
 
+        // Vehicle
+        private string _vehicle;
+
         public Rigidbody2D rb;
 
         private void Awake()
         {
             Instance = this;
-            SetWealth(500);
+            SetWealth(100_000);
+            SetVehicle("None");
         }
 
         //Get money
@@ -153,6 +157,18 @@ namespace Script
         public void SetMask(int amount)
         {
             _mask += amount;
+        }
+
+        //Get Vehicle
+        public string GetVehicle()
+        {
+            return _vehicle;
+        }
+
+        //Set Vehicle
+        public void SetVehicle(string newVehicle)
+        {
+            _vehicle = newVehicle;
         }
     }
 }

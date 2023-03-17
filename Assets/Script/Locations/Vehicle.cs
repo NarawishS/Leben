@@ -11,28 +11,24 @@ namespace Script.Locations
 
         public void DoPanel1()
         {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 500;
+            const int happy = 50;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
+                ? GameManager.Instance.player1
+                : GameManager.Instance.player2;
 
-            if (player.GetWealth() >= price)
+            if (player.GetWealth() >= price && player.GetVehicle() == "None")
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 1");
+                player.SetVehicle("Bicycle");
+                Debug.Log($"{player.name}: Buy Bicycle");
                 timer.DecreaseTime(2);
+            }
+            else if (player.GetVehicle() != "None")
+            {
+                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -42,90 +38,104 @@ namespace Script.Locations
 
         public void DoPanel2()
         {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 1000;
+            const int happy = 100;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
+
+            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
+                ? GameManager.Instance.player1
+                : GameManager.Instance.player2;
+
+            string[] vehicles = { "Motorcycle", "Car", "SuperCar" };
+            bool canBuy = true;
+            foreach (var vehicle in vehicles)
             {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
+                if (player.GetVehicle().Equals(vehicle))
+                {
+                    canBuy = false;
+                    break;
+                }
             }
 
-            if (player.GetWealth() >= price)
+            if (player.GetWealth() >= price && canBuy)
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 2");
+
+                player.SetVehicle("Motorcycle");
+                Debug.Log($"{player.name}: Buy Motorcycle");
                 timer.DecreaseTime(2);
+            }
+            else if (!canBuy)
+            {
+                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
                 Debug.Log("No Money");
             }
         }
-        
+
         public void DoPanel3()
         {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 2000;
+            const int happy = 200;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
+            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
+                ? GameManager.Instance.player1
+                : GameManager.Instance.player2;
+
+            string[] vehicles = { "Car", "SuperCar" };
+            bool canBuy = true;
+            foreach (var vehicle in vehicles)
             {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
+                if (player.GetVehicle().Equals(vehicle))
+                {
+                    canBuy = false;
+                    break;
+                }
             }
 
-            if (player.GetWealth() >= price)
+            if (player.GetWealth() >= price && canBuy)
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 3");
+
+                player.SetVehicle("Car");
+                Debug.Log($"{player.name}: Buy Car");
                 timer.DecreaseTime(2);
+            }
+            else if (!canBuy)
+            {
+                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
                 Debug.Log("No Money");
             }
         }
-        
+
         public void DoPanel4()
         {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 5000;
+            const int happy = 500;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
+                ? GameManager.Instance.player1
+                : GameManager.Instance.player2;
 
-            if (player.GetWealth() >= price)
+            if (player.GetWealth() >= price && player.GetVehicle() != "SuperCar")
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 4");
+
+                player.SetVehicle("SuperCar");
+                Debug.Log($"{player.name}: Buy SuperCar");
                 timer.DecreaseTime(2);
+            }
+            else if (player.GetVehicle() == "SuperCar")
+            {
+                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -135,24 +145,17 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player;
+            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
+                ? GameManager.Instance.player1
+                : GameManager.Instance.player2;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-            
             if (player.GetJob() == "vehicle")
             {
                 Debug.Log($"{player.name}: work at vehicle");
-                
+
                 player.SetWealth(50);
                 player.SetWorkExp(10);
-            
+
                 timer.DecreaseTime(2);
             }
             else

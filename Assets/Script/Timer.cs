@@ -90,7 +90,7 @@ namespace Script
             DisplayTime(_timeValue);
         }
 
-        public void DecreaseTime(int t)
+        public void DecreaseTime(float t)
         {
             GetComponent<Text>().color = Color.red;
             _timeValue -= t;

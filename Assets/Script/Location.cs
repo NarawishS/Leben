@@ -32,12 +32,34 @@ namespace Script
                     throw new ArgumentOutOfRangeException();
             }
 
+            float v;
+
+            switch (player.GetVehicle())
+            {
+                case "Bicycle":
+                    v = 8f;
+                    break;
+                case "Motorcycle":
+                    v = 11f;
+                    break;
+                case "Car":
+                    v = 15f;
+                    break;
+                case "SuperCar":
+                    v = 100f;
+                    break;
+                default:
+                    v = 5;
+                    break;
+            }
+
             if (player.transform.position != gameObject.transform.position)
             {
-                player.transform.DOMove(transform.position, 0.2f).SetEase(Ease.InOutQuad);
+                var s = Vector3.Distance(player.transform.position, gameObject.transform.position);
+                player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                 player.SetInfectionChance(infectionChance);
                 Debug.Log($"{player.name} move to {gameObject.name}");
-                timer.DecreaseTime(2);
+                // timer.DecreaseTime(2f);
             }
             else
             {

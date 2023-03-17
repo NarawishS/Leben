@@ -5738,7 +5738,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 500 G Buy
 --- !u!222 &334166478
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9626,7 +9626,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: Motorcycle
 --- !u!222 &541330878
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11536,7 +11536,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000024319, y: 0.000045776}
-  m_SizeDelta: {x: 43.3826, y: 73.8413}
+  m_SizeDelta: {x: 169.2865, y: 168.2691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609606680
 MonoBehaviour:
@@ -11558,7 +11558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: af8eea9333088cb43a66941915167f55, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -17002,7 +17002,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000011444, y: 0.000030518}
-  m_SizeDelta: {x: 61.9864, y: 75.736}
+  m_SizeDelta: {x: 117.0694, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &877768224
 MonoBehaviour:
@@ -17024,7 +17024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 213ba0215f33a3547b44b66cd276a2f0, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -21593,7 +21593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WIP
+  m_Text: 'Car
 
 '
 --- !u!222 &1107445097
@@ -23258,7 +23258,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 2000 G Buy
 --- !u!222 &1185753313
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23867,7 +23867,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 5000 G Buy
 --- !u!222 &1217669534
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28360,7 +28360,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000047684, y: 0.000030994}
-  m_SizeDelta: {x: 70.6257, y: 91.3024}
+  m_SizeDelta: {x: 113.1182, y: 116.4832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511984645
 MonoBehaviour:
@@ -28382,7 +28382,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 1fe4d2e700445f94db309615a1986f06, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -28546,7 +28546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 1000 G Buy
 --- !u!222 &1518397457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29121,7 +29121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: Bicycle
 --- !u!222 &1550258740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36053,9 +36053,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WIP
-
-'
+  m_Text: Super Car
 --- !u!222 &1913625588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36658,7 +36656,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000012398, y: -0.000012398}
-  m_SizeDelta: {x: 69.2656, y: 69.2656}
+  m_SizeDelta: {x: 209.3336, y: 199.8907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959608230
 MonoBehaviour:
@@ -36680,7 +36678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 8308aa930db1d0842936c791d1911e56, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
