@@ -1682,7 +1682,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000012398, y: -0.000012398}
-  m_SizeDelta: {x: 69.2656, y: 69.2656}
+  m_SizeDelta: {x: 100, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142434541
 MonoBehaviour:
@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: ea9c60d1a40622f4a9f33cb44e30b0e2, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2435,7 +2435,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000024319, y: 0.000045776}
-  m_SizeDelta: {x: 43.3826, y: 73.8413}
+  m_SizeDelta: {x: 99.313, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &176731603
 MonoBehaviour:
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: 61432b0743f925e40be2449f63fa6e0f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -7092,7 +7092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &413585607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18444,7 +18444,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 20 G Buy
 --- !u!222 &944700874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23337,9 +23337,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WIP
-
-'
+  m_Text: 'Pet '
 --- !u!222 &1190918118
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28969,7 +28967,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: 'Mask
+
+
+    Decrease chance of infection'
 --- !u!222 &1537137626
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34823,7 +34824,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000011444, y: 0.000030518}
-  m_SizeDelta: {x: 61.9864, y: 75.736}
+  m_SizeDelta: {x: 99.313, y: 97.516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1815115981
 MonoBehaviour:
@@ -34838,14 +34839,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -34956,7 +34957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1822042179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36371,7 +36372,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 G Buy
+  m_Text: 200 G Buy
 --- !u!222 &1938934799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36529,7 +36530,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WIP
+  m_Text: 'Vaccine
+
+
+    Cure you'
 --- !u!222 &1945717702
 CanvasRenderer:
   m_ObjectHideFlags: 0

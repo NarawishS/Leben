@@ -27,12 +27,15 @@ namespace Script
 
         // Job
         private string _job;
-        
+
         // Infection Chance
         private int _infectionChance;
-        
+
         // Infection Status
         private bool _infected;
+
+        // Mask in inventory
+        private int _mask;
 
         public Rigidbody2D rb;
 
@@ -138,6 +141,18 @@ namespace Script
         public void SetInfectionStatus(bool infection)
         {
             _infected = infection;
+        }
+
+        //Get Current mask
+        public int GetMask()
+        {
+            return _mask;
+        }
+
+        //Set Number of mask
+        public void SetMask(int amount)
+        {
+            _mask += amount;
         }
     }
 }

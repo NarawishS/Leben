@@ -18,8 +18,9 @@ namespace Script
         public GameObject p2frame;
         public Player player1;
         public Player player2;
-        private float turnCount = 1f;
-        private float maxTurn = 5f;
+        
+        private float _turnCount = 1f;
+        private float _maxTurn = 5f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -27,7 +28,7 @@ namespace Script
             Instance = this;
         }
 
-        void Start()
+        private void Start()
         {
             UpdateGameState(GameState.P1Turn);
         }
@@ -73,15 +74,15 @@ namespace Script
         private void HandleEnded()
         {
             ScreenChanger.GameEnd();
-            turnCount = 1;
+            _turnCount = 1;
         }
         
         public void UpdateTurn()
         {
-            turnCount += 0.5f;
-            Debug.Log($"Turn count =" + $" {turnCount}");
+            _turnCount += 0.5f;
+            Debug.Log($"Turn count =" + $" {_turnCount}");
 
-            if (turnCount.Equals(maxTurn + 1))
+            if (_turnCount.Equals(_maxTurn + 1))
             {
                 UpdateGameState(GameState.Ended);
             }
@@ -89,7 +90,7 @@ namespace Script
 
         public int GetTurn()
         {
-            return  Mathf.FloorToInt(turnCount);
+            return  Mathf.FloorToInt(_turnCount);
         }
     }
 }

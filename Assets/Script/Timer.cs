@@ -24,51 +24,57 @@ namespace Script
             }
             else
             {
-                switch (GameManager.Instance.state)
-                {
-                    case GameState.P1Turn:
-                        GameManager.Instance.player1.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f)
-                            .SetEase(Ease.InOutQuad);
-                        GameManager.Instance.UpdateGameState(GameState.P2Turn);
-                        GameManager.Instance.UpdateTurn();
-                        break;
-                    case GameState.P2Turn:
-                        GameManager.Instance.player2.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f)
-                            .SetEase(Ease.InOutQuad);
-                        GameManager.Instance.UpdateGameState(GameState.P1Turn);
-                        GameManager.Instance.UpdateTurn();
-                        break;
-                }
-
-                _timeValue = 60;
                 Player player;
-                switch (GameManager.Instance.state)
+                if (GameManager.Instance.state.Equals(GameState.P1Turn))
                 {
-                    case GameState.P1Turn:
-                        player = GameManager.Instance.player1;
-                        break;
+                    player = GameManager.Instance.player1;
+                    player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                    ;
+                    GameManager.Instance.UpdateGameState(GameState.P2Turn);
+                    GameManager.Instance.UpdateTurn();
 
-                    case GameState.P2Turn:
-                        player = GameManager.Instance.player2;
-                        break;
-                    default:
-                        player = GameManager.Instance.player1;
-                        break;
-                }
-                
-                if (player.GetInfectionStatus())
-                {
-                    Debug.Log($"{player.name} is infected");
-                    _timeValue /= 2;
+                    player = GameManager.Instance.player2;
                 }
                 else
                 {
+                    player = GameManager.Instance.player2;
+                    player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                    ;
+                    GameManager.Instance.UpdateGameState(GameState.P1Turn);
+                    GameManager.Instance.UpdateTurn();
+
+                    player = GameManager.Instance.player1;
+                }
+
+                _timeValue = 60;
+
+                if (player.GetInfectionStatus())
+                {
+                    Debug.Log($"{player.name} is infected");
+                    _timeValue *= 0.25f;
+
+                    if (player.GetMask() > 0)
+                    {
+                        player.SetMask(-1);
+                    }
+                }
+                else
+                {
+                    float infectionChance = player.GetInfectionChance();
+
+                    if (player.GetMask() > 0)
+                    {
+                        infectionChance *= 0.25f;
+                        player.SetMask(-1);
+                    }
+
                     player.SetInfectionStatus(
-                        ProbabilityManager.ProbabilityCheckByPercent(player.GetInfectionChance()));
+                        ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance)));
+
                     if (player.GetInfectionStatus())
                     {
                         Debug.Log($"{player.name} is infected");
-                        _timeValue /= 2;
+                        _timeValue *= 0.25f;
                     }
                 }
 

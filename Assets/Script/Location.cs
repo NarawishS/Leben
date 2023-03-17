@@ -18,7 +18,7 @@ namespace Script
         {
             _currentLocation = gameObject.name;
             Player player;
-            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
+            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 10;
 
             switch (GameManager.Instance.state)
             {
