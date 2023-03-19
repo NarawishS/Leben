@@ -18,7 +18,7 @@ namespace Script
         {
             _currentLocation = gameObject.name;
             Player player;
-            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 10;
+            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
 
             switch (GameManager.Instance.state)
             {
@@ -58,7 +58,7 @@ namespace Script
 
             if (player.transform.position != gameObject.transform.position)
             {
-                var s = Vector3.Distance(player.transform.position, gameObject.transform.position);
+                var s = Vector2.Distance(player.transform.position, gameObject.transform.position);
                 player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                 player.SetInfectionChance(infectionChance);
                 Debug.Log($"{player.name} move to {gameObject.name}");
