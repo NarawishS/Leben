@@ -36,20 +36,23 @@ namespace Script
 
             switch (player.GetVehicle())
             {
-                case "Bicycle":
-                    v = 8f;
+                case Vehicle.Bicycle:
+                    v = 6f;
                     break;
-                case "Motorcycle":
-                    v = 11f;
+                case Vehicle.Motorcycle:
+                    v = 12f;
                     break;
-                case "Car":
-                    v = 15f;
+                case Vehicle.Car:
+                    v = 17f;
                     break;
-                case "SuperCar":
+                case Vehicle.SuperCar:
                     v = 100f;
                     break;
+                case Vehicle.None:
+                    v = 3;
+                    break;
                 default:
-                    v = 5;
+                    v = 3;
                     break;
             }
 
@@ -59,7 +62,6 @@ namespace Script
                 player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                 player.SetInfectionChance(infectionChance);
                 Debug.Log($"{player.name} move to {gameObject.name}");
-                // timer.DecreaseTime(2f);
             }
             else
             {

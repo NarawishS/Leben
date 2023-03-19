@@ -11,55 +11,55 @@ namespace Script.Locations
 
         public void ApplyBank()
         {
-            ApplyJob("bank");
-        }
-        
-        public void ApplyCasino()
-        {
-            ApplyJob("casino");
-        }
-        
-        public void ApplyGym()
-        {
-            ApplyJob("gym");
-        }
-        
-        public void ApplyFastFood()
-        {
-            ApplyJob("fastfood");
-        }
-        
-        public void ApplyHospital()
-        {
-            ApplyJob("hospital");
-        }
-        
-        public void ApplyMall()
-        {
-            ApplyJob("mall");
-        }
-        
-        public void ApplyMarket()
-        {
-            ApplyJob("market");
-        }
-        
-        public void ApplyPetShop()
-        {
-            ApplyJob("petshop");
-        }
-        
-        public void ApplyUniversity()
-        {
-            ApplyJob("university");
-        }
-        
-        public void ApplyVehicle()
-        {
-            ApplyJob("vehicle");
+            ApplyJob(Job.Bank);
         }
 
-        private void ApplyJob(string jobName)
+        public void ApplyCasino()
+        {
+            ApplyJob(Job.Casino);
+        }
+
+        public void ApplyGym()
+        {
+            ApplyJob(Job.Gym);
+        }
+
+        public void ApplyFastFood()
+        {
+            ApplyJob(Job.FastFood);
+        }
+
+        public void ApplyHospital()
+        {
+            ApplyJob(Job.Hospital);
+        }
+
+        public void ApplyMall()
+        {
+            ApplyJob(Job.Mall);
+        }
+
+        public void ApplyMarket()
+        {
+            ApplyJob(Job.Market);
+        }
+
+        public void ApplyPetShop()
+        {
+            ApplyJob(Job.PetShop);
+        }
+
+        public void ApplyUniversity()
+        {
+            ApplyJob(Job.University);
+        }
+
+        public void ApplyVehicle()
+        {
+            ApplyJob(Job.Vehicle);
+        }
+
+        private void ApplyJob(Job jobName)
         {
             Player player;
 
@@ -79,4 +79,19 @@ namespace Script.Locations
             timer.DecreaseTime(2);
         }
     }
+}
+
+public enum Job
+{
+    None,
+    Bank,
+    Casino,
+    FastFood,
+    Gym,
+    Hospital,
+    Mall,
+    Market,
+    PetShop,
+    University,
+    Vehicle
 }

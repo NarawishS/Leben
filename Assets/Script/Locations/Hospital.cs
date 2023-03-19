@@ -120,9 +120,9 @@ namespace Script.Locations
                 ? GameManager.Instance.player1
                 : GameManager.Instance.player2;
 
-            if (player.GetJob() == "hospital")
+            if (player.GetJob() == Job.Hospital)
             {
-                Debug.Log($"{player.name}: work at hospital");
+                Debug.Log($"{player.name}: work at {Job.Hospital}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -131,7 +131,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for hospital");
+                Debug.Log($"{player.name}: You did not apply for {Job.Hospital}");
             }
         }
     }

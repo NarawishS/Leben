@@ -30,7 +30,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
+
                 Debug.Log($"{player.name}: Do Panel 1");
                 timer.DecreaseTime(2);
             }
@@ -61,7 +61,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
+
                 Debug.Log($"{player.name}: Do Panel 2");
                 timer.DecreaseTime(2);
             }
@@ -70,7 +70,7 @@ namespace Script.Locations
                 Debug.Log("No Money");
             }
         }
-        
+
         public void DoPanel3()
         {
             Player player;
@@ -92,7 +92,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
+
                 Debug.Log($"{player.name}: Do Panel 3");
                 timer.DecreaseTime(2);
             }
@@ -101,7 +101,7 @@ namespace Script.Locations
                 Debug.Log("No Money");
             }
         }
-        
+
         public void DoPanel4()
         {
             Player player;
@@ -123,7 +123,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
+
                 Debug.Log($"{player.name}: Do Panel 4");
                 timer.DecreaseTime(2);
             }
@@ -145,19 +145,19 @@ namespace Script.Locations
             {
                 player = GameManager.Instance.player2;
             }
-            
-            if (player.GetJob() == "bank")
+
+            if (player.GetJob() == Job.Bank)
             {
-                Debug.Log($"{player.name}: work at bank");
-                
+                Debug.Log($"{player.name}: work at {Job.Bank}");
+
                 player.SetWealth(50);
                 player.SetWorkExp(10);
-            
+
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for bank");
+                Debug.Log($"{player.name}: You did not apply for {Job.Bank}");
             }
         }
     }

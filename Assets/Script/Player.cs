@@ -26,7 +26,7 @@ namespace Script
         private int _workExp;
 
         // Job
-        private string _job;
+        private Job _job;
 
         // Infection Chance
         private int _infectionChance;
@@ -38,7 +38,7 @@ namespace Script
         private int _mask;
 
         // Vehicle
-        private string _vehicle;
+        private Vehicle _vehicle;
 
         public Rigidbody2D rb;
 
@@ -46,7 +46,8 @@ namespace Script
         {
             Instance = this;
             SetWealth(100_000);
-            SetVehicle("None");
+            SetVehicle(Vehicle.None);
+            SetJob(Job.None);
         }
 
         //Get money
@@ -112,13 +113,13 @@ namespace Script
         }
 
         //Get Current Job
-        public string GetJob()
+        public Job GetJob()
         {
             return _job;
         }
 
         //Set Current Job
-        public void SetJob(string newJob)
+        public void SetJob(Job newJob)
         {
             _job = newJob;
         }
@@ -160,13 +161,13 @@ namespace Script
         }
 
         //Get Vehicle
-        public string GetVehicle()
+        public Vehicle GetVehicle()
         {
             return _vehicle;
         }
 
         //Set Vehicle
-        public void SetVehicle(string newVehicle)
+        public void SetVehicle(Vehicle newVehicle)
         {
             _vehicle = newVehicle;
         }

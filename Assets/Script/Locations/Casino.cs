@@ -188,9 +188,9 @@ namespace Script.Locations
                 player = GameManager.Instance.player2;
             }
             
-            if (player.GetJob() == "casino")
+            if (player.GetJob() == Job.Casino)
             {
-                Debug.Log($"{player.name}: work at casino");
+                Debug.Log($"{player.name}: work at {Job.Casino}");
                 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -199,7 +199,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for casino");
+                Debug.Log($"{player.name}: You did not apply for {Job.Casino}");
             }
         }
     }

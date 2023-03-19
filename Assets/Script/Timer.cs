@@ -29,7 +29,7 @@ namespace Script
                 {
                     player = GameManager.Instance.player1;
                     player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                    ;
+
                     GameManager.Instance.UpdateGameState(GameState.P2Turn);
                     GameManager.Instance.UpdateTurn();
 
@@ -39,14 +39,14 @@ namespace Script
                 {
                     player = GameManager.Instance.player2;
                     player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                    ;
+
                     GameManager.Instance.UpdateGameState(GameState.P1Turn);
                     GameManager.Instance.UpdateTurn();
 
                     player = GameManager.Instance.player1;
                 }
 
-                _timeValue = 60;
+                _timeValue = 60f;
 
                 if (player.GetInfectionStatus())
                 {
@@ -64,7 +64,7 @@ namespace Script
 
                     if (player.GetMask() > 0)
                     {
-                        infectionChance *= 0.25f;
+                        infectionChance *= 0.5f;
                         player.SetMask(-1);
                     }
 
@@ -74,7 +74,7 @@ namespace Script
                     if (player.GetInfectionStatus())
                     {
                         Debug.Log($"{player.name} is infected");
-                        _timeValue *= 0.25f;
+                        _timeValue *= 0.4f;
                     }
                 }
 
