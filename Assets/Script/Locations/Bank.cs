@@ -1,20 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Script.Locations
 {
     public class Bank : MonoBehaviour
     {
         public Timer timer;
+        public InputField inputField;
 
         public void DoPanel1()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            var amount = int.Parse(inputField.text);
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -25,14 +26,14 @@ namespace Script.Locations
                 player = GameManager.Instance.player2;
             }
 
-            if (player.GetWealth() >= price)
+            if (player.GetWealth() >= amount)
             {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 1");
+                player.SetWealth(-amount);
+                player.SetDepositMoney(+amount);
+                Debug.Log($"{player.name}: Deposit Money {amount}");
+                Debug.Log($"{player.name}: Bank Money {player.GetDepositMoney()}");
                 timer.DecreaseTime(2);
+                inputField.text = "0";
             }
             else
             {
@@ -43,9 +44,7 @@ namespace Script.Locations
         public void DoPanel2()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            var amount = int.Parse(inputField.text);
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -56,76 +55,14 @@ namespace Script.Locations
                 player = GameManager.Instance.player2;
             }
 
-            if (player.GetWealth() >= price)
+            if (player.GetDepositMoney() >= amount)
             {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 2");
+                player.SetWealth(+amount);
+                player.SetDepositMoney(-amount);
+                Debug.Log($"{player.name}: Withdraw Money {amount}");
+                Debug.Log($"{player.name}: Bank Money {player.GetDepositMoney()}");
                 timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-
-        public void DoPanel3()
-        {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 3");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-
-        public void DoPanel4()
-        {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 4");
-                timer.DecreaseTime(2);
+                inputField.text = "0";
             }
             else
             {

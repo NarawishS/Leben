@@ -13,6 +13,9 @@ namespace Script
         // Money
         private int _wealth;
 
+        // Deposit Money
+        private int _bankMoney;
+
         // Healthy
         private int _health;
 
@@ -60,6 +63,18 @@ namespace Script
         public void SetWealth(int amount)
         {
             _wealth += amount;
+        }
+
+        //Get Deposit money
+        public int GetDepositMoney()
+        {
+            return _bankMoney;
+        }
+
+        //Set Deposit money
+        public void SetDepositMoney(int amount)
+        {
+            _bankMoney += amount;
         }
 
         //Get Health

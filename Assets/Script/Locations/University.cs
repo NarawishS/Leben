@@ -12,9 +12,10 @@ namespace Script.Locations
         public void DoPanel1()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 0;
+            const int health = 0;
+            const int happy = 0;
+            const int exp = 0;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -29,8 +30,9 @@ namespace Script.Locations
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
+                player.SetHealth(-happy);
+                player.SetEducation(+exp);
+
                 Debug.Log($"{player.name}: Do Panel 1");
                 timer.DecreaseTime(2);
             }
@@ -43,9 +45,10 @@ namespace Script.Locations
         public void DoPanel2()
         {
             Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 0;
+            const int health = 0;
+            const int happy = 0;
+            const int exp = 0;
 
             if (GameManager.Instance.state == GameState.P1Turn)
             {
@@ -60,71 +63,10 @@ namespace Script.Locations
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
+                player.SetHealth(-happy);
+                player.SetEducation(+exp);
+
                 Debug.Log($"{player.name}: Do Panel 2");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-        
-        public void DoPanel3()
-        {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 3");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-        
-        public void DoPanel4()
-        {
-            Player player;
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 4");
                 timer.DecreaseTime(2);
             }
             else
@@ -145,14 +87,14 @@ namespace Script.Locations
             {
                 player = GameManager.Instance.player2;
             }
-            
+
             if (player.GetJob() == Job.University)
             {
                 Debug.Log($"{player.name}: work at {Job.University}");
-                
+
                 player.SetWealth(50);
                 player.SetWorkExp(10);
-            
+
                 timer.DecreaseTime(2);
             }
             else

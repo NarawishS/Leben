@@ -28,7 +28,7 @@ namespace Script.Locations
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
+                player.SetHealth(+health);
                 player.SetHealth(+happy);
                 
                 Debug.Log($"{player.name}: Do Panel 1");
@@ -59,7 +59,7 @@ namespace Script.Locations
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
+                player.SetHealth(+health);
                 player.SetHealth(+happy);
                 
                 Debug.Log($"{player.name}: Do Panel 2");
