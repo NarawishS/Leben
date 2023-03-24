@@ -186,5 +186,47 @@ namespace Script
         {
             _vehicle = newVehicle;
         }
+    
+        public int GetMoneyScore()
+        {
+            int moneyScore;
+            var maxMoney = 100000;
+            if (_wealth + _bankMoney > maxMoney)
+            {
+                moneyScore = maxMoney;
+            }
+            else
+            {
+                moneyScore = _wealth + _bankMoney;
+            }
+            return moneyScore/1000;
+        }
+        
+        public int GetHappyScore()
+        {
+            int happyScore = _happy;
+            var maxHappy = 1000;
+            if (happyScore > maxHappy)
+            {
+                happyScore = maxHappy;
+            }
+            return happyScore/10;
+        }
+        
+        public int GetHealthScore()
+        {
+            int healthScore = _health;
+            var maxHealth = 1000;
+            if (healthScore > maxHealth)
+            {
+                healthScore = maxHealth;
+            }
+            return healthScore/10;
+        }
+        
+        public int PlayerScore()
+        {
+            return GetMoneyScore() + GetHappyScore() + GetHealthScore();
+        }
     }
 }
