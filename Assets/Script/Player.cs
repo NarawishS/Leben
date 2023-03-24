@@ -10,6 +10,8 @@ namespace Script
     {
         public static Player Instance { get; private set; }
 
+        private string _name;
+
         // Money
         private int _wealth;
 
@@ -186,6 +188,18 @@ namespace Script
         {
             _vehicle = newVehicle;
         }
+        
+        //Get Name
+        public string GetName()
+        {
+            return _name;
+        }
+
+        //Set Name
+        public void SetName(string newName)
+        {
+            _name = newName;
+        }
     
         public int GetMoneyScore()
         {
@@ -199,7 +213,7 @@ namespace Script
             {
                 moneyScore = _wealth + _bankMoney;
             }
-            return moneyScore/1000;
+            return moneyScore/(maxMoney/100);
         }
         
         public int GetHappyScore()
@@ -210,7 +224,7 @@ namespace Script
             {
                 happyScore = maxHappy;
             }
-            return happyScore/10;
+            return happyScore/(maxHappy/100);
         }
         
         public int GetHealthScore()
@@ -221,10 +235,10 @@ namespace Script
             {
                 healthScore = maxHealth;
             }
-            return healthScore/10;
+            return healthScore/(maxHealth/100);
         }
         
-        public int PlayerScore()
+        public int GetTotalScore()
         {
             return GetMoneyScore() + GetHappyScore() + GetHealthScore();
         }

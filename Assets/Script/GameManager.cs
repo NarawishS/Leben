@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,9 +19,11 @@ namespace Script
         public GameObject p2frame;
         public Player player1;
         public Player player2;
-        
+        public List<Player> playerList;
+        public List<Player> scoreOrderedPlayerList;
+
         private float _turnCount = 1f;
-        private float _maxTurn = 5f;
+        private float _maxTurn = 1f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -30,6 +33,8 @@ namespace Script
 
         private void Start()
         {
+            player1.SetName("Player 1");
+            player2.SetName("Player 2");
             UpdateGameState(GameState.P1Turn);
         }
 
@@ -73,10 +78,12 @@ namespace Script
         
         private void HandleEnded()
         {
+            SavePlayerScore();
+            SaveRanking();
             ScreenChanger.GameEnd();
             _turnCount = 1;
         }
-        
+
         public void UpdateTurn()
         {
             _turnCount += 0.5f;
@@ -91,6 +98,36 @@ namespace Script
         public int GetTurn()
         {
             return  Mathf.FloorToInt(_turnCount);
+        }
+        
+        private void SavePlayerScore()
+        {
+            PlayerPrefs.SetString("p1", player1.GetName());
+            PlayerPrefs.SetInt("p1Score", player1.GetTotalScore());
+            PlayerPrefs.SetInt("p1MoneyScore", player1.GetMoneyScore());
+            PlayerPrefs.SetInt("p1HealthScore", player1.GetHealthScore());
+            PlayerPrefs.SetInt("p1HappyScore", player1.GetHappyScore());
+            
+            PlayerPrefs.SetString("p2", player2.GetName());
+            PlayerPrefs.SetInt("p2Score", player2.GetTotalScore());
+            PlayerPrefs.SetInt("p2MoneyScore", player2.GetMoneyScore());
+            PlayerPrefs.SetInt("p2HealthScore", player2.GetHealthScore());
+            PlayerPrefs.SetInt("p2HappyScore", player2.GetHappyScore());
+        }
+
+        private void updateScoreList()
+        {
+            playerList.Add(player1);
+            playerList.Add(player2);
+            scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore()).ThenBy(p => p.GetHappyScore()).ToList();
+            playerList.Clear();
+        }
+
+        private void SaveRanking()
+        {
+            updateScoreList();
+            PlayerPrefs.SetString("1st", scoreOrderedPlayerList[0].GetName());
+            PlayerPrefs.SetString("2nd", scoreOrderedPlayerList[1].GetName());
         }
     }
 }
