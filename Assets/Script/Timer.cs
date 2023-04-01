@@ -11,7 +11,6 @@ namespace Script
         private float _timeValue = 60f;
         public Text timeText;
         private float _elapsed = 0f;
-        public GameObject home;
 
         // Update is called once per frame
         private void Update()
@@ -29,7 +28,8 @@ namespace Script
                 {
                     player = GameManager.Instance.player1;
                     player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-
+                    player.SetPosition("");
+                    player.SetWalkState(false);
                     GameManager.Instance.UpdateGameState(GameState.P2Turn);
                     GameManager.Instance.UpdateTurn();
 
@@ -39,7 +39,8 @@ namespace Script
                 {
                     player = GameManager.Instance.player2;
                     player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-
+                    player.SetPosition("");
+                    player.SetWalkState(false);
                     GameManager.Instance.UpdateGameState(GameState.P1Turn);
                     GameManager.Instance.UpdateTurn();
 
@@ -48,37 +49,11 @@ namespace Script
 
                 _timeValue = 60f;
 
-                if (player.GetInfectionStatus())
+                if (GameManager.Instance.CheckInfection(player))
                 {
                     Debug.Log($"{player.name} is infected");
-                    _timeValue *= 0.25f;
-
-                    if (player.GetMask() > 0)
-                    {
-                        player.SetMask(-1);
-                    }
+                    _timeValue *= 0.4f;
                 }
-                else
-                {
-                    float infectionChance = player.GetInfectionChance();
-
-                    if (player.GetMask() > 0)
-                    {
-                        infectionChance *= 0.5f;
-                        player.SetMask(-1);
-                    }
-
-                    player.SetInfectionStatus(
-                        ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance)));
-
-                    if (player.GetInfectionStatus())
-                    {
-                        Debug.Log($"{player.name} is infected");
-                        _timeValue *= 0.4f;
-                    }
-                }
-
-                player.SetInfectionChance(0);
             }
 
             if (_elapsed >= 1f)

@@ -45,6 +45,12 @@ namespace Script
         // Vehicle
         private Vehicle _vehicle;
 
+        // Current State
+        private bool _walking;
+
+        // Current Position
+        private string _pos;
+
         public Rigidbody2D rb;
 
         private void Awake()
@@ -53,6 +59,8 @@ namespace Script
             SetWealth(100_000);
             SetVehicle(Vehicle.None);
             SetJob(Job.None);
+            SetWalkState(false);
+            SetPosition("");
         }
 
         //Get money
@@ -188,7 +196,31 @@ namespace Script
         {
             _vehicle = newVehicle;
         }
-        
+
+        //Get Position
+        public string GetPosition()
+        {
+            return _pos;
+        }
+
+        //Set Position
+        public void SetPosition(string pos)
+        {
+            _pos = pos;
+        }
+
+        //Get Current Walking State
+        public bool GetWalkState()
+        {
+            return _walking;
+        }
+
+        //Set Current Walking State
+        public void SetWalkState(bool newState)
+        {
+            _walking = newState;
+        }
+
         //Get Name
         public string GetName()
         {
@@ -200,7 +232,7 @@ namespace Script
         {
             _name = newName;
         }
-    
+
         public int GetMoneyScore()
         {
             int moneyScore;
@@ -213,9 +245,10 @@ namespace Script
             {
                 moneyScore = _wealth + _bankMoney;
             }
-            return moneyScore/(maxMoney/100);
+
+            return moneyScore / (maxMoney / 100);
         }
-        
+
         public int GetHappyScore()
         {
             int happyScore = _happy;
@@ -224,9 +257,10 @@ namespace Script
             {
                 happyScore = maxHappy;
             }
-            return happyScore/(maxHappy/100);
+
+            return happyScore / (maxHappy / 100);
         }
-        
+
         public int GetHealthScore()
         {
             int healthScore = _health;
@@ -235,9 +269,10 @@ namespace Script
             {
                 healthScore = maxHealth;
             }
-            return healthScore/(maxHealth/100);
+
+            return healthScore / (maxHealth / 100);
         }
-        
+
         public int GetTotalScore()
         {
             return GetMoneyScore() + GetHappyScore() + GetHealthScore();
