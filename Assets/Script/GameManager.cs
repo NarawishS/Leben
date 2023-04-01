@@ -145,6 +145,7 @@ namespace Script
 
             if (player.GetInfectionStatus())
             {
+                infectionPanel.SetActive(true);
                 player.SetInfectionChance(0);
                 return player.GetInfectionStatus();
             }
@@ -154,7 +155,10 @@ namespace Script
             player.SetInfectionStatus(infected);
             player.SetInfectionChance(0);
 
-            if (player.GetInfectionStatus()) ;
+            if (player.GetInfectionStatus())
+            {
+                infectionPanel.SetActive(true);
+            }
 
             return player.GetInfectionStatus();
         }
