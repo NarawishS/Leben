@@ -22,8 +22,10 @@ namespace Script
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
 
+        public GameObject infectionPanel;
+
         private float _turnCount = 1f;
-        private float _maxTurn = 1f;
+        private float _maxTurn = 10f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -75,7 +77,7 @@ namespace Script
             p1frame.SetActive(true);
             p2frame.SetActive(false);
         }
-        
+
         private void HandleEnded()
         {
             SavePlayerScore();
@@ -97,9 +99,9 @@ namespace Script
 
         public int GetTurn()
         {
-            return  Mathf.FloorToInt(_turnCount);
+            return Mathf.FloorToInt(_turnCount);
         }
-        
+
         private void SavePlayerScore()
         {
             PlayerPrefs.SetString("p1", player1.GetName());
@@ -107,7 +109,7 @@ namespace Script
             PlayerPrefs.SetInt("p1MoneyScore", player1.GetMoneyScore());
             PlayerPrefs.SetInt("p1HealthScore", player1.GetHealthScore());
             PlayerPrefs.SetInt("p1HappyScore", player1.GetHappyScore());
-            
+
             PlayerPrefs.SetString("p2", player2.GetName());
             PlayerPrefs.SetInt("p2Score", player2.GetTotalScore());
             PlayerPrefs.SetInt("p2MoneyScore", player2.GetMoneyScore());
@@ -119,7 +121,8 @@ namespace Script
         {
             playerList.Add(player1);
             playerList.Add(player2);
-            scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore()).ThenBy(p => p.GetHappyScore()).ToList();
+            scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore()).ThenBy(p => p.GetHappyScore())
+                .ToList();
             playerList.Clear();
         }
 
@@ -128,6 +131,32 @@ namespace Script
             updateScoreList();
             PlayerPrefs.SetString("1st", scoreOrderedPlayerList[0].GetName());
             PlayerPrefs.SetString("2nd", scoreOrderedPlayerList[1].GetName());
+        }
+
+        public bool CheckInfection(Player player)
+        {
+            float infectionChance = player.GetInfectionChance();
+
+            if (player.GetMask() > 0)
+            {
+                player.SetMask(-1);
+                infectionChance *= 0.5f;
+            }
+
+            if (player.GetInfectionStatus())
+            {
+                player.SetInfectionChance(0);
+                return player.GetInfectionStatus();
+            }
+
+            bool infected = ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance));
+
+            player.SetInfectionStatus(infected);
+            player.SetInfectionChance(0);
+
+            if (player.GetInfectionStatus()) ;
+
+            return player.GetInfectionStatus();
         }
     }
 }
