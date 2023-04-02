@@ -88,5 +88,10 @@ namespace Script
 
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
+
+        public void ResumeTime()
+        {
+            Time.timeScale = 1f;
+        }
     }
 }

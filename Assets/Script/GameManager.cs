@@ -147,6 +147,7 @@ namespace Script
             {
                 infectionPanel.SetActive(true);
                 player.SetInfectionChance(0);
+                Time.timeScale = 0f;
                 return player.GetInfectionStatus();
             }
 
@@ -158,6 +159,7 @@ namespace Script
             if (player.GetInfectionStatus())
             {
                 infectionPanel.SetActive(true);
+                Time.timeScale = 0f;
             }
 
             return player.GetInfectionStatus();
