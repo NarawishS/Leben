@@ -12,9 +12,17 @@ namespace Script
         public Text timeText;
         private float _elapsed = 0f;
 
+        public GameObject playerEvent;
+
         // Update is called once per frame
         private void Update()
         {
+            for (var i = 0; i < playerEvent.transform.childCount; i++)
+            {
+                var child = playerEvent.transform.GetChild(i).gameObject;
+                if (child.activeSelf) Time.timeScale = 0;
+            }
+
             _elapsed += Time.deltaTime;
 
             if (_timeValue > 0)
@@ -49,17 +57,14 @@ namespace Script
 
                 _timeValue = 60f;
 
-                if (GameManager.Instance.CheckInfection(player))
-                {
-                    Debug.Log($"{player.name} is infected");
-                    _timeValue *= 0.4f;
-                }
+                GameManager.Instance.CheckInfection(player);
+                GameManager.Instance.CheckSatiated(player);
             }
 
             if (_elapsed >= 1f)
             {
                 _elapsed %= 1f;
-                GetComponent<Text>().color = Color.black;
+                timeText.color = Color.black;
             }
 
             DisplayTime(_timeValue);
@@ -67,8 +72,13 @@ namespace Script
 
         public void DecreaseTime(float t)
         {
-            GetComponent<Text>().color = Color.red;
+            timeText.color = Color.red;
             _timeValue -= t;
+        }
+
+        public float GetTime()
+        {
+            return _timeValue;
         }
 
         public void ResetTime()

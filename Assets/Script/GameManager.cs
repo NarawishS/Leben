@@ -22,7 +22,10 @@ namespace Script
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
 
+        public Timer timer;
         public GameObject infectionPanel;
+        public GameObject hungryPanel;
+        public GameObject diarrheaPanel;
 
         private float _turnCount = 1f;
         private float _maxTurn = 10f;
@@ -133,7 +136,7 @@ namespace Script
             PlayerPrefs.SetString("2nd", scoreOrderedPlayerList[1].GetName());
         }
 
-        public bool CheckInfection(Player player)
+        public void CheckInfection(Player player)
         {
             float infectionChance = player.GetInfectionChance();
 
@@ -147,8 +150,8 @@ namespace Script
             {
                 infectionPanel.SetActive(true);
                 player.SetInfectionChance(0);
-                Time.timeScale = 0f;
-                return player.GetInfectionStatus();
+                timer.DecreaseTime(timer.GetTime() * 0.2f);
+                return;
             }
 
             bool infected = ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance));
@@ -159,10 +162,27 @@ namespace Script
             if (player.GetInfectionStatus())
             {
                 infectionPanel.SetActive(true);
-                Time.timeScale = 0f;
+                timer.DecreaseTime(timer.GetTime() * 0.2f);
+            }
+        }
+
+        public void CheckSatiated(Player player)
+        {
+            if (_turnCount < 2f) return;
+
+            if (player.GetSatiated() == 0)
+            {
+                hungryPanel.SetActive(true);
+                return;
             }
 
-            return player.GetInfectionStatus();
+            if (player.GetSatiated() > 100)
+            {
+                diarrheaPanel.SetActive(true);
+                return;
+            }
+
+            player.SetSatiated(-player.GetSatiated());
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Script
 {
     public class Location : MonoBehaviour
     {
-        public Timer timer;
         public GameObject locationPanel;
         public GameObject board;
 

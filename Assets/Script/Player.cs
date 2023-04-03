@@ -51,16 +51,32 @@ namespace Script
         // Current Position
         private string _pos;
 
+        // Current food condition
+        private int _satiated;
+
+        // Sleep
+        private bool _sleep;
+
         public Rigidbody2D rb;
 
         private void Awake()
         {
             Instance = this;
-            SetWealth(100_000);
-            SetVehicle(Vehicle.None);
-            SetJob(Job.None);
-            SetWalkState(false);
-            SetPosition("");
+            _wealth = 100_000;
+            _bankMoney = 0;
+            _health = 0;
+            _happy = 0;
+            _education = 0;
+            _workExp = 0;
+            _job = Job.None;
+            _infectionChance = 0;
+            _infected = false;
+            _mask = 0;
+            _vehicle = Vehicle.None;
+            _walking = false;
+            _pos = "";
+            _satiated = 0;
+            _sleep = false;
         }
 
         //Get money
@@ -219,6 +235,30 @@ namespace Script
         public void SetWalkState(bool newState)
         {
             _walking = newState;
+        }
+
+        //Get Satiated Status
+        public int GetSatiated()
+        {
+            return _satiated;
+        }
+
+        //Set Satiated Status
+        public void SetSatiated(int amount)
+        {
+            _satiated += amount;
+        }
+
+        //Get Sleep
+        public bool GetSleep()
+        {
+            return _sleep;
+        }
+
+        //Set Sleep
+        public void SetSleep(bool newState)
+        {
+            _sleep = newState;
         }
 
         //Get Name
