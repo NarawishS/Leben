@@ -12,11 +12,9 @@ namespace Script
         public GameObject locationPanel;
         public GameObject board;
 
-        private void OnMouseUpAsButton()
+        public void OnMouseUpAsButton()
         {
             Player player;
-            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
-
             switch (GameManager.Instance.state)
             {
                 case GameState.P1Turn:
@@ -28,6 +26,14 @@ namespace Script
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            MoveTo(player);
+        }
+
+        private void MoveTo(Player player)
+        {
+            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
+            if (gameObject.name.Equals("home")) infectionChance = 0;
 
             if (!player.GetWalkState() && !player.GetPosition().Equals(gameObject.name))
             {

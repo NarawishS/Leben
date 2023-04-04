@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 namespace Script
@@ -23,9 +24,16 @@ namespace Script
         public List<Player> scoreOrderedPlayerList;
 
         public Timer timer;
+        public Text turnText;
+        public GameObject board;
+
+        public GameObject turnPanel;
+        public Text turnPanelText;
+
         public GameObject infectionPanel;
         public GameObject hungryPanel;
         public GameObject diarrheaPanel;
+        public GameObject robPanel;
 
         private float _turnCount = 1f;
         private float _maxTurn = 10f;
@@ -41,6 +49,14 @@ namespace Script
             player1.SetName("Player 1");
             player2.SetName("Player 2");
             UpdateGameState(GameState.P1Turn);
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
         }
 
         public void UpdateGameState(GameState newState)
@@ -71,6 +87,7 @@ namespace Script
             p2.SetActive(true);
             p2frame.SetActive(true);
             p1frame.SetActive(false);
+            StartTurnText($"{player2.GetName()} turn");
         }
 
         private void HandleP1Turn()
@@ -79,6 +96,7 @@ namespace Script
             p1.SetActive(true);
             p1frame.SetActive(true);
             p2frame.SetActive(false);
+            StartTurnText($"{player1.GetName()} turn");
         }
 
         private void HandleEnded()
@@ -89,10 +107,16 @@ namespace Script
             _turnCount = 1;
         }
 
+        private void StartTurnText(string text)
+        {
+            turnPanel.SetActive(true);
+            turnPanelText.text = text;
+        }
+
         public void UpdateTurn()
         {
             _turnCount += 0.5f;
-            Debug.Log($"Turn count =" + $" {_turnCount}");
+            turnText.text = $"Turn {Mathf.FloorToInt(_turnCount)}";
 
             if (_turnCount.Equals(_maxTurn + 1))
             {
@@ -183,6 +207,18 @@ namespace Script
             }
 
             player.SetSatiated(-player.GetSatiated());
+        }
+
+        public void CheckRobbed(Player player)
+        {
+            if (_turnCount < 2f) return;
+
+            if (ProbabilityManager.ProbabilityCheckByPercent(25))
+            {
+                var amount = Mathf.FloorToInt(player.GetWealth() * 0.25f);
+                player.SetWealth(-amount);
+                robPanel.SetActive(true);
+            }
         }
     }
 }

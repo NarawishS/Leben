@@ -59,6 +59,7 @@ namespace Script
 
                 GameManager.Instance.CheckInfection(player);
                 GameManager.Instance.CheckSatiated(player);
+                GameManager.Instance.CheckRobbed(player);
             }
 
             if (_elapsed >= 1f)
