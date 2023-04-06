@@ -11,20 +11,12 @@ namespace Script.Locations
 
         public void BuyBurger()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 65;
             int health = 20;
             int happy = 20;
             int cal = 10;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            
 
             if (player.GetWealth() >= price)
             {
@@ -43,20 +35,11 @@ namespace Script.Locations
 
         public void BuyCoke()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 20;
             int health = 20;
             int happy = 10;
             int cal = 1;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -76,20 +59,11 @@ namespace Script.Locations
 
         public void BuyFried()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 40;
             int health = 20;
             int happy = 10;
             int cal = 5;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -109,20 +83,11 @@ namespace Script.Locations
 
         public void BuyChicken()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 100;
             int health = 20;
             int happy = 10;
             int cal = 20;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -142,16 +107,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.FastFood)
             {

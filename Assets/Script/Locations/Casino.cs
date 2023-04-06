@@ -11,19 +11,10 @@ namespace Script.Locations
 
         public void DoPanel1()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 100;
             int health = 5;
             int happy = 5;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -52,19 +43,10 @@ namespace Script.Locations
 
         public void DoPanel2()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 200;
             int health = 5;
             int happy = 10;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -93,19 +75,10 @@ namespace Script.Locations
         
         public void DoPanel3()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price = 500;
             int health = 5;
             int happy = 25;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             if (player.GetWealth() >= price)
             {
@@ -133,19 +106,10 @@ namespace Script.Locations
         
         public void DoPanel4()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
             int price;
             int health = 5;
             int happy;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
 
             price = player.GetWealth();
             happy = price/100*5;
@@ -177,17 +141,8 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player;
+            Player player = GameManager.Instance.GetPlayer();
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
-            
             if (player.GetJob() == Job.Casino)
             {
                 Debug.Log($"{player.name}: work at {Job.Casino}");

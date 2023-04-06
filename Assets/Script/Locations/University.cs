@@ -11,20 +11,12 @@ namespace Script.Locations
 
         public void DoPanel1()
         {
-            Player player;
             const int price = 0;
             const int health = 0;
             const int happy = 0;
             const int exp = 0;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -44,20 +36,12 @@ namespace Script.Locations
 
         public void DoPanel2()
         {
-            Player player;
             const int price = 0;
             const int health = 0;
             const int happy = 0;
             const int exp = 0;
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -77,16 +61,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.University)
             {

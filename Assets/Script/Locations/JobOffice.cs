@@ -61,16 +61,7 @@ namespace Script.Locations
 
         private void ApplyJob(Job jobName)
         {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             player.SetJob(jobName);
 

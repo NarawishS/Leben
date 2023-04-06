@@ -14,9 +14,7 @@ namespace Script.Locations
             const int price = 500;
             const int happy = 50;
 
-            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
-                ? GameManager.Instance.player1
-                : GameManager.Instance.player2;
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() == Vehicle.None)
             {
@@ -42,9 +40,7 @@ namespace Script.Locations
             const int happy = 100;
 
 
-            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
-                ? GameManager.Instance.player1
-                : GameManager.Instance.player2;
+            Player player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Motorcycle, Vehicle.Car, Vehicle.SuperCar };
             bool canBuy = true;
@@ -82,9 +78,7 @@ namespace Script.Locations
             const int price = 2000;
             const int happy = 200;
 
-            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
-                ? GameManager.Instance.player1
-                : GameManager.Instance.player2;
+            Player player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Car, Vehicle.SuperCar };
             bool canBuy = true;
@@ -121,9 +115,7 @@ namespace Script.Locations
             const int price = 5000;
             const int happy = 500;
 
-            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
-                ? GameManager.Instance.player1
-                : GameManager.Instance.player2;
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() != Vehicle.SuperCar)
             {
@@ -146,9 +138,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            var player = GameManager.Instance.state.Equals(GameState.P1Turn)
-                ? GameManager.Instance.player1
-                : GameManager.Instance.player2;
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Vehicle)
             {

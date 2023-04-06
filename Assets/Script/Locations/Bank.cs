@@ -14,17 +14,9 @@ namespace Script.Locations
 
         public void DoPanel1()
         {
-            Player player;
-            var amount = int.Parse(inputField.text);
+            Player player = GameManager.Instance.GetPlayer();
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            var amount = int.Parse(inputField.text);
 
             if (player.GetWealth() >= amount)
             {
@@ -43,17 +35,9 @@ namespace Script.Locations
 
         public void DoPanel2()
         {
-            Player player;
-            var amount = int.Parse(inputField.text);
+            Player player = GameManager.Instance.GetPlayer();
 
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            var amount = int.Parse(inputField.text);
 
             if (player.GetDepositMoney() >= amount)
             {
@@ -72,16 +56,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player;
-
-            if (GameManager.Instance.state == GameState.P1Turn)
-            {
-                player = GameManager.Instance.player1;
-            }
-            else
-            {
-                player = GameManager.Instance.player2;
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Bank)
             {

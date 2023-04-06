@@ -14,18 +14,7 @@ namespace Script
 
         public void OnMouseUpAsButton()
         {
-            Player player;
-            switch (GameManager.Instance.state)
-            {
-                case GameState.P1Turn:
-                    player = GameManager.Instance.player1;
-                    break;
-                case GameState.P2Turn:
-                    player = GameManager.Instance.player2;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             MoveTo(player);
         }
@@ -85,19 +74,7 @@ namespace Script
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Player player;
-
-            switch (GameManager.Instance.state)
-            {
-                case GameState.P1Turn:
-                    player = GameManager.Instance.player1;
-                    break;
-                case GameState.P2Turn:
-                    player = GameManager.Instance.player2;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            Player player = GameManager.Instance.GetPlayer();
 
             if (locationPanel != null && player.GetPosition().Equals(gameObject.name))
             {

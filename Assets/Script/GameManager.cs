@@ -129,6 +129,19 @@ namespace Script
             return Mathf.FloorToInt(_turnCount);
         }
 
+        public Player GetPlayer()
+        {
+            switch (state)
+            {
+                case GameState.P1Turn:
+                    return player1;
+                case GameState.P2Turn:
+                    return player2;
+                default:
+                    return player1;
+            }
+        }
+
         private void SavePlayerScore()
         {
             PlayerPrefs.SetString("p1", player1.GetName());
@@ -144,7 +157,7 @@ namespace Script
             PlayerPrefs.SetInt("p2HappyScore", player2.GetHappyScore());
         }
 
-        private void updateScoreList()
+        private void UpdateScoreList()
         {
             playerList.Add(player1);
             playerList.Add(player2);
@@ -155,7 +168,7 @@ namespace Script
 
         private void SaveRanking()
         {
-            updateScoreList();
+            UpdateScoreList();
             PlayerPrefs.SetString("1st", scoreOrderedPlayerList[0].GetName());
             PlayerPrefs.SetString("2nd", scoreOrderedPlayerList[1].GetName());
         }
@@ -197,13 +210,10 @@ namespace Script
             if (player.GetSatiated() == 0)
             {
                 hungryPanel.SetActive(true);
-                return;
             }
-
-            if (player.GetSatiated() > 100)
+            else if (player.GetSatiated() > 100)
             {
                 diarrheaPanel.SetActive(true);
-                return;
             }
 
             player.SetSatiated(-player.GetSatiated());

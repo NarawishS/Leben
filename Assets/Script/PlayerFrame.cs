@@ -17,18 +17,7 @@ public class PlayerFrame : MonoBehaviour
 
     private void DoDisableBoard()
     {
-        Player player;
-        switch (GameManager.Instance.state)
-        {
-            case GameState.P1Turn:
-                player = GameManager.Instance.player1;
-                break;
-            case GameState.P2Turn:
-                player = GameManager.Instance.player2;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        Player player = GameManager.Instance.GetPlayer();
 
         for (var i = 0; i < board.transform.childCount; i++)
         {
