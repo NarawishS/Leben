@@ -44,7 +44,7 @@ namespace Script
         public GameObject robPanel;
 
         private float _turnCount = 1f;
-        private float _maxTurn = 2f;
+        private float _maxTurn = 10f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
