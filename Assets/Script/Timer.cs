@@ -39,8 +39,8 @@ namespace Script
                         player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         player.SetPosition("");
                         player.SetWalkState(false);
-                        GameManager.Instance.UpdateGameState(GameState.P2Turn);
                         GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P2Turn);
 
                         player = GameManager.Instance.player2;
                         break;
@@ -50,8 +50,8 @@ namespace Script
                         player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         player.SetPosition("");
                         player.SetWalkState(false);
-                        GameManager.Instance.UpdateGameState(GameState.P3Turn);
                         GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P3Turn);
 
                         player = GameManager.Instance.player3;
                         break;
@@ -60,8 +60,8 @@ namespace Script
                         player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         player.SetPosition("");
                         player.SetWalkState(false);
-                        GameManager.Instance.UpdateGameState(GameState.P4Turn);
                         GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P4Turn);
 
                         player = GameManager.Instance.player4;
                         break;
@@ -70,8 +70,8 @@ namespace Script
                         player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
                         player.SetPosition("");
                         player.SetWalkState(false);
-                        GameManager.Instance.UpdateGameState(GameState.P1Turn);
                         GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P1Turn);
 
                         player = GameManager.Instance.player1;
                         break;

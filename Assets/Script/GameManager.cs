@@ -28,6 +28,8 @@ namespace Script
         public Player player4;
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
+        public AudioSource bgm;
+        public AudioClip lastTurnBGM;
 
         public Timer timer;
         public Text turnText;
@@ -42,7 +44,7 @@ namespace Script
         public GameObject robPanel;
 
         private float _turnCount = 1f;
-        private float _maxTurn = 10f;
+        private float _maxTurn = 2f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -169,6 +171,11 @@ namespace Script
             if (_turnCount.Equals(_maxTurn + 1))
             {
                 UpdateGameState(GameState.Ended);
+            }
+            if (_turnCount.Equals(_maxTurn))
+            {
+                bgm.clip = lastTurnBGM;
+                bgm.Play();
             }
         }
 
