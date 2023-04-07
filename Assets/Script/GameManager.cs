@@ -16,10 +16,16 @@ namespace Script
         public GameState state;
         public GameObject p1;
         public GameObject p2;
+        public GameObject p3;
+        public GameObject p4;
         public GameObject p1frame;
         public GameObject p2frame;
+        public GameObject p3frame;
+        public GameObject p4frame;
         public Player player1;
         public Player player2;
+        public Player player3;
+        public Player player4;
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
 
@@ -48,6 +54,8 @@ namespace Script
         {
             player1.SetName("Player 1");
             player2.SetName("Player 2");
+            player3.SetName("Player 3");
+            player4.SetName("Player 4");
             UpdateGameState(GameState.P1Turn);
         }
 
@@ -71,6 +79,12 @@ namespace Script
                 case GameState.P2Turn:
                     HandleP2Turn();
                     break;
+                case GameState.P3Turn:
+                    HandleP3Turn();
+                    break;
+                case GameState.P4Turn:
+                    HandleP4Turn();
+                    break;
                 case GameState.Ended:
                     HandleEnded();
                     break;
@@ -81,21 +95,55 @@ namespace Script
             OnGameStateChanged?.Invoke(newState);
         }
 
+        private void HandleP4Turn()
+        {
+            p1.SetActive(false);
+            p2.SetActive(false);
+            p3.SetActive(false);
+            p4.SetActive(true);
+            p1frame.SetActive(false);
+            p2frame.SetActive(false);
+            p3frame.SetActive(false);
+            p4frame.SetActive(true);
+            StartTurnText($"{player4.GetName()} turn");
+        }
+        
+        private void HandleP3Turn()
+        {
+            p1.SetActive(false);
+            p2.SetActive(false);
+            p3.SetActive(true);
+            p4.SetActive(false);
+            p1frame.SetActive(false);
+            p2frame.SetActive(false);
+            p3frame.SetActive(true);
+            p4frame.SetActive(false);
+            StartTurnText($"{player3.GetName()} turn");
+        }
+        
         private void HandleP2Turn()
         {
             p1.SetActive(false);
             p2.SetActive(true);
-            p2frame.SetActive(true);
+            p3.SetActive(false);
+            p4.SetActive(false);
             p1frame.SetActive(false);
+            p2frame.SetActive(true);
+            p3frame.SetActive(false);
+            p4frame.SetActive(false);
             StartTurnText($"{player2.GetName()} turn");
         }
 
         private void HandleP1Turn()
         {
-            p2.SetActive(false);
             p1.SetActive(true);
+            p2.SetActive(false);
+            p3.SetActive(false);
+            p4.SetActive(false);
             p1frame.SetActive(true);
             p2frame.SetActive(false);
+            p3frame.SetActive(false);
+            p4frame.SetActive(false);
             StartTurnText($"{player1.GetName()} turn");
         }
 
@@ -115,7 +163,7 @@ namespace Script
 
         public void UpdateTurn()
         {
-            _turnCount += 0.5f;
+            _turnCount += 0.25f;
             turnText.text = $"Turn {Mathf.FloorToInt(_turnCount)}";
 
             if (_turnCount.Equals(_maxTurn + 1))
@@ -137,6 +185,10 @@ namespace Script
                     return player1;
                 case GameState.P2Turn:
                     return player2;
+                case GameState.P3Turn:
+                    return player3;
+                case GameState.P4Turn:
+                    return player4;
                 default:
                     return player1;
             }
@@ -155,12 +207,26 @@ namespace Script
             PlayerPrefs.SetInt("p2MoneyScore", player2.GetMoneyScore());
             PlayerPrefs.SetInt("p2HealthScore", player2.GetHealthScore());
             PlayerPrefs.SetInt("p2HappyScore", player2.GetHappyScore());
+            
+            PlayerPrefs.SetString("p3", player3.GetName());
+            PlayerPrefs.SetInt("p3Score", player3.GetTotalScore());
+            PlayerPrefs.SetInt("p3MoneyScore", player3.GetMoneyScore());
+            PlayerPrefs.SetInt("p3HealthScore", player3.GetHealthScore());
+            PlayerPrefs.SetInt("p3HappyScore", player3.GetHappyScore());
+
+            PlayerPrefs.SetString("p4", player4.GetName());
+            PlayerPrefs.SetInt("p4Score", player4.GetTotalScore());
+            PlayerPrefs.SetInt("p4MoneyScore", player4.GetMoneyScore());
+            PlayerPrefs.SetInt("p4HealthScore", player4.GetHealthScore());
+            PlayerPrefs.SetInt("p4HappyScore", player4.GetHappyScore());
         }
 
         private void UpdateScoreList()
         {
             playerList.Add(player1);
             playerList.Add(player2);
+            playerList.Add(player3);
+            playerList.Add(player4);
             scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore()).ThenBy(p => p.GetHappyScore())
                 .ToList();
             playerList.Clear();
@@ -171,6 +237,8 @@ namespace Script
             UpdateScoreList();
             PlayerPrefs.SetString("1st", scoreOrderedPlayerList[0].GetName());
             PlayerPrefs.SetString("2nd", scoreOrderedPlayerList[1].GetName());
+            PlayerPrefs.SetString("3rd", scoreOrderedPlayerList[2].GetName());
+            PlayerPrefs.SetString("4th", scoreOrderedPlayerList[3].GetName());
         }
 
         public void CheckInfection(Player player)
@@ -238,5 +306,7 @@ public enum GameState
 {
     P1Turn,
     P2Turn,
+    P3Turn,
+    P4Turn,
     Ended
 }

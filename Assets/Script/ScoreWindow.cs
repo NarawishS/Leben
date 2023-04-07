@@ -33,15 +33,23 @@ public class ScoreWindow : MonoBehaviour
     {
         p1MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p1MoneyScore").ToString();
         p2MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p2MoneyScore").ToString();
+        p3MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p3MoneyScore").ToString();
+        p4MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p4MoneyScore").ToString();
         
         p1HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p1HealthScore").ToString();
         p2HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p2HealthScore").ToString();
+        p3HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p3HealthScore").ToString();
+        p4HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p4HealthScore").ToString();
         
         p1HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p1HappyScore").ToString();
         p2HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p2HappyScore").ToString();
+        p3HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p3HappyScore").ToString();
+        p4HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p4HappyScore").ToString();
         
         p1TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p1Score").ToString();
         p2TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p2Score").ToString();
+        p3TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p3Score").ToString();
+        p4TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p4Score").ToString();
 
         switch (PlayerPrefs.GetString("1st"))
         {
