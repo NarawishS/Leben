@@ -42,6 +42,9 @@ namespace Script
         public GameObject hungryPanel;
         public GameObject diarrheaPanel;
         public GameObject robPanel;
+        public GameObject sleepPanel;
+        public GameObject musclePanel;
+        public GameObject burnOutPanel;
 
         private float _turnCount = 1f;
         private float _maxTurn = 10f;
@@ -109,7 +112,7 @@ namespace Script
             p4frame.SetActive(true);
             StartTurnText($"{player4.GetName()} turn");
         }
-        
+
         private void HandleP3Turn()
         {
             p1.SetActive(false);
@@ -122,7 +125,7 @@ namespace Script
             p4frame.SetActive(false);
             StartTurnText($"{player3.GetName()} turn");
         }
-        
+
         private void HandleP2Turn()
         {
             p1.SetActive(false);
@@ -172,6 +175,7 @@ namespace Script
             {
                 UpdateGameState(GameState.Ended);
             }
+
             if (_turnCount.Equals(_maxTurn))
             {
                 bgm.clip = lastTurnBGM;
@@ -214,7 +218,7 @@ namespace Script
             PlayerPrefs.SetInt("p2MoneyScore", player2.GetMoneyScore());
             PlayerPrefs.SetInt("p2HealthScore", player2.GetHealthScore());
             PlayerPrefs.SetInt("p2HappyScore", player2.GetHappyScore());
-            
+
             PlayerPrefs.SetString("p3", player3.GetName());
             PlayerPrefs.SetInt("p3Score", player3.GetTotalScore());
             PlayerPrefs.SetInt("p3MoneyScore", player3.GetMoneyScore());
@@ -304,6 +308,52 @@ namespace Script
                 player.SetWealth(-amount);
                 robPanel.SetActive(true);
             }
+        }
+
+        public void CheckSleep(Player player)
+        {
+            if (_turnCount < 2f) return;
+
+            if (!player.GetSleep())
+            {
+                sleepPanel.SetActive(true);
+                timer.DecreaseTime(timer.GetTime() * 0.2f);
+            }
+
+            player.SetSleep(false);
+        }
+
+        public void CheckStamina(Player player)
+        {
+            if (_turnCount < 2f) return;
+
+            if (player.GetStamina() <= 0)
+            {
+                musclePanel.SetActive(true);
+                player.SetHealth(-Mathf.FloorToInt(player.GetHealth() * 0.2f));
+            }
+
+            player.SetStamina(-player.GetStamina());
+            player.SetStamina(+100);
+        }
+
+        public void CheckStress(Player player)
+        {
+            if (_turnCount < 2f) return;
+        }
+
+        public void CheckBurnOut(Player player)
+        {
+            if (_turnCount < 2f) return;
+
+            if (player.GetBurnOut() >= 100)
+            {
+                burnOutPanel.SetActive(true);
+                player.SetHealth(-Mathf.FloorToInt(player.GetHealth() * 0.2f));
+                player.SetHappy(-Mathf.FloorToInt(player.GetHappy() * 0.2f));
+            }
+
+            player.SetBurnOut(-player.GetBurnOut());
         }
     }
 }

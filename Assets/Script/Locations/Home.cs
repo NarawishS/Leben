@@ -11,6 +11,8 @@ namespace Script.Locations
 
         public void EndTurn()
         {
+            Player player = GameManager.Instance.GetPlayer();
+            player.SetSleep(true);
             timer.ResetTime();
         }
     }

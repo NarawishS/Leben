@@ -58,6 +58,7 @@ namespace Script.Locations
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
+                player.SetBurnOut(15);
 
                 timer.DecreaseTime(2);
             }

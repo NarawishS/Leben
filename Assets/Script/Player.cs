@@ -54,8 +54,14 @@ namespace Script
         // Current food condition
         private int _satiated;
 
+        // Current Gym Stamina
+        private int _stamina;
+
         // Sleep
         private bool _sleep;
+
+        // BurnOut
+        private int _overWork;
 
         public Rigidbody2D rb;
 
@@ -76,6 +82,8 @@ namespace Script
             _walking = false;
             _pos = "";
             _satiated = 0;
+            _stamina = 100;
+            _overWork = 0;
             _sleep = false;
         }
 
@@ -247,6 +255,30 @@ namespace Script
         public void SetSatiated(int amount)
         {
             _satiated += amount;
+        }
+
+        //Get Stamina Status
+        public int GetStamina()
+        {
+            return _stamina;
+        }
+
+        //Set Stamina Status
+        public void SetStamina(int amount)
+        {
+            _stamina += amount;
+        }
+
+        // Get BurnOut
+        public int GetBurnOut()
+        {
+            return _overWork;
+        }
+
+        // Set BurnOut
+        public void SetBurnOut(int amount)
+        {
+            _overWork += amount;
         }
 
         //Get Sleep

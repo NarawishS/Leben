@@ -44,7 +44,7 @@ namespace Script
 
                         player = GameManager.Instance.player2;
                         break;
-                    
+
                     case GameState.P2Turn:
                         player = GameManager.Instance.player2;
                         player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
@@ -82,9 +82,12 @@ namespace Script
 
                 _timeValue = 60f;
 
+                GameManager.Instance.CheckSleep(player);
                 GameManager.Instance.CheckInfection(player);
                 GameManager.Instance.CheckSatiated(player);
                 GameManager.Instance.CheckRobbed(player);
+                GameManager.Instance.CheckStamina(player);
+                GameManager.Instance.CheckBurnOut(player);
             }
 
             if (_elapsed >= 1f)
