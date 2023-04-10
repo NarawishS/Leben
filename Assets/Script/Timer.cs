@@ -32,27 +32,52 @@ namespace Script
             else
             {
                 Player player;
-                if (GameManager.Instance.state.Equals(GameState.P1Turn))
+                switch (GameManager.Instance.state)
                 {
-                    player = GameManager.Instance.player1;
-                    player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                    player.SetPosition("");
-                    player.SetWalkState(false);
-                    GameManager.Instance.UpdateGameState(GameState.P2Turn);
-                    GameManager.Instance.UpdateTurn();
+                    case GameState.P1Turn:
+                        player = GameManager.Instance.player1;
+                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        player.SetPosition("");
+                        player.SetWalkState(false);
+                        GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P2Turn);
 
-                    player = GameManager.Instance.player2;
-                }
-                else
-                {
-                    player = GameManager.Instance.player2;
-                    player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                    player.SetPosition("");
-                    player.SetWalkState(false);
-                    GameManager.Instance.UpdateGameState(GameState.P1Turn);
-                    GameManager.Instance.UpdateTurn();
+                        player = GameManager.Instance.player2;
+                        break;
+                    
+                    case GameState.P2Turn:
+                        player = GameManager.Instance.player2;
+                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        player.SetPosition("");
+                        player.SetWalkState(false);
+                        GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P3Turn);
 
-                    player = GameManager.Instance.player1;
+                        player = GameManager.Instance.player3;
+                        break;
+                    case GameState.P3Turn:
+                        player = GameManager.Instance.player3;
+                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        player.SetPosition("");
+                        player.SetWalkState(false);
+                        GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P4Turn);
+
+                        player = GameManager.Instance.player4;
+                        break;
+                    case GameState.P4Turn:
+                        player = GameManager.Instance.player4;
+                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+                        player.SetPosition("");
+                        player.SetWalkState(false);
+                        GameManager.Instance.UpdateTurn();
+                        GameManager.Instance.UpdateGameState(GameState.P1Turn);
+
+                        player = GameManager.Instance.player1;
+                        break;
+                    default:
+                        player = GameManager.Instance.player1;
+                        break;
                 }
 
                 _timeValue = 60f;
