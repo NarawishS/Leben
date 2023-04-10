@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ComputerAI : MonoBehaviour
 {
-    public GameObject _body;
+    public GameObject body;
     public Player player;
     public GameObject board;
     public GameObject panel;
@@ -14,10 +14,9 @@ public class ComputerAI : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (_body.activeSelf)
+        if (body.activeSelf && !player.GetWalkState())
         {
             MoveTo("hospital");
-            EndTurn();
         }
     }
 
@@ -36,7 +35,7 @@ public class ComputerAI : MonoBehaviour
         }
     }
 
-    private bool MoveTo(string location)
+    private void MoveTo(string location)
     {
         for (var i = 0; i < board.transform.childCount; i++)
         {
@@ -45,11 +44,8 @@ public class ComputerAI : MonoBehaviour
             {
                 var los = (Location)child.GetComponent(typeof(Location));
                 los.OnMouseUpAsButton();
-                new WaitUntil(() => player.transform.position == child.transform.position);
-                return true;
+                return;
             }
         }
-
-        return false;
     }
 }

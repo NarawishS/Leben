@@ -32685,6 +32685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1796320420}
   - component: {fileID: 1796320419}
+  - component: {fileID: 1796320421}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -32715,7 +32716,7 @@ MonoBehaviour:
   scoreOrderedPlayerList: []
   timer: {fileID: 697404982}
   turnText: {fileID: 759565600}
-  board: {fileID: 1049603932}
+  board: {fileID: 0}
   turnPanel: {fileID: 775944405}
   turnPanelText: {fileID: 977272654}
   infectionPanel: {fileID: 1623182636}
@@ -32736,6 +32737,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1796320421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796320418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40cc73a10672a94f8de08c9d5342921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 1715603779}
+  player: {fileID: 1715603780}
+  board: {fileID: 1049603932}
+  panel: {fileID: 0}
 --- !u!1 &1798878142
 GameObject:
   m_ObjectHideFlags: 0
