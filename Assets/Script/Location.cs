@@ -56,6 +56,37 @@ namespace Script
                 if (player.transform.position != gameObject.transform.position)
                 {
                     var s = Vector2.Distance(player.transform.position, gameObject.transform.position);
+                    if (player.transform.position.x < gameObject.transform.position.x)
+                    {
+                        if (player.transform.localScale.x > 0)
+                        {
+                            player.transform.localScale =
+                                new Vector3(-player.transform.localScale.x, player.transform.localScale.y,
+                                    player.transform.localScale.z);
+                        }
+                        else
+                        {
+                            player.transform.localScale =
+                                new Vector3(player.transform.localScale.x, player.transform.localScale.y,
+                                    player.transform.localScale.z);
+                        }
+                    }
+                    else
+                    {
+                        if (player.transform.localScale.x > 0)
+                        {
+                            player.transform.localScale =
+                                new Vector3(player.transform.localScale.x, player.transform.localScale.y,
+                                    player.transform.localScale.z);
+                        }
+                        else
+                        {
+                            player.transform.localScale =
+                                new Vector3(-player.transform.localScale.x, player.transform.localScale.y,
+                                    player.transform.localScale.z);
+                        }
+                    }
+
                     player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                     player.SetInfectionChance(infectionChance);
                     Debug.Log($"{player.name} move to {gameObject.name}");
