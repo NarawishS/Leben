@@ -6832,7 +6832,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 373445649}
         m_TargetAssemblyTypeName: Script.Locations.JobOffice, Assembly-CSharp
-        m_MethodName: ApplyUniversity
+        m_MethodName: ApplyVehicle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31746,7 +31746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e846317139d62004caf7beef66f1c0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1536731022}
+  player: {fileID: 1652785826}
   wealthText: {fileID: 49223101}
   healthText: {fileID: 795142014}
   happyText: {fileID: 1959160689}
@@ -33519,7 +33519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e846317139d62004caf7beef66f1c0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1715603780}
+  player: {fileID: 828498826}
   wealthText: {fileID: 356712030}
   healthText: {fileID: 856801513}
   happyText: {fileID: 553010986}
