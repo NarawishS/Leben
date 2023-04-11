@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 
@@ -31,6 +32,8 @@ namespace Script
         public AudioSource bgm;
         public AudioClip lastTurnBGM;
 
+        public GameObject loadPanel;
+
         public Timer timer;
         public Text turnText;
         public GameObject board;
@@ -47,7 +50,7 @@ namespace Script
         public GameObject burnOutPanel;
 
         private float _turnCount = 1f;
-        private float _maxTurn = 10f;
+        private const float MaxTurn = 2f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -152,12 +155,20 @@ namespace Script
             StartTurnText($"{player1.GetName()} turn");
         }
 
-        private void HandleEnded()
+        private async void HandleEnded()
         {
+            var scene = SceneManager.LoadSceneAsync("Scenes/EndGame");
+            scene.allowSceneActivation = false;
+            loadPanel.SetActive(true);
             SavePlayerScore();
             SaveRanking();
-            ScreenChanger.GameEnd();
             _turnCount = 1;
+            do
+            {
+                await Task.Delay(100);
+            } while (scene.progress < 0.9f);
+
+            scene.allowSceneActivation = true;
         }
 
         private void StartTurnText(string text)
@@ -171,12 +182,12 @@ namespace Script
             _turnCount += 0.25f;
             turnText.text = $"Turn {Mathf.FloorToInt(_turnCount)}";
 
-            if (_turnCount.Equals(_maxTurn + 1))
+            if (_turnCount.Equals(MaxTurn + 1))
             {
                 UpdateGameState(GameState.Ended);
             }
 
-            if (_turnCount.Equals(_maxTurn))
+            if (_turnCount.Equals(MaxTurn))
             {
                 bgm.clip = lastTurnBGM;
                 bgm.Play();
@@ -186,6 +197,11 @@ namespace Script
         public int GetTurn()
         {
             return Mathf.FloorToInt(_turnCount);
+        }
+
+        public int GetLastTurn()
+        {
+            return Mathf.FloorToInt(MaxTurn);
         }
 
         public Player GetPlayer()
