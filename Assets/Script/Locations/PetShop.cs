@@ -1,29 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Script.Locations
 {
     public class PetShop : MonoBehaviour
     {
         public Timer timer;
+        public Button buyCatBtn;
 
-        public void DoPanel1()
+        public void Update()
         {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            var player = GameManager.instance.GetPlayer();
 
-            Player player = GameManager.Instance.GetPlayer();
+            buyCatBtn.interactable = !player.GetCat();
+        }
+
+        public void BuyCat()
+        {
+            const int price = 0;
+            const int happy = 0;
+
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 1");
+                player.SetCat(true);
+
+                Debug.Log($"{player.name}: Buy Cat");
                 timer.DecreaseTime(2);
             }
             else
@@ -32,21 +38,22 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void BuyCatFood()
         {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 0;
+            const int health = 0;
+            const int happy = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 2");
+                player.SetCatEat(true);
+
+                Debug.Log($"{player.name}: Buy Cat Food");
                 timer.DecreaseTime(2);
             }
             else
@@ -54,45 +61,22 @@ namespace Script.Locations
                 Debug.Log("No Money");
             }
         }
-        
-        public void DoPanel3()
-        {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
+        public void BuyCatToy()
+        {
+            const int price = 0;
+            const int health = 0;
+            const int happy = 0;
+
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 3");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-        
-        public void DoPanel4()
-        {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-                
-                Debug.Log($"{player.name}: Do Panel 4");
+                Debug.Log($"{player.name}: Buy Cat Toy");
                 timer.DecreaseTime(2);
             }
             else
@@ -103,16 +87,16 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            
+            var player = GameManager.instance.GetPlayer();
+
             if (player.GetJob() == Job.PetShop)
             {
                 Debug.Log($"{player.name}: work at {Job.PetShop}");
-                
+
                 player.SetWealth(50);
                 player.SetWorkExp(10);
                 player.SetBurnOut(15);
-            
+
                 timer.DecreaseTime(2);
             }
             else

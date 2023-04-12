@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -9,14 +6,14 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void DoPanel1()
+        public void SelfStudy()
         {
             const int price = 0;
             const int health = 0;
             const int happy = 0;
             const int exp = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -25,7 +22,7 @@ namespace Script.Locations
                 player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
-                Debug.Log($"{player.name}: Do Panel 1");
+                Debug.Log($"{player.name}: Self Study");
                 timer.DecreaseTime(2);
             }
             else
@@ -34,14 +31,14 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void Classroom()
         {
             const int price = 0;
             const int health = 0;
             const int happy = 0;
             const int exp = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -50,7 +47,7 @@ namespace Script.Locations
                 player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
-                Debug.Log($"{player.name}: Do Panel 2");
+                Debug.Log($"{player.name}: Classroom");
                 timer.DecreaseTime(2);
             }
             else
@@ -61,7 +58,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.University)
             {

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +7,7 @@ namespace Script
     {
         private float _timeValue = 60f;
         public Text timeText;
-        private float _elapsed = 0f;
+        private float _elapsed;
 
         public GameObject playerEvent;
 
@@ -31,63 +28,11 @@ namespace Script
             }
             else
             {
-                Player player;
-                switch (GameManager.Instance.state)
-                {
-                    case GameState.P1Turn:
-                        player = GameManager.Instance.player1;
-                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                        player.SetPosition("");
-                        player.SetWalkState(false);
-                        GameManager.Instance.UpdateTurn();
-                        GameManager.Instance.UpdateGameState(GameState.P2Turn);
-
-                        player = GameManager.Instance.player2;
-                        break;
-
-                    case GameState.P2Turn:
-                        player = GameManager.Instance.player2;
-                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                        player.SetPosition("");
-                        player.SetWalkState(false);
-                        GameManager.Instance.UpdateTurn();
-                        GameManager.Instance.UpdateGameState(GameState.P3Turn);
-
-                        player = GameManager.Instance.player3;
-                        break;
-                    case GameState.P3Turn:
-                        player = GameManager.Instance.player3;
-                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                        player.SetPosition("");
-                        player.SetWalkState(false);
-                        GameManager.Instance.UpdateTurn();
-                        GameManager.Instance.UpdateGameState(GameState.P4Turn);
-
-                        player = GameManager.Instance.player4;
-                        break;
-                    case GameState.P4Turn:
-                        player = GameManager.Instance.player4;
-                        player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
-                        player.SetPosition("");
-                        player.SetWalkState(false);
-                        GameManager.Instance.UpdateTurn();
-                        GameManager.Instance.UpdateGameState(GameState.P1Turn);
-
-                        player = GameManager.Instance.player1;
-                        break;
-                    default:
-                        player = GameManager.Instance.player1;
-                        break;
-                }
-
+                GameManager.instance.UpdateTurn();
+                
                 _timeValue = 60f;
 
-                GameManager.Instance.CheckSleep(player);
-                GameManager.Instance.CheckInfection(player);
-                GameManager.Instance.CheckSatiated(player);
-                GameManager.Instance.CheckRobbed(player);
-                GameManager.Instance.CheckStamina(player);
-                GameManager.Instance.CheckBurnOut(player);
+                GameManager.instance.CheckPlayerEvent(GameManager.instance.GetPlayer());
             }
 
             if (_elapsed >= 1f)
@@ -125,7 +70,7 @@ namespace Script
             float minutes = Mathf.FloorToInt(timeToDisplay / 60);
             float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timeText.text = $"{minutes}:{seconds}";
         }
 
         public void ResumeTime()

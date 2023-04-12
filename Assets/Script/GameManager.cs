@@ -1,32 +1,35 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Serialization;
+using DG.Tweening;
 
 namespace Script
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameManager instance;
+        public static bool training;
 
         public GameState state;
         public GameObject p1;
         public GameObject p2;
         public GameObject p3;
         public GameObject p4;
-        public GameObject p1frame;
-        public GameObject p2frame;
-        public GameObject p3frame;
-        public GameObject p4frame;
+        public GameObject bot;
+        public GameObject p1Frame;
+        public GameObject p2Frame;
+        public GameObject p3Frame;
+        public GameObject p4Frame;
+        public GameObject botFrame;
         public Player player1;
         public Player player2;
         public Player player3;
         public Player player4;
+        public Player playerBot;
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
         public AudioSource bgm;
@@ -48,6 +51,7 @@ namespace Script
         public GameObject sleepPanel;
         public GameObject musclePanel;
         public GameObject burnOutPanel;
+        public GameObject catPanel;
 
         private float _turnCount = 1f;
         private const float MaxTurn = 2f;
@@ -55,7 +59,8 @@ namespace Script
 
         private void Awake()
         {
-            Instance = this;
+            instance = this;
+            Debug.Log($"Training Mode: {training}");
         }
 
         private void Start()
@@ -64,6 +69,7 @@ namespace Script
             player2.SetName("Player 2");
             player3.SetName("Player 3");
             player4.SetName("Player 4");
+            playerBot.SetName("Bot");
             UpdateGameState(GameState.P1Turn);
         }
 
@@ -75,7 +81,7 @@ namespace Script
             }
         }
 
-        public void UpdateGameState(GameState newState)
+        private void UpdateGameState(GameState newState)
         {
             state = newState;
 
@@ -93,6 +99,9 @@ namespace Script
                 case GameState.P4Turn:
                     HandleP4Turn();
                     break;
+                case GameState.AITurn:
+                    HandleBotTurn();
+                    break;
                 case GameState.Ended:
                     HandleEnded();
                     break;
@@ -103,16 +112,33 @@ namespace Script
             OnGameStateChanged?.Invoke(newState);
         }
 
+        private void HandleBotTurn()
+        {
+            p1.SetActive(false);
+            p2.SetActive(false);
+            p3.SetActive(false);
+            p4.SetActive(false);
+            p1Frame.SetActive(false);
+            p2Frame.SetActive(false);
+            p3Frame.SetActive(false);
+            p4Frame.SetActive(false);
+            bot.SetActive(true);
+            botFrame.SetActive(true);
+            StartTurnText($"{playerBot.GetName()} turn");
+        }
+
         private void HandleP4Turn()
         {
             p1.SetActive(false);
             p2.SetActive(false);
             p3.SetActive(false);
             p4.SetActive(true);
-            p1frame.SetActive(false);
-            p2frame.SetActive(false);
-            p3frame.SetActive(false);
-            p4frame.SetActive(true);
+            p1Frame.SetActive(false);
+            p2Frame.SetActive(false);
+            p3Frame.SetActive(false);
+            p4Frame.SetActive(true);
+            bot.SetActive(false);
+            botFrame.SetActive(false);
             StartTurnText($"{player4.GetName()} turn");
         }
 
@@ -122,10 +148,12 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(true);
             p4.SetActive(false);
-            p1frame.SetActive(false);
-            p2frame.SetActive(false);
-            p3frame.SetActive(true);
-            p4frame.SetActive(false);
+            p1Frame.SetActive(false);
+            p2Frame.SetActive(false);
+            p3Frame.SetActive(true);
+            p4Frame.SetActive(false);
+            bot.SetActive(false);
+            botFrame.SetActive(false);
             StartTurnText($"{player3.GetName()} turn");
         }
 
@@ -135,10 +163,12 @@ namespace Script
             p2.SetActive(true);
             p3.SetActive(false);
             p4.SetActive(false);
-            p1frame.SetActive(false);
-            p2frame.SetActive(true);
-            p3frame.SetActive(false);
-            p4frame.SetActive(false);
+            p1Frame.SetActive(false);
+            p2Frame.SetActive(true);
+            p3Frame.SetActive(false);
+            p4Frame.SetActive(false);
+            bot.SetActive(false);
+            botFrame.SetActive(false);
             StartTurnText($"{player2.GetName()} turn");
         }
 
@@ -148,10 +178,12 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(false);
             p4.SetActive(false);
-            p1frame.SetActive(true);
-            p2frame.SetActive(false);
-            p3frame.SetActive(false);
-            p4frame.SetActive(false);
+            p1Frame.SetActive(true);
+            p2Frame.SetActive(false);
+            p3Frame.SetActive(false);
+            p4Frame.SetActive(false);
+            bot.SetActive(false);
+            botFrame.SetActive(false);
             StartTurnText($"{player1.GetName()} turn");
         }
 
@@ -168,6 +200,7 @@ namespace Script
                 await Task.Delay(100);
             } while (scene.progress < 0.9f);
 
+            Cursor.lockState = CursorLockMode.Confined;
             scene.allowSceneActivation = true;
         }
 
@@ -179,12 +212,60 @@ namespace Script
 
         public void UpdateTurn()
         {
-            _turnCount += 0.25f;
+            var player = GetPlayer();
+            player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+            player.SetPosition(Location.None);
+            player.SetWalkState(false);
+
+            if (training)
+            {
+                _turnCount += 0.5f;
+            }
+            else
+            {
+                _turnCount += 0.25f;
+            }
+
             turnText.text = $"Turn {Mathf.FloorToInt(_turnCount)}";
 
             if (_turnCount.Equals(MaxTurn + 1))
             {
                 UpdateGameState(GameState.Ended);
+            }
+
+            if (training)
+            {
+                switch (state)
+                {
+                    case GameState.P1Turn:
+                        UpdateGameState(GameState.AITurn);
+                        break;
+                    case GameState.AITurn:
+                        UpdateGameState(GameState.P1Turn);
+                        break;
+                    case GameState.Ended:
+                        break;
+                }
+            }
+            else
+            {
+                switch (state)
+                {
+                    case GameState.P1Turn:
+                        UpdateGameState(GameState.P2Turn);
+                        break;
+                    case GameState.P2Turn:
+                        UpdateGameState(GameState.P3Turn);
+                        break;
+                    case GameState.P3Turn:
+                        UpdateGameState(GameState.P4Turn);
+                        break;
+                    case GameState.P4Turn:
+                        UpdateGameState(GameState.P1Turn);
+                        break;
+                    case GameState.Ended:
+                        break;
+                }
             }
 
             if (_turnCount.Equals(MaxTurn))
@@ -216,6 +297,8 @@ namespace Script
                     return player3;
                 case GameState.P4Turn:
                     return player4;
+                case GameState.AITurn:
+                    return playerBot;
                 default:
                     return player1;
             }
@@ -268,7 +351,18 @@ namespace Script
             PlayerPrefs.SetString("4th", scoreOrderedPlayerList[3].GetName());
         }
 
-        public void CheckInfection(Player player)
+        public void CheckPlayerEvent(Player player)
+        {
+            CheckSleep(player);
+            CheckInfection(player);
+            CheckSatiated(player);
+            CheckCatEat(player);
+            CheckRobbed(player);
+            CheckStamina(player);
+            CheckBurnOut(player);
+        }
+
+        private void CheckInfection(Player player)
         {
             float infectionChance = player.GetInfectionChance();
 
@@ -286,7 +380,7 @@ namespace Script
                 return;
             }
 
-            bool infected = ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance));
+            var infected = ProbabilityManager.ProbabilityCheckByPercent(Mathf.FloorToInt(infectionChance));
 
             player.SetInfectionStatus(infected);
             player.SetInfectionChance(0);
@@ -298,7 +392,7 @@ namespace Script
             }
         }
 
-        public void CheckSatiated(Player player)
+        private void CheckSatiated(Player player)
         {
             if (_turnCount < 2f) return;
 
@@ -314,7 +408,21 @@ namespace Script
             player.SetSatiated(-player.GetSatiated());
         }
 
-        public void CheckRobbed(Player player)
+        private void CheckCatEat(Player player)
+        {
+            if (_turnCount < 2f || !player.GetCat()) return;
+
+            if (!player.GetCatEat())
+            {
+                var amount = Mathf.FloorToInt(player.GetHappy() * 0.2f);
+                player.SetHappy(-amount);
+                catPanel.SetActive(true);
+            }
+
+            player.SetCatEat(false);
+        }
+
+        private void CheckRobbed(Player player)
         {
             if (_turnCount < 2f) return;
 
@@ -326,7 +434,7 @@ namespace Script
             }
         }
 
-        public void CheckSleep(Player player)
+        private void CheckSleep(Player player)
         {
             if (_turnCount < 2f) return;
 
@@ -339,7 +447,7 @@ namespace Script
             player.SetSleep(false);
         }
 
-        public void CheckStamina(Player player)
+        private void CheckStamina(Player player)
         {
             if (_turnCount < 2f) return;
 
@@ -353,12 +461,7 @@ namespace Script
             player.SetStamina(+100);
         }
 
-        public void CheckStress(Player player)
-        {
-            if (_turnCount < 2f) return;
-        }
-
-        public void CheckBurnOut(Player player)
+        private void CheckBurnOut(Player player)
         {
             if (_turnCount < 2f) return;
 
@@ -381,5 +484,47 @@ public enum GameState
     P2Turn,
     P3Turn,
     P4Turn,
+    AITurn,
     Ended
+}
+
+public enum Vehicle
+{
+    None,
+    Bicycle,
+    Motorcycle,
+    Car,
+    SuperCar
+}
+
+public enum Job
+{
+    None,
+    Bank,
+    Casino,
+    FastFood,
+    Gym,
+    Hospital,
+    Mall,
+    Market,
+    PetShop,
+    University,
+    Vehicle
+}
+
+public enum Location
+{
+    None,
+    Bank,
+    Casino,
+    FastFood,
+    Gym,
+    Home,
+    Hospital,
+    JobOffice,
+    Mall,
+    Market,
+    PetShop,
+    University,
+    VehicleShop
 }

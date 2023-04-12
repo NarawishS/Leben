@@ -1,55 +1,90 @@
 using System.Collections;
-using System.Collections.Generic;
 using Script;
 using Script.Locations;
 using UnityEngine;
 
-public class ComputerAI : MonoBehaviour
+namespace Script
 {
-    public GameObject _body;
-    public Player player;
-    public GameObject board;
-    public GameObject panel;
-
-    // Update is called once per frame
-    public void Update()
+    public class ComputerAI : MonoBehaviour
     {
-        if (_body.activeSelf)
-        {
-            MoveTo("hospital");
-            EndTurn();
-        }
-    }
+        public GameObject body;
+        public Player player;
+        public GameObject board;
+        public GameObject locationPanel;
+        public GameObject playerEvent;
+        public Timer gameTimer;
+        private bool _isRunning;
 
-    private void EndTurn()
-    {
-        MoveTo("home");
-        for (var i = 0; i < panel.transform.childCount; i++)
+        public void Update()
         {
-            var child = panel.transform.GetChild(i).gameObject;
-            if (child.name.ToLower().Contains("home"))
+            if (body.activeSelf && !_isRunning)
             {
-                Debug.Log("home");
-                var home = (Home)child.GetComponent(typeof(Home));
-                home.EndTurn();
+                Cursor.lockState = CursorLockMode.Locked;
+                _isRunning = true;
+                StartCoroutine(DemoAI());
             }
-        }
-    }
-
-    private bool MoveTo(string location)
-    {
-        for (var i = 0; i < board.transform.childCount; i++)
-        {
-            var child = board.transform.GetChild(i).gameObject;
-            if (child.name.Equals(location))
+            else if (!body.activeSelf)
             {
-                var los = (Location)child.GetComponent(typeof(Location));
-                los.OnMouseUpAsButton();
-                new WaitUntil(() => player.transform.position == child.transform.position);
-                return true;
+                Cursor.lockState = CursorLockMode.Confined;
+                StopAllCoroutines();
+                _isRunning = false;
             }
         }
 
-        return false;
+        private IEnumerator DemoAI()
+        {
+            yield return StartCoroutine(ClosedPlayerEvent());
+            yield return StartCoroutine(MoveTo("hospital"));
+            yield return StartCoroutine(MoveTo("home"));
+            yield return StartCoroutine(MoveTo("university"));
+            yield return StartCoroutine(MoveTo("market"));
+            yield return StartCoroutine(MoveTo("home"));
+            yield return StartCoroutine(EndTurn());
+        }
+
+        private IEnumerator ClosedPlayerEvent()
+        {
+            for (var i = playerEvent.transform.childCount - 1; i > 0; i--)
+            {
+                var child = playerEvent.transform.GetChild(i).gameObject;
+                if (child.activeSelf)
+                {
+                    yield return new WaitForSecondsRealtime(2);
+                    Debug.Log("Close Event");
+                    child.SetActive(false);
+                    gameTimer.ResumeTime();
+                }
+            }
+        }
+
+        private IEnumerator EndTurn()
+        {
+            for (var i = 0; i < locationPanel.transform.childCount; i++)
+            {
+                var child = locationPanel.transform.GetChild(i).gameObject;
+                if (child.name.ToLower().Contains("home"))
+                {
+                    var home = (Home)child.GetComponent(typeof(Home));
+                    yield return new WaitForSecondsRealtime(1);
+                    Debug.Log("End Turn");
+                    home.EndTurn();
+                }
+            }
+        }
+
+        private IEnumerator MoveTo(string location)
+        {
+            for (var i = 0; i < board.transform.childCount; i++)
+            {
+                var child = board.transform.GetChild(i).gameObject;
+                if (child.name.Equals(location))
+                {
+                    var los = (LocationMovement)child.GetComponent(typeof(LocationMovement));
+                    los.OnMouseUpAsButton();
+
+                    yield return new WaitUntil(() => player.transform.position == child.transform.position);
+                }
+            }
+        }
     }
 }

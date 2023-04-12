@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Task = System.Threading.Tasks.Task;
 
 namespace Script
 {
@@ -11,7 +7,16 @@ namespace Script
     {
         public void ClickToStart()
         {
+            GameManager.training = false;
             Debug.Log("Start Game");
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Scenes/MainGame");
+        }
+
+        public void ClickToStartAI()
+        {
+            GameManager.training = true;
+            Debug.Log("Start Training");
             Time.timeScale = 1f;
             SceneManager.LoadScene("Scenes/MainGame");
         }
@@ -27,13 +32,6 @@ namespace Script
             Debug.Log("Back to Menu");
             Time.timeScale = 1f;
             SceneManager.LoadScene("Scenes/MainMenu");
-        }
-
-        public static void GameEnd()
-        {
-            Debug.Log("Game Ended");
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("Scenes/EndGame");
         }
     }
 }

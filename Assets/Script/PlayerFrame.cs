@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Script;
 using UnityEngine;
 
@@ -17,7 +14,7 @@ public class PlayerFrame : MonoBehaviour
 
     private void DoDisableBoard()
     {
-        Player player = GameManager.Instance.GetPlayer();
+        Player player = GameManager.instance.GetPlayer();
 
         for (var i = 0; i < board.transform.childCount; i++)
         {

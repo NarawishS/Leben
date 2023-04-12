@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -9,11 +6,11 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void DoPanel1()
+        public void BuyMask()
         {
             const int price = 20;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -28,11 +25,11 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void BuyVaccine()
         {
             const int price = 200;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
             
             if (player.GetWealth() >= price && player.GetInfectionStatus())
             {
@@ -50,7 +47,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.Hospital)
             {

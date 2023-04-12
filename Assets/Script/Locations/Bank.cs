@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +8,9 @@ namespace Script.Locations
         public Timer timer;
         public InputField inputField;
 
-        public void DoPanel1()
+        public void DepositMoney()
         {
-            Player player = GameManager.Instance.GetPlayer();
-
+            var player = GameManager.instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
             if (player.GetWealth() >= amount)
@@ -33,10 +28,9 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void WithdrawMoney()
         {
-            Player player = GameManager.Instance.GetPlayer();
-
+            var player = GameManager.instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
             if (player.GetDepositMoney() >= amount)
@@ -56,8 +50,8 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
-
+            var player = GameManager.instance.GetPlayer();
+            
             if (player.GetJob() == Job.Bank)
             {
                 Debug.Log($"{player.name}: work at {Job.Bank}");

@@ -1,33 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
-using UnityEditor;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Script
 {
-    public class Location : MonoBehaviour
+    public class LocationMovement : MonoBehaviour
     {
         public GameObject locationPanel;
         public GameObject board;
+        public Location location;
 
         public void OnMouseUpAsButton()
         {
-            Player player = GameManager.Instance.GetPlayer();
-
+            Player player = GameManager.instance.GetPlayer();
             MoveTo(player);
         }
 
         private void MoveTo(Player player)
         {
-            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
+            var infectionChance = Random.Range(0, GameManager.instance.GetTurn()) * 3;
             if (gameObject.name.Equals("home")) infectionChance = 0;
 
-            if (!player.GetWalkState() && !player.GetPosition().Equals(gameObject.name))
+            if (!player.GetWalkState() && !player.GetPosition().Equals(location))
             {
                 player.SetWalkState(true);
-                player.SetPosition(gameObject.name);
+                player.SetPosition(location);
 
                 float v;
 
@@ -56,43 +53,38 @@ namespace Script
                 if (player.transform.position != gameObject.transform.position)
                 {
                     var s = Vector2.Distance(player.transform.position, gameObject.transform.position);
+                    var playerX = player.transform.localScale.x;
+                    var playerY = player.transform.localScale.y;
+                    var playerZ = player.transform.localScale.z;
                     if (player.transform.position.x < gameObject.transform.position.x)
                     {
                         if (player.transform.localScale.x > 0)
                         {
-                            player.transform.localScale =
-                                new Vector3(-player.transform.localScale.x, player.transform.localScale.y,
-                                    player.transform.localScale.z);
+                            player.transform.localScale = new Vector3(-playerX, playerY, playerZ);
                         }
                         else
                         {
-                            player.transform.localScale =
-                                new Vector3(player.transform.localScale.x, player.transform.localScale.y,
-                                    player.transform.localScale.z);
+                            player.transform.localScale = new Vector3(playerX, playerY, playerZ);
                         }
                     }
                     else
                     {
                         if (player.transform.localScale.x > 0)
                         {
-                            player.transform.localScale =
-                                new Vector3(player.transform.localScale.x, player.transform.localScale.y,
-                                    player.transform.localScale.z);
+                            player.transform.localScale = new Vector3(playerX, playerY, playerZ);
                         }
                         else
                         {
-                            player.transform.localScale =
-                                new Vector3(-player.transform.localScale.x, player.transform.localScale.y,
-                                    player.transform.localScale.z);
+                            player.transform.localScale = new Vector3(-playerX, playerY, playerZ);
                         }
                     }
 
                     player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                     player.SetInfectionChance(infectionChance);
-                    Debug.Log($"{player.name} move to {gameObject.name}");
+                    Debug.Log($"{player.name} move to {location}");
                 }
             }
-            else if (player.GetPosition().Equals(gameObject.name) &&
+            else if (player.GetPosition().Equals(location) &&
                      player.transform.position == gameObject.transform.position)
             {
                 if (locationPanel != null)
@@ -105,9 +97,9 @@ namespace Script
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Player player = GameManager.Instance.GetPlayer();
+            Player player = GameManager.instance.GetPlayer();
 
-            if (locationPanel != null && player.GetPosition().Equals(gameObject.name))
+            if (locationPanel != null && player.GetPosition().Equals(location))
             {
                 player.SetWalkState(false);
                 locationPanel.SetActive(true);

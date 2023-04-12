@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -61,7 +59,7 @@ namespace Script.Locations
 
         private void ApplyJob(Job jobName)
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             player.SetJob(jobName);
 
@@ -72,17 +70,3 @@ namespace Script.Locations
     }
 }
 
-public enum Job
-{
-    None,
-    Bank,
-    Casino,
-    FastFood,
-    Gym,
-    Hospital,
-    Mall,
-    Market,
-    PetShop,
-    University,
-    Vehicle
-}

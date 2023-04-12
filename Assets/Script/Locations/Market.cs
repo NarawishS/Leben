@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -9,13 +6,13 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void DoPanel1()
+        public void BuyFreshFood()
         {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
+            const int price = 0;
+            const int health = 0;
+            const int happy = 0;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -23,76 +20,7 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
 
-                Debug.Log($"{player.name}: Do Panel 1");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-
-        public void DoPanel2()
-        {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            Player player = GameManager.Instance.GetPlayer();
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 2");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-
-        public void DoPanel3()
-        {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            Player player = GameManager.Instance.GetPlayer();
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 3");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                Debug.Log("No Money");
-            }
-        }
-
-        public void DoPanel4()
-        {
-            int price = 0;
-            int health = 0;
-            int happy = 0;
-
-            Player player = GameManager.Instance.GetPlayer();
-
-            if (player.GetWealth() >= price)
-            {
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                Debug.Log($"{player.name}: Do Panel 4");
+                Debug.Log($"{player.name}: Buy Fresh Food");
                 timer.DecreaseTime(2);
             }
             else
@@ -103,7 +31,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.Market)
             {

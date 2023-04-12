@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -8,14 +5,14 @@ namespace Script.Locations
     public class FastFood : MonoBehaviour
     {
         public Timer timer;
-
+        
         public void BuyBurger()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 65;
-            int health = 20;
-            int happy = 20;
-            int cal = 10;
+            var player = GameManager.instance.GetPlayer();
+            const int price = 65;
+            const int health = 20;
+            const int happy = 20;
+            const int cal = 10;
             
 
             if (player.GetWealth() >= price)
@@ -35,11 +32,11 @@ namespace Script.Locations
 
         public void BuyCoke()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 20;
-            int health = 20;
-            int happy = 10;
-            int cal = 1;
+            var player = GameManager.instance.GetPlayer();
+            const int price = 20;
+            const int health = 20;
+            const int happy = 10;
+            const int cal = 1;
 
             if (player.GetWealth() >= price)
             {
@@ -59,11 +56,11 @@ namespace Script.Locations
 
         public void BuyFried()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 40;
-            int health = 20;
-            int happy = 10;
-            int cal = 5;
+            var player = GameManager.instance.GetPlayer();
+            const int price = 40;
+            const int health = 20;
+            const int happy = 10;
+            const int cal = 5;
 
             if (player.GetWealth() >= price)
             {
@@ -83,11 +80,11 @@ namespace Script.Locations
 
         public void BuyChicken()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 100;
-            int health = 20;
-            int happy = 10;
-            int cal = 20;
+            var player = GameManager.instance.GetPlayer();
+            const int price = 100;
+            const int health = 20;
+            const int happy = 10;
+            const int cal = 20;
 
             if (player.GetWealth() >= price)
             {
@@ -107,7 +104,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.FastFood)
             {

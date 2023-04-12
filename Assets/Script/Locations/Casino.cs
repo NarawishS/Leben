@@ -1,38 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Script.Locations
 {
     public class Casino : MonoBehaviour
     {
         public Timer timer;
+        public InputField inputField;
 
-        public void DoPanel1()
+        public void Slot()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 100;
-            int health = 5;
-            int happy = 5;
+            const float reward = 1.5f;
+            var player = GameManager.instance.GetPlayer();
+            var price = int.Parse(inputField.text);
+            const int health = 5;
+            var happy = Mathf.FloorToInt(price / 100f * reward);
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(25))
+                if (ProbabilityManager.ProbabilityCheckByPercent(40))
                 {
-                    player.SetWealth(+(price*2));
+                    player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Slot {price*2} G");
+                    Debug.Log($"{player.name}: WIN Slot {price * reward} G");
                 }
                 else
                 {
                     Debug.Log($"{player.name}: LOSE Slot -{price} G");
                     player.SetHappy(-happy);
                 }
-                
+
                 timer.DecreaseTime(2);
             }
             else
@@ -41,30 +41,31 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void Card()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 200;
-            int health = 5;
-            int happy = 10;
+            const float reward = 2f;
+            var player = GameManager.instance.GetPlayer();
+            var price = int.Parse(inputField.text);
+            const int health = 5;
+            var happy = Mathf.FloorToInt(price / 100f * reward);
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(10))
+                if (ProbabilityManager.ProbabilityCheckByPercent(35))
                 {
-                    player.SetWealth(+(price*2));
+                    player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Card {price*2} G");
+                    Debug.Log($"{player.name}: WIN Card {price * reward} G");
                 }
                 else
                 {
                     Debug.Log($"{player.name}: LOSE card -{price} G");
                     player.SetHappy(-happy);
                 }
-                
+
                 timer.DecreaseTime(2);
             }
             else
@@ -72,30 +73,32 @@ namespace Script.Locations
                 Debug.Log("No Money");
             }
         }
-        
-        public void DoPanel3()
+
+        public void Roulette()
         {
-            Player player = GameManager.Instance.GetPlayer();
-            int price = 500;
-            int health = 5;
-            int happy = 25;
+            const float reward = 3f;
+            var player = GameManager.instance.GetPlayer();
+            var price = int.Parse(inputField.text);
+            const int health = 5;
+            var happy = Mathf.FloorToInt(price / 100f * reward);
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(5))
+                if (ProbabilityManager.ProbabilityCheckByPercent(30))
                 {
-                    player.SetWealth(+(price*2));
+                    player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Roulette {price*2} G");
+                    Debug.Log($"{player.name}: WIN Roulette {price * reward} G");
                 }
                 else
                 {
                     Debug.Log($"{player.name}: LOSE Roulette -{price} G");
                     player.SetHappy(-happy);
                 }
+
                 timer.DecreaseTime(2);
             }
             else
@@ -103,34 +106,33 @@ namespace Script.Locations
                 Debug.Log("No Money");
             }
         }
-        
-        public void DoPanel4()
-        {
-            Player player = GameManager.Instance.GetPlayer();
-            int price;
-            int health = 5;
-            int happy;
 
-            price = player.GetWealth();
-            happy = price/100*5;
+        public void AllIn()
+        {
+            const float reward = 10f;
+            var player = GameManager.instance.GetPlayer();
+            var price = player.GetWealth();
+            const int health = 5;
+            var happy = Mathf.FloorToInt(price / 100f * reward);
 
             if (player.GetWealth() > 0)
             {
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(1))
+                if (ProbabilityManager.ProbabilityCheckByPercent(5))
                 {
-                    player.SetWealth(+(price*3));
+                    player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    
-                    Debug.Log($"{player.name}: JACKPOT WIN {price*3} G");
+
+                    Debug.Log($"{player.name}: JACKPOT WIN {price * reward} G");
                 }
                 else
                 {
                     Debug.Log($"{player.name}: LOSE ALL IN -{price} G");
                     player.SetHappy(-happy);
                 }
+
                 timer.DecreaseTime(2);
             }
             else
@@ -141,16 +143,16 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.Casino)
             {
                 Debug.Log($"{player.name}: work at {Job.Casino}");
-                
+
                 player.SetWealth(50);
                 player.SetWorkExp(10);
                 player.SetBurnOut(15);
-            
+
                 timer.DecreaseTime(2);
             }
             else

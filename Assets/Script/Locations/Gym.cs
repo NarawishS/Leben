@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -9,14 +6,14 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void DoPanel1()
+        public void BuyProtein()
         {
             const int price = 0;
             const int health = 5;
             const int happy = 0;
             const int cal = 5;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -34,14 +31,14 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void DoWeightTrain()
         {
             const int price = 0;
             const int health = 20;
             const int happy = 0;
             const int stamina = 20;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -59,14 +56,14 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel3()
+        public void DoTrainer()
         {
             const int price = 0;
             const int health = 50;
             const int happy = 0;
             const int stamina = 90;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -86,7 +83,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.Gym)
             {

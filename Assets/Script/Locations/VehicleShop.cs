@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Script.Locations
@@ -9,12 +6,12 @@ namespace Script.Locations
     {
         public Timer timer;
 
-        public void DoPanel1()
+        public void BuyBicycle()
         {
             const int price = 500;
             const int happy = 50;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() == Vehicle.None)
             {
@@ -34,16 +31,16 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel2()
+        public void BuyMotorcycle()
         {
             const int price = 1000;
             const int happy = 100;
 
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Motorcycle, Vehicle.Car, Vehicle.SuperCar };
-            bool canBuy = true;
+            var canBuy = true;
             
             foreach (var vehicle in vehicles)
             {
@@ -73,15 +70,16 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel3()
+        public void BuyCar()
         {
             const int price = 2000;
             const int happy = 200;
 
-            Player player = GameManager.Instance.GetPlayer();
+            Player player = GameManager.instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Car, Vehicle.SuperCar };
-            bool canBuy = true;
+            var canBuy = true;
+            
             foreach (var vehicle in vehicles)
             {
                 if (player.GetVehicle().Equals(vehicle))
@@ -110,12 +108,12 @@ namespace Script.Locations
             }
         }
 
-        public void DoPanel4()
+        public void BuySuperCar()
         {
             const int price = 5000;
             const int happy = 500;
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() != Vehicle.SuperCar)
             {
@@ -138,7 +136,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
 
             if (player.GetJob() == Job.Vehicle)
             {
@@ -158,11 +156,3 @@ namespace Script.Locations
     }
 }
 
-public enum Vehicle
-{
-    None,
-    Bicycle,
-    Motorcycle,
-    Car,
-    SuperCar
-}

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Script
 {
@@ -11,57 +7,25 @@ namespace Script
         public static Player Instance { get; private set; }
 
         private string _name;
-
-        // Money
         private int _wealth;
-
-        // Deposit Money
         private int _bankMoney;
-
-        // Healthy
         private int _health;
-
-        // Happiness
         private int _happy;
-
-        // Education
         private int _education;
-
-        // Work Exp
         private int _workExp;
-
-        // Job
         private Job _job;
-
-        // Infection Chance
         private int _infectionChance;
-
-        // Infection Status
         private bool _infected;
-
-        // Mask in inventory
         private int _mask;
-
-        // Vehicle
         private Vehicle _vehicle;
-
-        // Current State
         private bool _walking;
-
-        // Current Position
-        private string _pos;
-
-        // Current food condition
+        private Location _pos;
         private int _satiated;
-
-        // Current Gym Stamina
         private int _stamina;
-
-        // Sleep
         private bool _sleep;
-
-        // BurnOut
         private int _overWork;
+        private bool _cat;
+        private bool _catEat;
 
         public Rigidbody2D rb;
 
@@ -80,7 +44,7 @@ namespace Script
             _mask = 0;
             _vehicle = Vehicle.None;
             _walking = false;
-            _pos = "";
+            _pos = Location.None;
             _satiated = 0;
             _stamina = 100;
             _overWork = 0;
@@ -222,13 +186,13 @@ namespace Script
         }
 
         //Get Position
-        public string GetPosition()
+        public Location GetPosition()
         {
             return _pos;
         }
 
         //Set Position
-        public void SetPosition(string pos)
+        public void SetPosition(Location pos)
         {
             _pos = pos;
         }
@@ -291,6 +255,26 @@ namespace Script
         public void SetSleep(bool newState)
         {
             _sleep = newState;
+        }
+
+        public bool GetCat()
+        {
+            return _cat;
+        }
+
+        public void SetCat(bool cat)
+        {
+            _cat = cat;
+        }
+
+        public bool GetCatEat()
+        {
+            return _catEat;
+        }
+
+        public void SetCatEat(bool eat)
+        {
+            _catEat = eat;
         }
 
         //Get Name

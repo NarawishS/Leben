@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Script.Locations
 {
@@ -11,8 +8,9 @@ namespace Script.Locations
 
         public void EndTurn()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.instance.GetPlayer();
             player.SetSleep(true);
+            player.SetHappy(+(Mathf.FloorToInt(timer.GetTime() / 2) * 20));
             timer.ResetTime();
         }
     }
