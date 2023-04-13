@@ -198,6 +198,17 @@ namespace Script
 
         private async void HandleEnded()
         {
+            p1.SetActive(false);
+            p2.SetActive(false);
+            p3.SetActive(false);
+            p4.SetActive(false);
+            bot.SetActive(false);
+            p1Frame.SetActive(false);
+            p2Frame.SetActive(false);
+            p3Frame.SetActive(false);
+            p4Frame.SetActive(false);
+            botFrame.SetActive(false);
+            
             var scene = SceneManager.LoadSceneAsync("Scenes/EndGame");
             scene.allowSceneActivation = false;
             loadPanel.SetActive(true);

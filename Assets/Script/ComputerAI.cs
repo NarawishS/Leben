@@ -1,5 +1,4 @@
 using System.Collections;
-using Script;
 using Script.Locations;
 using UnityEngine;
 
@@ -10,36 +9,72 @@ namespace Script
         public GameObject body;
         public Player player;
         public GameObject board;
-        public GameObject locationPanel;
         public GameObject playerEvent;
         public Timer gameTimer;
-        private bool _isRunning;
+
+        private State _state = State.Start;
+
+        public GameObject bankPanel;
+        public GameObject casinoPanel;
+        public GameObject fastFoodPanel;
+        public GameObject gymPanel;
+        public GameObject homePanel;
+        public GameObject hospitalPanel;
+        public GameObject jobOfficePanel;
+        public GameObject mallPanel;
+        public GameObject marketPanel;
+        public GameObject petShopPanel;
+        public GameObject universityPanel;
+        public GameObject vehiclePanel;
 
         public void Update()
         {
-            if (body.activeSelf && !_isRunning)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                _isRunning = true;
-                StartCoroutine(DemoAI());
-            }
-            else if (!body.activeSelf)
+            if (!body.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.Confined;
                 StopAllCoroutines();
-                _isRunning = false;
+                _state = State.Start;
+            }
+
+            if (body.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                switch (_state)
+                {
+                    case State.Start:
+                        StartCoroutine(ClosedPlayerEvent());
+                        _state = State.Play;
+                        break;
+
+                    case State.Play:
+                        var rand = Random.Range(0, board.transform.childCount);
+                        var child = board.transform.GetChild(rand);
+                        var toGo = (LocationMovement)child.GetComponent(typeof(LocationMovement));
+                        
+                        StartCoroutine(MoveTo(toGo.location));
+                        
+                        // End Turn
+                        if (gameTimer.GetTime() < 10f)
+                        {
+                            StopAllCoroutines();
+                            StartCoroutine(StopMoving());
+                            _state = State.End;
+                        }
+
+                        break;
+
+                    case State.End:
+                        Cursor.lockState = CursorLockMode.Locked;
+                        StartCoroutine(MoveTo(Location.Home));
+                        StartCoroutine(EndTurn());
+                        break;
+                }
             }
         }
 
-        private IEnumerator DemoAI()
+        private IEnumerator StopMoving()
         {
-            yield return StartCoroutine(ClosedPlayerEvent());
-            yield return StartCoroutine(MoveTo("hospital"));
-            yield return StartCoroutine(MoveTo("home"));
-            yield return StartCoroutine(MoveTo("university"));
-            yield return StartCoroutine(MoveTo("market"));
-            yield return StartCoroutine(MoveTo("home"));
-            yield return StartCoroutine(EndTurn());
+            yield return new WaitUntil(() => !player.GetWalkState());
         }
 
         private IEnumerator ClosedPlayerEvent()
@@ -58,31 +93,46 @@ namespace Script
 
         private IEnumerator EndTurn()
         {
-            for (var i = 0; i < locationPanel.transform.childCount; i++)
+            if (!homePanel.activeSelf) StartCoroutine(MoveTo(Location.Home));
+
+            yield return new WaitUntil((() => homePanel.activeSelf));
+
+            var homeScript = (Home)homePanel.transform.GetComponent(typeof(Home));
+
+            yield return new WaitForSeconds(1);
+
+            homeScript.EndTurn();
+        }
+
+        private IEnumerator MoveTo(Location newLocation)
+        {
+            Debug.Log($"MoveTo({newLocation})");
+            for (var i = 0; i < board.transform.childCount; i++)
             {
-                var child = locationPanel.transform.GetChild(i).gameObject;
-                if (child.name.ToLower().Contains("home"))
+                var child = board.transform.GetChild(i).gameObject;
+                var boardLocation = (LocationMovement)child.GetComponent(typeof(LocationMovement));
+                if (boardLocation.location.Equals(newLocation))
                 {
-                    var home = (Home)child.GetComponent(typeof(Home));
-                    yield return new WaitForSecondsRealtime(1);
-                    home.EndTurn();
+                    boardLocation.OnMouseUpAsButton();
+                    yield return new WaitUntil(() => player.transform.position == child.transform.position);
                 }
             }
         }
 
-        private IEnumerator MoveTo(string location)
+        private enum Plan
         {
-            for (var i = 0; i < board.transform.childCount; i++)
-            {
-                var child = board.transform.GetChild(i).gameObject;
-                if (child.name.Equals(location))
-                {
-                    var los = (LocationMovement)child.GetComponent(typeof(LocationMovement));
-                    los.OnMouseUpAsButton();
+            Eat,
+            Job,
+            Entertain,
+            Cure,
+            End,
+        }
 
-                    yield return new WaitUntil(() => player.transform.position == child.transform.position);
-                }
-            }
+        private enum State
+        {
+            Start,
+            Play,
+            End,
         }
     }
 }

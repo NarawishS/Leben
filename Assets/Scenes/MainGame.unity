@@ -18605,9 +18605,20 @@ MonoBehaviour:
   body: {fileID: 2041042235}
   player: {fileID: 2041042237}
   board: {fileID: 1049603932}
-  locationPanel: {fileID: 885904931}
   playerEvent: {fileID: 1675519841}
   gameTimer: {fileID: 697404982}
+  bankPanel: {fileID: 908653628}
+  casinoPanel: {fileID: 98079065}
+  fastFoodPanel: {fileID: 1659344247}
+  gymPanel: {fileID: 1506262202}
+  homePanel: {fileID: 2113998913}
+  hospitalPanel: {fileID: 605183494}
+  jobOfficePanel: {fileID: 1301960422}
+  mallPanel: {fileID: 1494217114}
+  marketPanel: {fileID: 1805875563}
+  petShopPanel: {fileID: 1722015699}
+  universityPanel: {fileID: 1264113441}
+  vehiclePanel: {fileID: 1045076099}
 --- !u!4 &972742796
 Transform:
   m_ObjectHideFlags: 0
