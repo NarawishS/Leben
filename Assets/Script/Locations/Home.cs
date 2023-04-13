@@ -8,7 +8,7 @@ namespace Script.Locations
 
         public void EndTurn()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             player.SetSleep(true);
             player.SetHappy(+(Mathf.FloorToInt(timer.GetTime() / 2) * 20));
             timer.ResetTime();

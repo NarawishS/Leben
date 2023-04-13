@@ -10,18 +10,18 @@ namespace Script.Locations
         {
             const int price = 20;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
                 player.SetWealth(-price);
                 player.SetMask(+1);
-                Debug.Log($"{player.name}: Buy mask");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy mask");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -29,29 +29,29 @@ namespace Script.Locations
         {
             const int price = 200;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             
             if (player.GetWealth() >= price && player.GetInfectionStatus())
             {
                 player.SetWealth(-price);
                 player.SetInfectionStatus(false);
                 
-                Debug.Log($"{player.name}: Get vaccinate");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Get vaccinate");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Hospital)
             {
-                Debug.Log($"{player.name}: work at {Job.Hospital}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Hospital}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -61,7 +61,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.Hospital}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Hospital}");
             }
         }
     }

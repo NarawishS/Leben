@@ -11,23 +11,23 @@ namespace Script.Locations
             const int price = 500;
             const int happy = 50;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() == Vehicle.None)
             {
                 player.SetWealth(-price);
                 player.SetHealth(+happy);
                 player.SetVehicle(Vehicle.Bicycle);
-                Debug.Log($"{player.name}: Buy {Vehicle.Bicycle}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Bicycle}");
                 timer.DecreaseTime(2);
             }
             else if (player.GetVehicle() != Vehicle.None)
             {
-                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -37,7 +37,7 @@ namespace Script.Locations
             const int happy = 100;
 
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Motorcycle, Vehicle.Car, Vehicle.SuperCar };
             var canBuy = true;
@@ -57,16 +57,16 @@ namespace Script.Locations
                 player.SetHealth(+happy);
 
                 player.SetVehicle(Vehicle.Motorcycle);
-                Debug.Log($"{player.name}: Buy {Vehicle.Motorcycle}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Motorcycle}");
                 timer.DecreaseTime(2);
             }
             else if (!canBuy)
             {
-                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -75,7 +75,7 @@ namespace Script.Locations
             const int price = 2000;
             const int happy = 200;
 
-            Player player = GameManager.instance.GetPlayer();
+            Player player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Car, Vehicle.SuperCar };
             var canBuy = true;
@@ -95,16 +95,16 @@ namespace Script.Locations
                 player.SetHealth(+happy);
 
                 player.SetVehicle(Vehicle.Car);
-                Debug.Log($"{player.name}: Buy {Vehicle.Car}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Car}");
                 timer.DecreaseTime(2);
             }
             else if (!canBuy)
             {
-                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -113,7 +113,7 @@ namespace Script.Locations
             const int price = 5000;
             const int happy = 500;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price && player.GetVehicle() != Vehicle.SuperCar)
             {
@@ -121,26 +121,26 @@ namespace Script.Locations
                 player.SetHealth(+happy);
 
                 player.SetVehicle(Vehicle.SuperCar);
-                Debug.Log($"{player.name}: Buy {Vehicle.SuperCar}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.SuperCar}");
                 timer.DecreaseTime(2);
             }
             else if (player.GetVehicle() == Vehicle.SuperCar)
             {
-                Debug.Log($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Vehicle)
             {
-                Debug.Log($"{player.name}: work at {Job.Vehicle}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Vehicle}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -150,7 +150,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.Vehicle}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Vehicle}");
             }
         }
     }

@@ -28,11 +28,11 @@ namespace Script
             }
             else
             {
-                GameManager.instance.UpdateTurn();
+                GameManager.Instance.UpdateTurn();
                 
                 _timeValue = 60f;
 
-                GameManager.instance.CheckPlayerEvent(GameManager.instance.GetPlayer());
+                GameManager.Instance.CheckPlayerEvent(GameManager.Instance.GetPlayer());
             }
 
             if (_elapsed >= 1f)

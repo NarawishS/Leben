@@ -14,7 +14,7 @@ public class StatusCollider : MonoBehaviour
 
     private void DoEnableBoard()
     {
-        Player player = GameManager.instance.GetPlayer();
+        Player player = GameManager.Instance.GetPlayer();
 
         for (var i = 0; i < board.transform.childCount; i++)
         {

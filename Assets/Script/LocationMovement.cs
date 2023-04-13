@@ -12,13 +12,13 @@ namespace Script
 
         public void OnMouseUpAsButton()
         {
-            Player player = GameManager.instance.GetPlayer();
+            Player player = GameManager.Instance.GetPlayer();
             MoveTo(player);
         }
 
         private void MoveTo(Player player)
         {
-            var infectionChance = Random.Range(0, GameManager.instance.GetTurn()) * 3;
+            var infectionChance = Random.Range(0, GameManager.Instance.GetTurn()) * 3;
             if (gameObject.name.Equals("home")) infectionChance = 0;
 
             if (!player.GetWalkState() && !player.GetPosition().Equals(location))
@@ -81,7 +81,7 @@ namespace Script
 
                     player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                     player.SetInfectionChance(infectionChance);
-                    Debug.Log($"{player.name} move to {location}");
+                    GameManager.Instance.ShowFloatingText($"{player.name} move to {location}");
                 }
             }
             else if (player.GetPosition().Equals(location) &&
@@ -97,7 +97,7 @@ namespace Script
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Player player = GameManager.instance.GetPlayer();
+            Player player = GameManager.Instance.GetPlayer();
 
             if (locationPanel != null && player.GetPosition().Equals(location))
             {

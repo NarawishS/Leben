@@ -11,10 +11,11 @@ namespace Script
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager instance;
-        public static bool training;
+        public static GameManager Instance;
+        public static bool Training;
 
         public GameState state;
+        public GameObject floatingTextPrefab;
         public GameObject p1;
         public GameObject p2;
         public GameObject p3;
@@ -59,8 +60,7 @@ namespace Script
 
         private void Awake()
         {
-            instance = this;
-            Debug.Log($"Training Mode: {training}");
+            Instance = this;
         }
 
         private void Start()
@@ -78,6 +78,15 @@ namespace Script
             if (hasFocus)
             {
                 Cursor.lockState = CursorLockMode.Confined;
+            }
+        }
+
+        public void ShowFloatingText(string text)
+        {
+            if (floatingTextPrefab)
+            {
+                var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
+                go.GetComponent<TextMesh>().text = text;
             }
         }
 
@@ -217,7 +226,7 @@ namespace Script
             player.SetPosition(Location.None);
             player.SetWalkState(false);
 
-            if (training)
+            if (Training)
             {
                 _turnCount += 0.5f;
             }
@@ -233,7 +242,7 @@ namespace Script
                 UpdateGameState(GameState.Ended);
             }
 
-            if (training)
+            if (Training)
             {
                 switch (state)
                 {

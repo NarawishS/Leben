@@ -11,7 +11,7 @@ namespace Script.Locations
 
         public void Update()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             buyCatBtn.interactable = !player.GetCat();
         }
@@ -21,7 +21,7 @@ namespace Script.Locations
             const int price = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -29,12 +29,12 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetCat(true);
 
-                Debug.Log($"{player.name}: Buy Cat");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -44,7 +44,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -53,12 +53,12 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetCatEat(true);
 
-                Debug.Log($"{player.name}: Buy Cat Food");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat Food");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -68,7 +68,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -76,22 +76,22 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
 
-                Debug.Log($"{player.name}: Buy Cat Toy");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat Toy");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.PetShop)
             {
-                Debug.Log($"{player.name}: work at {Job.PetShop}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.PetShop}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -101,7 +101,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.PetShop}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.PetShop}");
             }
         }
     }

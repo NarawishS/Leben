@@ -50,7 +50,6 @@ namespace Script
                 if (child.activeSelf)
                 {
                     yield return new WaitForSecondsRealtime(2);
-                    Debug.Log("Close Event");
                     child.SetActive(false);
                     gameTimer.ResumeTime();
                 }
@@ -66,7 +65,6 @@ namespace Script
                 {
                     var home = (Home)child.GetComponent(typeof(Home));
                     yield return new WaitForSecondsRealtime(1);
-                    Debug.Log("End Turn");
                     home.EndTurn();
                 }
             }

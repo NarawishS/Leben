@@ -12,7 +12,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -20,22 +20,22 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
 
-                Debug.Log($"{player.name}: Buy Fresh Food");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Fresh Food");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Market)
             {
-                Debug.Log($"{player.name}: work at {Job.Market}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Market}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -45,7 +45,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.Market}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Market}");
             }
         }
     }

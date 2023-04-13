@@ -13,7 +13,7 @@ namespace Script.Locations
             const int happy = 0;
             const int exp = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -22,12 +22,12 @@ namespace Script.Locations
                 player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
-                Debug.Log($"{player.name}: Self Study");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Self Study");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Script.Locations
             const int happy = 0;
             const int exp = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -47,22 +47,22 @@ namespace Script.Locations
                 player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
-                Debug.Log($"{player.name}: Classroom");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Classroom");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.University)
             {
-                Debug.Log($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -72,7 +72,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
             }
         }
     }

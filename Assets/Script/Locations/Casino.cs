@@ -11,7 +11,7 @@ namespace Script.Locations
         public void Slot()
         {
             const float reward = 1.5f;
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var price = int.Parse(inputField.text);
             const int health = 5;
             var happy = Mathf.FloorToInt(price / 100f * reward);
@@ -25,11 +25,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Slot {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Slot {price * reward} G");
                 }
                 else
                 {
-                    Debug.Log($"{player.name}: LOSE Slot -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE Slot -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -37,14 +37,14 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Card()
         {
             const float reward = 2f;
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var price = int.Parse(inputField.text);
             const int health = 5;
             var happy = Mathf.FloorToInt(price / 100f * reward);
@@ -58,11 +58,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Card {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Card {price * reward} G");
                 }
                 else
                 {
-                    Debug.Log($"{player.name}: LOSE card -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE card -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -70,14 +70,14 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Roulette()
         {
             const float reward = 3f;
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var price = int.Parse(inputField.text);
             const int health = 5;
             var happy = Mathf.FloorToInt(price / 100f * reward);
@@ -91,11 +91,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.FloorToInt(price * reward));
                     player.SetHappy(+happy);
-                    Debug.Log($"{player.name}: WIN Roulette {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Roulette {price * reward} G");
                 }
                 else
                 {
-                    Debug.Log($"{player.name}: LOSE Roulette -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE Roulette -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -103,14 +103,14 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void AllIn()
         {
             const float reward = 10f;
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var price = player.GetWealth();
             const int health = 5;
             var happy = Mathf.FloorToInt(price / 100f * reward);
@@ -143,7 +143,7 @@ namespace Script.Locations
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetJob() == Job.Casino)
             {

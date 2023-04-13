@@ -59,11 +59,11 @@ namespace Script.Locations
 
         private void ApplyJob(Job jobName)
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             player.SetJob(jobName);
 
-            Debug.Log($"{player.name}: apply job for  {jobName}");
+            GameManager.Instance.ShowFloatingText($"{player.name}: apply job for  {jobName}");
 
             timer.DecreaseTime(2);
         }

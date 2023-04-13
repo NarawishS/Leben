@@ -35646,6 +35646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  floatingTextPrefab: {fileID: 4938968751775574667, guid: f7798377ebe0ec2459477476d1857f50, type: 3}
   p1: {fileID: 1536731019}
   p2: {fileID: 1715603779}
   p3: {fileID: 1652785824}
@@ -35687,7 +35688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796320418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09352175, y: -0.099634424, z: -10.632137}
+  m_LocalPosition: {x: -7, y: 4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -10,51 +10,49 @@ namespace Script.Locations
 
         public void DepositMoney()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
             if (player.GetWealth() >= amount)
             {
                 player.SetWealth(-amount);
                 player.SetDepositMoney(+amount);
-                Debug.Log($"{player.name}: Deposit Money {amount}");
-                Debug.Log($"{player.name}: Bank Money {player.GetDepositMoney()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Deposit Money {amount}");
                 timer.DecreaseTime(2);
                 inputField.text = "0";
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void WithdrawMoney()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
             if (player.GetDepositMoney() >= amount)
             {
                 player.SetWealth(+amount);
                 player.SetDepositMoney(-amount);
-                Debug.Log($"{player.name}: Withdraw Money {amount}");
-                Debug.Log($"{player.name}: Bank Money {player.GetDepositMoney()}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Withdraw Money {amount}");
                 timer.DecreaseTime(2);
                 inputField.text = "0";
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
-            
+            var player = GameManager.Instance.GetPlayer();
+
             if (player.GetJob() == Job.Bank)
             {
-                Debug.Log($"{player.name}: work at {Job.Bank}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Bank}");
 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -64,7 +62,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.Bank}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Bank}");
             }
         }
     }

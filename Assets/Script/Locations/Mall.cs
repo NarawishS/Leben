@@ -12,7 +12,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -20,12 +20,12 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
                 
-                Debug.Log($"{player.name}: Buy Cloth");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cloth");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -35,7 +35,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -43,12 +43,12 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
                 
-                Debug.Log($"{player.name}: Watch Movie");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Watch Movie");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
         
@@ -58,7 +58,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -66,12 +66,12 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
                 
-                Debug.Log($"{player.name}: Buy Furniture");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Furniture");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
         
@@ -81,7 +81,7 @@ namespace Script.Locations
             const int health = 0;
             const int happy = 0;
 
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (player.GetWealth() >= price)
             {
@@ -89,22 +89,22 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
                 
-                Debug.Log($"{player.name}: Buy Toy");
+                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Toy");
                 timer.DecreaseTime(2);
             }
             else
             {
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
         public void Work()
         {
-            var player = GameManager.instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             
             if (player.GetJob() == Job.Mall)
             {
-                Debug.Log($"{player.name}: work at {Job.Mall}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Mall}");
                 
                 player.SetWealth(50);
                 player.SetWorkExp(10);
@@ -114,7 +114,7 @@ namespace Script.Locations
             }
             else
             {
-                Debug.Log($"{player.name}: You did not apply for {Job.Mall}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Mall}");
             }
         }
     }
