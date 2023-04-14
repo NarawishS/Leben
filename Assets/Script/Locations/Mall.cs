@@ -115,6 +115,7 @@ namespace Script.Locations
             
             if (player.GetJob() == Job.Mall)
             {
+                coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Mall}");
                 
                 player.SetWealth(50);
@@ -125,6 +126,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Mall}");
             }
         }
