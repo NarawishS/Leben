@@ -4699,7 +4699,7 @@ MonoBehaviour:
   p4HealthScore: {fileID: 893494790}
   p4HappyScore: {fileID: 132195318}
   p4TotalScore: {fileID: 1657823276}
-  vsBotResult: {fileID: 0}
+  vsBotResult: {fileID: 1513284803}
   botMoneyScore: {fileID: 2111900139}
   botHealthScore: {fileID: 869629761}
   botHappyScore: {fileID: 1645893095}

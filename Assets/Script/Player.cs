@@ -333,5 +333,36 @@ namespace Script
         {
             return GetMoneyScore() + GetHappyScore() + GetHealthScore();
         }
+
+        public Location GetJobLocation()
+        {
+            switch (_job)
+            {
+                case Job.Bank:
+                    return Location.Bank;
+                case Job.Casino:
+                    return Location.Casino;
+                case Job.Hospital:
+                    return Location.Hospital;
+                case Job.University:
+                    return Location.University;
+                case Job.Gym:
+                    return Location.Gym;
+                case Job.Mall:
+                    return Location.Mall;
+                case Job.Market:
+                    return Location.Market;
+                case Job.Vehicle:
+                    return Location.VehicleShop;
+                case Job.FastFood:
+                    return Location.FastFood;
+                case Job.PetShop:
+                    return Location.PetShop;
+                case Job.None:
+                    return Location.None;
+                default:
+                    return Location.None;
+            }
+        }
     }
 }

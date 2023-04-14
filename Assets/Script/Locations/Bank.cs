@@ -16,7 +16,12 @@ namespace Script.Locations
             var player = GameManager.Instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
-            if (player.GetWealth() >= amount)
+            if (!IsValidAmount(amount))
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText("Invalid amount of money"); 
+            }
+            else if (player.GetWealth() >= amount)
             {
                 coinSFX.Play();
                 player.SetWealth(-amount);
@@ -37,7 +42,12 @@ namespace Script.Locations
             var player = GameManager.Instance.GetPlayer();
             var amount = int.Parse(inputField.text);
 
-            if (player.GetDepositMoney() >= amount)
+            if (!IsValidAmount(amount))
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText("Invalid amount of money"); 
+            }
+            else if (player.GetDepositMoney() >= amount)
             {
                 coinSFX.Play();
                 player.SetWealth(+amount);
@@ -73,6 +83,11 @@ namespace Script.Locations
                 actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Bank}");
             }
+        }
+
+        public bool IsValidAmount(int amount)
+        {
+            return amount > 0;
         }
     }
 }

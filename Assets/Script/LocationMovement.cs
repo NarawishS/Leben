@@ -34,16 +34,16 @@ namespace Script
                 switch (player.GetVehicle())
                 {
                     case Vehicle.Bicycle:
-                        v = 6f;
+                        v = 5f;
                         break;
                     case Vehicle.Motorcycle:
-                        v = 12f;
+                        v = 10f;
                         break;
                     case Vehicle.Car:
-                        v = 17f;
+                        v = 20f;
                         break;
                     case Vehicle.SuperCar:
-                        v = 100f;
+                        v = 75f;
                         break;
                     case Vehicle.None:
                         v = 3;

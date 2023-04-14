@@ -60,7 +60,7 @@ namespace Script.Locations
             ApplyJob(Job.Vehicle);
         }
 
-        private void ApplyJob(Job jobName)
+        public void ApplyJob(Job jobName)
         {
             var player = GameManager.Instance.GetPlayer();
 
