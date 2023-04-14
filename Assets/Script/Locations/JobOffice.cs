@@ -6,6 +6,9 @@ namespace Script.Locations
     public class JobOffice : MonoBehaviour
     {
         public Timer timer;
+        
+        public AudioSource clickSFX;
+        public AudioSource actionFailSFX;
 
         public void ApplyBank()
         {
@@ -61,11 +64,20 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
 
-            player.SetJob(jobName);
+            if (player.GetJob() != jobName)
+            {
+                clickSFX.Play();
+                player.SetJob(jobName);
 
-            GameManager.Instance.ShowFloatingText($"{player.name}: apply job for  {jobName}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: apply job for  {jobName}");
 
-            timer.DecreaseTime(2);
+                timer.DecreaseTime(2);
+            }
+            else
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText($"{player.name} already apply this job!");
+            }
         }
     }
 }

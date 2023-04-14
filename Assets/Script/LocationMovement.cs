@@ -9,7 +9,9 @@ namespace Script
         public GameObject locationPanel;
         public GameObject board;
         public Location location;
-
+        public AudioSource clickSFX;
+        public AudioSource actionFailSFX;
+        
         public void OnMouseUpAsButton()
         {
             Player player = GameManager.Instance.GetPlayer();
@@ -23,6 +25,7 @@ namespace Script
 
             if (!player.GetWalkState() && !player.GetPosition().Equals(location))
             {
+                clickSFX.Play();
                 player.SetWalkState(true);
                 player.SetPosition(location);
 
@@ -92,6 +95,10 @@ namespace Script
                     locationPanel.SetActive(true);
                     DoDisableBoard();
                 }
+            }
+            else
+            {
+                actionFailSFX.Play();
             }
         }
 

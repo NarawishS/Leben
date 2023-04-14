@@ -8,6 +8,9 @@ namespace Script.Locations
         public Timer timer;
         public InputField inputField;
 
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
+
         public void DepositMoney()
         {
             var player = GameManager.Instance.GetPlayer();
@@ -15,6 +18,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= amount)
             {
+                coinSFX.Play();
                 player.SetWealth(-amount);
                 player.SetDepositMoney(+amount);
                 GameManager.Instance.ShowFloatingText($"{player.name}: Deposit Money {amount}");
@@ -23,6 +27,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -34,6 +39,7 @@ namespace Script.Locations
 
             if (player.GetDepositMoney() >= amount)
             {
+                coinSFX.Play();
                 player.SetWealth(+amount);
                 player.SetDepositMoney(-amount);
                 GameManager.Instance.ShowFloatingText($"{player.name}: Withdraw Money {amount}");
@@ -42,6 +48,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -52,6 +59,7 @@ namespace Script.Locations
 
             if (player.GetJob() == Job.Bank)
             {
+                coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Bank}");
 
                 player.SetWealth(50);
@@ -62,6 +70,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Bank}");
             }
         }

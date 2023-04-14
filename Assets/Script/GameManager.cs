@@ -349,6 +349,12 @@ namespace Script
             PlayerPrefs.SetInt("p4MoneyScore", player4.GetMoneyScore());
             PlayerPrefs.SetInt("p4HealthScore", player4.GetHealthScore());
             PlayerPrefs.SetInt("p4HappyScore", player4.GetHappyScore());
+            
+            PlayerPrefs.SetString("bot", playerBot.GetName());
+            PlayerPrefs.SetInt("botScore", playerBot.GetTotalScore());
+            PlayerPrefs.SetInt("botMoneyScore", playerBot.GetMoneyScore());
+            PlayerPrefs.SetInt("botHealthScore", playerBot.GetHealthScore());
+            PlayerPrefs.SetInt("botHappyScore", playerBot.GetHappyScore());
         }
 
         private void UpdateScoreList()

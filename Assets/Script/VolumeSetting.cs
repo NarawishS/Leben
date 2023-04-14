@@ -8,6 +8,7 @@ namespace Script
     {
         [SerializeField] private AudioMixer myMixer;
         [SerializeField] private Slider musicSlider;
+        [SerializeField] private Slider sfxSlider;
         public GameObject optionPanel;
 
         private void Start()
@@ -19,6 +20,7 @@ namespace Script
             else
             {
                 SetMusicVolume();
+                SetSFXVolume();
             }
         }
 
@@ -38,12 +40,21 @@ namespace Script
             myMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
             PlayerPrefs.SetFloat("musicVolume", volume);
         }
+        
+        public void SetSFXVolume()
+        {
+            float volume = sfxSlider.value;
+            myMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
+            PlayerPrefs.SetFloat("sfxVolume", volume);
+        }
 
         private void LoadVolume()
         {
             musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
-
+            sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+            
             SetMusicVolume();
+            SetSFXVolume();
         }
     }
 }

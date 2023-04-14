@@ -54,7 +54,7 @@ namespace Script
                         StartCoroutine(MoveTo(toGo.location));
                         
                         // End Turn
-                        if (gameTimer.GetTime() < 10f)
+                        if (gameTimer.GetTime() < 58f)
                         {
                             StopAllCoroutines();
                             StartCoroutine(StopMoving());

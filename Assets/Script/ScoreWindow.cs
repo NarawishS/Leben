@@ -1,3 +1,4 @@
+using Script;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +27,61 @@ public class ScoreWindow : MonoBehaviour
     public Text p4HealthScore;
     public Text p4HappyScore;
     public Text p4TotalScore;
+    
+    public Text vsBotResult;
+    public Text botMoneyScore;
+    public Text botHealthScore;
+    public Text botHappyScore;
+    public Text botTotalScore;
+
+    public GameObject vsPlayerScreen;
+    public GameObject vsBotScreen;
 
     private void Start()
+    {
+        if (GameManager.Training)
+        {
+            HandleVsBot();
+            vsPlayerScreen.SetActive(false);
+            vsBotScreen.SetActive(true);
+        }
+        else
+        {
+            HandleVsPlayer();
+            vsBotScreen.SetActive(false);
+            vsPlayerScreen.SetActive(true);
+        }
+    }
+
+    public void HandleVsBot()
+    {
+        p1MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p1MoneyScore").ToString();
+        botMoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("botMoneyScore").ToString();
+
+        p1HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p1HealthScore").ToString();
+        botHealthScore.text = "Health Score: " + PlayerPrefs.GetInt("botHealthScore").ToString();
+
+        p1HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p1HappyScore").ToString();
+        botHappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("botHappyScore").ToString();
+
+        p1TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p1Score").ToString();
+        botTotalScore.text = "Total Score: " + PlayerPrefs.GetInt("botScore").ToString();
+
+        if (PlayerPrefs.GetInt("p1Score") == PlayerPrefs.GetInt("botScore"))
+        {
+            vsBotResult.text = "Draw!";
+        }
+        else if (PlayerPrefs.GetInt("p1Score") > PlayerPrefs.GetInt("botScore"))
+        {
+            vsBotResult.text = "Player Win!";
+        }
+        else
+        {
+            vsBotResult.text = "Bot Win!";
+        }
+    }
+    
+    public void HandleVsPlayer()
     {
         p1MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p1MoneyScore").ToString();
         p2MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p2MoneyScore").ToString();

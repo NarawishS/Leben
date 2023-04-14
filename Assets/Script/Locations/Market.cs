@@ -5,6 +5,9 @@ namespace Script.Locations
     public class Market : MonoBehaviour
     {
         public Timer timer;
+        
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
 
         public void BuyFreshFood()
         {
@@ -16,6 +19,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
@@ -25,6 +29,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -35,6 +40,7 @@ namespace Script.Locations
 
             if (player.GetJob() == Job.Market)
             {
+                coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Market}");
 
                 player.SetWealth(50);
@@ -45,6 +51,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Market}");
             }
         }

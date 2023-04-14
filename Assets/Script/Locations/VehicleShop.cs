@@ -5,6 +5,9 @@ namespace Script.Locations
     public class VehicleShop : MonoBehaviour
     {
         public Timer timer;
+        
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
 
         public void BuyBicycle()
         {
@@ -15,6 +18,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price && player.GetVehicle() == Vehicle.None)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+happy);
                 player.SetVehicle(Vehicle.Bicycle);
@@ -23,10 +27,12 @@ namespace Script.Locations
             }
             else if (player.GetVehicle() != Vehicle.None)
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -53,6 +59,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price && canBuy)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+happy);
 
@@ -62,10 +69,12 @@ namespace Script.Locations
             }
             else if (!canBuy)
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -91,6 +100,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price && canBuy)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+happy);
 
@@ -100,10 +110,12 @@ namespace Script.Locations
             }
             else if (!canBuy)
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -117,6 +129,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price && player.GetVehicle() != Vehicle.SuperCar)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+happy);
 
@@ -126,10 +139,12 @@ namespace Script.Locations
             }
             else if (player.GetVehicle() == Vehicle.SuperCar)
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -140,6 +155,7 @@ namespace Script.Locations
 
             if (player.GetJob() == Job.Vehicle)
             {
+                coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Vehicle}");
 
                 player.SetWealth(50);
@@ -150,6 +166,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Vehicle}");
             }
         }

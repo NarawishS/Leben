@@ -5,6 +5,9 @@ namespace Script.Locations
     public class Mall : MonoBehaviour
     {
         public Timer timer;
+        
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
 
         public void BuyCloth()
         {
@@ -16,6 +19,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
@@ -25,6 +29,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -39,6 +44,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
@@ -48,6 +54,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -62,6 +69,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
@@ -71,6 +79,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -85,6 +94,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
@@ -94,6 +104,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }

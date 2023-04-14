@@ -7,6 +7,9 @@ namespace Script.Locations
     {
         public Timer timer;
         public InputField inputField;
+        
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
 
         public void Slot()
         {
@@ -18,6 +21,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
@@ -37,6 +41,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -51,6 +56,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
@@ -70,6 +76,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -84,6 +91,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
@@ -103,6 +111,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -117,6 +126,7 @@ namespace Script.Locations
 
             if (player.GetWealth() > 0)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
@@ -137,6 +147,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 Debug.Log("No Money");
             }
         }
@@ -147,6 +158,7 @@ namespace Script.Locations
 
             if (player.GetJob() == Job.Casino)
             {
+                coinSFX.Play();
                 Debug.Log($"{player.name}: work at {Job.Casino}");
 
                 player.SetWealth(50);
@@ -157,6 +169,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 Debug.Log($"{player.name}: You did not apply for {Job.Casino}");
             }
         }

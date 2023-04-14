@@ -5,6 +5,9 @@ namespace Script.Locations
     public class Hospital : MonoBehaviour
     {
         public Timer timer;
+        
+        public AudioSource coinSFX;
+        public AudioSource actionFailSFX;
 
         public void BuyMask()
         {
@@ -14,6 +17,7 @@ namespace Script.Locations
 
             if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetMask(+1);
                 GameManager.Instance.ShowFloatingText($"{player.name}: Buy mask");
@@ -21,6 +25,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -31,8 +36,9 @@ namespace Script.Locations
 
             var player = GameManager.Instance.GetPlayer();
             
-            if (player.GetWealth() >= price && player.GetInfectionStatus())
+            if (player.GetWealth() >= price)
             {
+                coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetInfectionStatus(false);
                 
@@ -41,6 +47,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
@@ -51,6 +58,7 @@ namespace Script.Locations
 
             if (player.GetJob() == Job.Hospital)
             {
+                coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Hospital}");
 
                 player.SetWealth(50);
@@ -61,6 +69,7 @@ namespace Script.Locations
             }
             else
             {
+                actionFailSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Hospital}");
             }
         }
