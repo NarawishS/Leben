@@ -5,7 +5,7 @@ namespace Script
 {
     public class Timer : MonoBehaviour
     {
-        private float _timeValue = 60f;
+        private float _timeValue = 120f;
         public Text timeText;
         private float _elapsed;
 
@@ -30,7 +30,7 @@ namespace Script
             {
                 GameManager.Instance.UpdateTurn();
                 
-                _timeValue = 60f;
+                _timeValue = 120f;
 
                 GameManager.Instance.CheckPlayerEvent(GameManager.Instance.GetPlayer());
             }
