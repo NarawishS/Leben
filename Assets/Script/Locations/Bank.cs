@@ -94,14 +94,14 @@ namespace Script.Locations
 
             const int baseSalary = 50;
             const int workExp = 1;
-            const int burnOut = 15;
+            const int burnOut = 10;
 
             var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
 
-            if (player.GetJob() == Job.University)
+            if (player.GetJob() == Job.Bank)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.Bank}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -112,7 +112,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.Bank}");
             }
         }
     }

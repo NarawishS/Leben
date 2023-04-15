@@ -233,7 +233,7 @@ namespace Script
         public void UpdateTurn()
         {
             var player = GetPlayer();
-            player.transform.DOMove(new Vector3(-0.1839f, 2.8835f), 0.5f).SetEase(Ease.InOutQuad);
+            player.transform.position = new Vector3(-0.1839f, 2.8835f);
             player.SetPosition(Location.None);
             player.SetWalkState(false);
 
@@ -363,7 +363,9 @@ namespace Script
             playerList.Add(player2);
             playerList.Add(player3);
             playerList.Add(player4);
-            scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore()).ThenBy(p => p.GetHappyScore())
+            scoreOrderedPlayerList = playerList.OrderByDescending(p => p.GetTotalScore())
+                .ThenBy(p => p.GetHappyScore())
+                .ThenBy(p => p.GetHealthScore())
                 .ToList();
             playerList.Clear();
         }

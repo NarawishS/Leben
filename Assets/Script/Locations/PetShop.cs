@@ -21,7 +21,7 @@ namespace Script.Locations
 
         public void BuyCat()
         {
-            const int price = 0;
+            const int price = 1000;
             const int happy = 0;
 
             var player = GameManager.Instance.GetPlayer();
@@ -45,9 +45,7 @@ namespace Script.Locations
 
         public void BuyCatFood()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
+            const int price = 100;
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -55,8 +53,6 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
                 player.SetCatEat(true);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat Food");
@@ -100,14 +96,14 @@ namespace Script.Locations
 
             const int baseSalary = 50;
             const int workExp = 1;
-            const int burnOut = 15;
+            const int burnOut = 10;
 
             var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
 
-            if (player.GetJob() == Job.University)
+            if (player.GetJob() == Job.PetShop)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.PetShop}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -118,7 +114,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.PetShop}");
             }
         }
     }

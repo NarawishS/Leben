@@ -61,7 +61,7 @@ namespace Script.Locations
 
             const int baseSalary = 50;
             const int workExp = 1;
-            const int burnOut = 15;
+            const int burnOut = 10;
 
             var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
 

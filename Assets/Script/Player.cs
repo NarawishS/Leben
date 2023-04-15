@@ -32,10 +32,10 @@ namespace Script
         private void Awake()
         {
             Instance = this;
-            _wealth = 100_000;
+            _wealth = 200;
             _bankMoney = 0;
-            _health = 0;
-            _happy = 0;
+            _health = 20;
+            _happy = 20;
             _education = 0;
             _workExp = 0;
             _job = Job.None;
@@ -61,6 +61,7 @@ namespace Script
         public void SetWealth(int amount)
         {
             _wealth += amount;
+            if (_wealth < 0) _wealth = 0;
         }
 
         //Get Deposit money
@@ -73,6 +74,7 @@ namespace Script
         public void SetDepositMoney(int amount)
         {
             _bankMoney += amount;
+            if (_bankMoney < 0) _bankMoney = 0;
         }
 
         //Get Health
@@ -111,6 +113,7 @@ namespace Script
         public void SetEducation(int amount)
         {
             _education += amount;
+            if (_education > 1000) _education = 1000;
         }
 
         //Get Work Experience
@@ -123,6 +126,7 @@ namespace Script
         public void SetWorkExp(int amount)
         {
             _workExp += amount;
+            if (_workExp > 1000) _workExp = 1000;
         }
 
         //Get Current Job
@@ -292,7 +296,7 @@ namespace Script
         public int GetMoneyScore()
         {
             int moneyScore;
-            var maxMoney = 100000;
+            var maxMoney = 10000;
             if (_wealth + _bankMoney > maxMoney)
             {
                 moneyScore = maxMoney;

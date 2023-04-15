@@ -14,7 +14,7 @@ namespace Script.Locations
 
         public void Slot()
         {
-            const float reward = 1.5f;
+            const float reward = 5f;
             var player = GameManager.Instance.GetPlayer();
             int price;
             
@@ -43,7 +43,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(40))
+                if (ProbabilityManager.ProbabilityCheckByPercent(5))
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
@@ -66,7 +66,7 @@ namespace Script.Locations
 
         public void Card()
         {
-            const float reward = 2f;
+            const float reward = 1.5f;
             var player = GameManager.Instance.GetPlayer();
             const int health = 5;
             
@@ -95,7 +95,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(35))
+                if (ProbabilityManager.ProbabilityCheckByPercent(25))
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
@@ -146,7 +146,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(30))
+                if (ProbabilityManager.ProbabilityCheckByPercent(10))
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
@@ -181,7 +181,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetHealth(-health);
 
-                if (ProbabilityManager.ProbabilityCheckByPercent(5))
+                if (ProbabilityManager.ProbabilityCheckByPercent(1))
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
@@ -209,14 +209,14 @@ namespace Script.Locations
 
             const int baseSalary = 50;
             const int workExp = 1;
-            const int burnOut = 15;
+            const int burnOut = 10;
 
             var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
 
-            if (player.GetJob() == Job.University)
+            if (player.GetJob() == Job.Casino)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.Casino}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -227,7 +227,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.Casino}");
             }
         }
     }

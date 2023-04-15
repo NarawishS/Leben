@@ -67,16 +67,16 @@ namespace Script
         {
             _planState = PlanState.Play;
             
-            for (var i = playerEvent.transform.childCount - 1; i > 0; i--)
+            for (var i = playerEvent.transform.childCount - 1; i >= 0; i--)
             {
                 var child = playerEvent.transform.GetChild(i).gameObject;
                 if (child.activeSelf)
                 {
                     yield return new WaitForSecondsRealtime(2);
                     child.SetActive(false);
-                    gameTimer.ResumeTime();
                 }
             }
+            gameTimer.ResumeTime();
             
             yield return StartCoroutine(BuyMasks());
         }
@@ -126,27 +126,9 @@ namespace Script
                 yield return new WaitForSeconds(1);
             }
             
-            yield return StartCoroutine(BuyCar());
-        }
-
-        private IEnumerator BuyCar()
-        {
-            if (player.GetWealth() >= 3000 && player.GetVehicle() == Vehicle.None)
-            {
-                if (!vehiclePanel.activeSelf) yield return StartCoroutine(MoveTo(Location.VehicleShop));
-
-                yield return new WaitUntil((() => vehiclePanel.activeSelf));
-
-                var vehicleShopScript = (VehicleShop)vehiclePanel.transform.GetComponent(typeof(VehicleShop));
-            
-                vehicleShopScript.BuyCar();
-            
-                yield return new WaitForSeconds(1);
-            }
-            
             yield return StartCoroutine(Vaccinate());
         }
-        
+
         private IEnumerator Vaccinate()
         {
             if (player.GetInfectionStatus() && player.GetWealth() >= 200)
@@ -162,7 +144,49 @@ namespace Script
                 yield return new WaitForSeconds(1);
             }
 
-            yield return StartCoroutine(WorkLoop());
+            yield return StartCoroutine(BuyCar());
+        }
+        
+        private IEnumerator BuyCar()
+        {
+            if (player.GetWealth() >= 3000 && player.GetVehicle() == Vehicle.None)
+            {
+                if (!vehiclePanel.activeSelf) yield return StartCoroutine(MoveTo(Location.VehicleShop));
+
+                yield return new WaitUntil((() => vehiclePanel.activeSelf));
+
+                var vehicleShopScript = (VehicleShop)vehiclePanel.transform.GetComponent(typeof(VehicleShop));
+            
+                vehicleShopScript.BuyCar();
+            
+                yield return new WaitForSeconds(1);
+            }
+            
+            yield return StartCoroutine(RandomAction());
+        }
+        
+        private IEnumerator RandomAction()
+        {
+            if (player.GetWealth() >= 400)
+            {
+                int rnd = UnityEngine.Random.Range(1, 4);
+                switch (rnd)
+                {
+                    case 1:
+                        yield return StartCoroutine(BuyCloth());
+                        break;
+                    case 2:
+                        yield return StartCoroutine(WeightTrain());
+                        break;
+                    case 3:
+                        yield return StartCoroutine(ClassroomStudy());
+                        break;
+                }
+            }
+            else
+            {
+                yield return StartCoroutine(WorkLoop());
+            }
         }
 
         private IEnumerator WorkLoop()
@@ -178,8 +202,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+                        
                         bankScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -193,8 +222,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         casinoScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -208,8 +242,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         gymScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -223,8 +262,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         hospitalScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -238,8 +282,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         mallScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -253,8 +302,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         marketScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -268,8 +322,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         universityScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -283,8 +342,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         fastFoodScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -298,8 +362,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         petShopScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -313,8 +382,13 @@ namespace Script
 
                     yield return new WaitForSeconds(1);
 
-                    while (gameTimer.GetTime() > 20f)
+                    while (player.GetBurnOut() < 90)
                     {
+                        if (gameTimer.GetTime() <= 20f)
+                        {
+                            break;
+                        }
+
                         vehicleShopScript.Work();
                         yield return new WaitForSeconds(1);
                     }
@@ -339,6 +413,48 @@ namespace Script
             _planState = PlanState.End;
             yield return new WaitForSeconds(1);
             yield return StartCoroutine(EndTurn());
+        }
+        
+        private IEnumerator WeightTrain()
+        {
+            if (!gymPanel.activeSelf) yield return StartCoroutine(MoveTo(Location.Gym));
+
+            yield return new WaitUntil((() => gymPanel.activeSelf));
+
+            var gymScript = (Gym)gymPanel.transform.GetComponent(typeof(Gym));
+
+            gymScript.DoWeightTrain();
+            
+            yield return new WaitForSeconds(1);
+            yield return StartCoroutine(WorkLoop());
+        }
+        
+        private IEnumerator BuyCloth()
+        {
+            if (!mallPanel.activeSelf) yield return StartCoroutine(MoveTo(Location.Mall));
+
+            yield return new WaitUntil((() => mallPanel.activeSelf));
+
+            var mallScript = (Mall)mallPanel.transform.GetComponent(typeof(Mall));
+
+            mallScript.BuyCloth();
+            
+            yield return new WaitForSeconds(1);
+            yield return StartCoroutine(WorkLoop());
+        }
+        
+        private IEnumerator ClassroomStudy()
+        {
+            if (!universityPanel.activeSelf) yield return StartCoroutine(MoveTo(Location.University));
+
+            yield return new WaitUntil((() => universityPanel.activeSelf));
+
+            var universityScript = (University)universityPanel.transform.GetComponent(typeof(University));
+
+            universityScript.Classroom();
+            
+            yield return new WaitForSeconds(1);
+            yield return StartCoroutine(WorkLoop());
         }
         
         private IEnumerator EndTurn()
