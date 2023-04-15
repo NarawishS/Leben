@@ -112,22 +112,28 @@ namespace Script.Locations
         public void Work()
         {
             var player = GameManager.Instance.GetPlayer();
-            
-            if (player.GetJob() == Job.Mall)
+
+            const int baseSalary = 50;
+            const int workExp = 1;
+            const int burnOut = 15;
+
+            var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
+
+            if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Mall}");
-                
-                player.SetWealth(50);
-                player.SetWorkExp(10);
-                player.SetBurnOut(15);
-            
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+
+                player.SetWealth(+salary);
+                player.SetWorkExp(+workExp);
+                player.SetBurnOut(+burnOut);
+
                 timer.DecreaseTime(2);
             }
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Mall}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
             }
         }
     }

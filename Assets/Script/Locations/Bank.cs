@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,24 @@ namespace Script.Locations
         public void DepositMoney()
         {
             var player = GameManager.Instance.GetPlayer();
-            var amount = int.Parse(inputField.text);
+            int amount;
 
-            if (!IsValidAmount(amount))
+            try
+            {
+                amount = int.Parse(inputField.text);
+            }
+            catch (Exception e)
+            {
+                GameManager.Instance.ShowFloatingText(e.Message);
+                return;
+            }
+
+            amount = int.Parse(inputField.text);
+
+            if (amount <= 0)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText("Invalid amount of money"); 
+                GameManager.Instance.ShowFloatingText("Invalid amount of money");
             }
             else if (player.GetWealth() >= amount)
             {
@@ -40,12 +53,24 @@ namespace Script.Locations
         public void WithdrawMoney()
         {
             var player = GameManager.Instance.GetPlayer();
-            var amount = int.Parse(inputField.text);
+            int amount;
 
-            if (!IsValidAmount(amount))
+            try
+            {
+                amount = int.Parse(inputField.text);
+            }
+            catch (Exception e)
+            {
+                GameManager.Instance.ShowFloatingText(e.Message);
+                return;
+            }
+
+            amount = int.Parse(inputField.text);
+
+            if (amount <= 0)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText("Invalid amount of money"); 
+                GameManager.Instance.ShowFloatingText("Invalid amount of money");
             }
             else if (player.GetDepositMoney() >= amount)
             {
@@ -67,27 +92,28 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
 
-            if (player.GetJob() == Job.Bank)
+            const int baseSalary = 50;
+            const int workExp = 1;
+            const int burnOut = 15;
+
+            var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
+
+            if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.Bank}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
 
-                player.SetWealth(50);
-                player.SetWorkExp(10);
-                player.SetBurnOut(15);
+                player.SetWealth(+salary);
+                player.SetWorkExp(+workExp);
+                player.SetBurnOut(+burnOut);
 
                 timer.DecreaseTime(2);
             }
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.Bank}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
             }
-        }
-
-        public bool IsValidAmount(int amount)
-        {
-            return amount > 0;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ namespace Script.Locations
     {
         public Timer timer;
         public InputField inputField;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
@@ -15,11 +16,28 @@ namespace Script.Locations
         {
             const float reward = 1.5f;
             var player = GameManager.Instance.GetPlayer();
-            var price = int.Parse(inputField.text);
+            int price;
+            
+            try
+            {
+                price = int.Parse(inputField.text);
+            }
+            catch (Exception e)
+            {
+                GameManager.Instance.ShowFloatingText(e.Message);
+                return;
+            }
+            price = int.Parse(inputField.text);
+            
             const int health = 5;
-            var happy = Mathf.FloorToInt(price / 100f * reward);
+            var happy = Mathf.CeilToInt(price / 100f * reward);
 
-            if (player.GetWealth() >= price)
+            if (price <= 0)
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText("Invalid amount of money");
+            }
+            else if (player.GetWealth() >= price)
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
@@ -27,7 +45,7 @@ namespace Script.Locations
 
                 if (ProbabilityManager.ProbabilityCheckByPercent(40))
                 {
-                    player.SetWealth(+Mathf.FloorToInt(price * reward));
+                    player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
                     GameManager.Instance.ShowFloatingText($"{player.name}: WIN Slot {price * reward} G");
                 }
@@ -50,11 +68,28 @@ namespace Script.Locations
         {
             const float reward = 2f;
             var player = GameManager.Instance.GetPlayer();
-            var price = int.Parse(inputField.text);
             const int health = 5;
-            var happy = Mathf.FloorToInt(price / 100f * reward);
+            
+            int price;
+            
+            try
+            {
+                price = int.Parse(inputField.text);
+            }
+            catch (Exception e)
+            {
+                GameManager.Instance.ShowFloatingText(e.Message);
+                return;
+            }
+            price = int.Parse(inputField.text);
+            var happy = Mathf.CeilToInt(price / 100f * reward);
 
-            if (player.GetWealth() >= price)
+            if (price <= 0)
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText("Invalid amount of money");
+            }
+            else if (player.GetWealth() >= price)
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
@@ -62,7 +97,7 @@ namespace Script.Locations
 
                 if (ProbabilityManager.ProbabilityCheckByPercent(35))
                 {
-                    player.SetWealth(+Mathf.FloorToInt(price * reward));
+                    player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
                     GameManager.Instance.ShowFloatingText($"{player.name}: WIN Card {price * reward} G");
                 }
@@ -85,11 +120,27 @@ namespace Script.Locations
         {
             const float reward = 3f;
             var player = GameManager.Instance.GetPlayer();
-            var price = int.Parse(inputField.text);
             const int health = 5;
-            var happy = Mathf.FloorToInt(price / 100f * reward);
+            int price;
+            
+            try
+            {
+                price = int.Parse(inputField.text);
+            }
+            catch (Exception e)
+            {
+                GameManager.Instance.ShowFloatingText(e.Message);
+                return;
+            }
+            price = int.Parse(inputField.text);
+            var happy = Mathf.CeilToInt(price / 100f * reward);
 
-            if (player.GetWealth() >= price)
+            if (price <= 0)
+            {
+                actionFailSFX.Play();
+                GameManager.Instance.ShowFloatingText("Invalid amount of money");
+            }
+            else if (player.GetWealth() >= price)
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
@@ -97,7 +148,7 @@ namespace Script.Locations
 
                 if (ProbabilityManager.ProbabilityCheckByPercent(30))
                 {
-                    player.SetWealth(+Mathf.FloorToInt(price * reward));
+                    player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
                     GameManager.Instance.ShowFloatingText($"{player.name}: WIN Roulette {price * reward} G");
                 }
@@ -122,7 +173,7 @@ namespace Script.Locations
             var player = GameManager.Instance.GetPlayer();
             var price = player.GetWealth();
             const int health = 5;
-            var happy = Mathf.FloorToInt(price / 100f * reward);
+            var happy = Mathf.CeilToInt(price / 100f * reward);
 
             if (player.GetWealth() > 0)
             {
@@ -132,14 +183,14 @@ namespace Script.Locations
 
                 if (ProbabilityManager.ProbabilityCheckByPercent(5))
                 {
-                    player.SetWealth(+Mathf.FloorToInt(price * reward));
+                    player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
 
-                    Debug.Log($"{player.name}: JACKPOT WIN {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: JACKPOT WIN {price * reward} G");
                 }
                 else
                 {
-                    Debug.Log($"{player.name}: LOSE ALL IN -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE ALL IN -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -148,7 +199,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                Debug.Log("No Money");
+                GameManager.Instance.ShowFloatingText("No Money");
             }
         }
 
@@ -156,21 +207,27 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
 
-            if (player.GetJob() == Job.Casino)
+            const int baseSalary = 50;
+            const int workExp = 1;
+            const int burnOut = 15;
+
+            var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
+
+            if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                Debug.Log($"{player.name}: work at {Job.Casino}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
 
-                player.SetWealth(50);
-                player.SetWorkExp(10);
-                player.SetBurnOut(15);
+                player.SetWealth(+salary);
+                player.SetWorkExp(+workExp);
+                player.SetBurnOut(+burnOut);
 
                 timer.DecreaseTime(2);
             }
             else
             {
                 actionFailSFX.Play();
-                Debug.Log($"{player.name}: You did not apply for {Job.Casino}");
+                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
             }
         }
     }

@@ -5,16 +5,14 @@ namespace Script.Locations
     public class University : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
         public void SelfStudy()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
-            const int exp = 0;
+            const int price = 50;
+            var exp = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -22,8 +20,6 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
                 GameManager.Instance.ShowFloatingText($"{player.name}: Self Study");
@@ -38,10 +34,8 @@ namespace Script.Locations
 
         public void Classroom()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
-            const int exp = 0;
+            const int price = 250;
+            var exp = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -49,8 +43,6 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(-happy);
                 player.SetEducation(+exp);
 
                 GameManager.Instance.ShowFloatingText($"{player.name}: Classroom");
@@ -67,14 +59,20 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
 
+            const int baseSalary = 50;
+            const int workExp = 1;
+            const int burnOut = 15;
+
+            var salary = Mathf.CeilToInt(baseSalary * (1 + player.GetWorkExp() / 100f + player.GetEducation() / 100f));
+
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
                 GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
 
-                player.SetWealth(50);
-                player.SetWorkExp(10);
-                player.SetBurnOut(15);
+                player.SetWealth(+salary);
+                player.SetWorkExp(+workExp);
+                player.SetBurnOut(+burnOut);
 
                 timer.DecreaseTime(2);
             }
