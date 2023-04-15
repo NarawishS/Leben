@@ -34,7 +34,7 @@ namespace Script.Locations
 
         public void Classroom()
         {
-            const int price = 250;
+            const int price = 200;
             var exp = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();

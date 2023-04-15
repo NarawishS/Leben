@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Script
@@ -296,7 +297,7 @@ namespace Script
         public int GetMoneyScore()
         {
             int moneyScore;
-            var maxMoney = 10000;
+            var maxMoney = 25_000;
             if (_wealth + _bankMoney > maxMoney)
             {
                 moneyScore = maxMoney;

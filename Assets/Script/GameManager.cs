@@ -233,6 +233,7 @@ namespace Script
         public void UpdateTurn()
         {
             var player = GetPlayer();
+            DOTween.KillAll();
             player.transform.position = new Vector3(-0.1839f, 2.8835f);
             player.SetPosition(Location.None);
             player.SetWalkState(false);
