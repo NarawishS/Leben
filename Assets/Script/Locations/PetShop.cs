@@ -33,7 +33,7 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetCat(true);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat");
                 timer.DecreaseTime(2);
             }
             else
@@ -59,7 +59,7 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetCatEat(true);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat Food");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat Food");
                 timer.DecreaseTime(2);
             }
             else
@@ -84,7 +84,7 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cat Toy");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat Toy");
                 timer.DecreaseTime(2);
             }
             else
@@ -107,7 +107,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -118,7 +118,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

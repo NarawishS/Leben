@@ -69,14 +69,14 @@ namespace Script.Locations
                 clickSFX.Play();
                 player.SetJob(jobName);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: apply job for  {jobName}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: apply job for  {jobName}");
 
                 timer.DecreaseTime(2);
             }
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name} already apply this job!");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()} already apply this job!");
             }
         }
     }

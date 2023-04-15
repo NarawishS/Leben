@@ -39,7 +39,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-amount);
                 player.SetDepositMoney(+amount);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Deposit Money {amount}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Deposit Money {amount}");
                 timer.DecreaseTime(2);
                 inputField.text = "0";
             }
@@ -77,7 +77,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(+amount);
                 player.SetDepositMoney(-amount);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Withdraw Money {amount}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Withdraw Money {amount}");
                 timer.DecreaseTime(2);
                 inputField.text = "0";
             }
@@ -101,7 +101,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -112,7 +112,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

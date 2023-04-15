@@ -5,14 +5,14 @@ namespace Script.Locations
     public class VehicleShop : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
         public void BuyBicycle()
         {
             const int price = 500;
-            const int happy = 50;
+
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -20,15 +20,15 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+
                 player.SetVehicle(Vehicle.Bicycle);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Bicycle}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy {Vehicle.Bicycle}");
                 timer.DecreaseTime(2);
             }
             else if (player.GetVehicle() != Vehicle.None)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -40,14 +40,13 @@ namespace Script.Locations
         public void BuyMotorcycle()
         {
             const int price = 1000;
-            const int happy = 100;
 
 
             var player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Motorcycle, Vehicle.Car, Vehicle.SuperCar };
             var canBuy = true;
-            
+
             foreach (var vehicle in vehicles)
             {
                 if (player.GetVehicle().Equals(vehicle))
@@ -61,16 +60,16 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+
 
                 player.SetVehicle(Vehicle.Motorcycle);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Motorcycle}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy {Vehicle.Motorcycle}");
                 timer.DecreaseTime(2);
             }
             else if (!canBuy)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -82,13 +81,13 @@ namespace Script.Locations
         public void BuyCar()
         {
             const int price = 2000;
-            const int happy = 200;
+
 
             Player player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Car, Vehicle.SuperCar };
             var canBuy = true;
-            
+
             foreach (var vehicle in vehicles)
             {
                 if (player.GetVehicle().Equals(vehicle))
@@ -102,16 +101,16 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+
 
                 player.SetVehicle(Vehicle.Car);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.Car}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy {Vehicle.Car}");
                 timer.DecreaseTime(2);
             }
             else if (!canBuy)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -123,7 +122,7 @@ namespace Script.Locations
         public void BuySuperCar()
         {
             const int price = 5000;
-            const int happy = 500;
+
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -131,16 +130,16 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+
 
                 player.SetVehicle(Vehicle.SuperCar);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy {Vehicle.SuperCar}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy {Vehicle.SuperCar}");
                 timer.DecreaseTime(2);
             }
             else if (player.GetVehicle() == Vehicle.SuperCar)
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: Own {player.GetVehicle()}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Own {player.GetVehicle()}");
             }
             else
             {
@@ -162,7 +161,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -173,9 +172,8 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }
 }
-

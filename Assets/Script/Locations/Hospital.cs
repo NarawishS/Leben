@@ -25,7 +25,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetMask(+1);
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy mask");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy mask");
                 timer.DecreaseTime(2);
             }
             else
@@ -52,7 +52,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetInfectionStatus(false);
                 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Get vaccinate");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Get vaccinate");
                 timer.DecreaseTime(2);
             }
             else
@@ -75,7 +75,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -86,7 +86,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

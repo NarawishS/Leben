@@ -22,7 +22,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetEducation(+exp);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Self Study");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Self Study");
                 timer.DecreaseTime(2);
             }
             else
@@ -45,7 +45,7 @@ namespace Script.Locations
                 player.SetWealth(-price);
                 player.SetEducation(+exp);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Classroom");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Classroom");
                 timer.DecreaseTime(2);
             }
             else
@@ -68,7 +68,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -79,7 +79,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

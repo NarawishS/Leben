@@ -5,18 +5,17 @@ namespace Script.Locations
     public class FastFood : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
-        
+
         public void BuyBurger()
         {
             var player = GameManager.Instance.GetPlayer();
             const int price = 65;
-            const int health = 20;
-            const int happy = 20;
+            const int health = 2;
+            var happy = Mathf.CeilToInt(price / 20f);
             const int cal = 10;
-            
 
             if (player.GetWealth() >= price)
             {
@@ -25,7 +24,7 @@ namespace Script.Locations
                 player.SetHealth(-health);
                 player.SetHealth(+happy);
                 player.SetSatiated(+cal);
-                GameManager.Instance.ShowFloatingText($"{player.name}: buy burger");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy burger");
                 timer.DecreaseTime(2);
             }
             else
@@ -39,9 +38,9 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
             const int price = 20;
-            const int health = 20;
-            const int happy = 10;
-            const int cal = 1;
+            const int health = 2;
+            var happy = Mathf.CeilToInt(price / 20f);
+            const int cal = 2;
 
             if (player.GetWealth() >= price)
             {
@@ -51,7 +50,7 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetSatiated(+cal);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: buy coke");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy coke");
                 timer.DecreaseTime(2);
             }
             else
@@ -65,8 +64,8 @@ namespace Script.Locations
         {
             var player = GameManager.Instance.GetPlayer();
             const int price = 40;
-            const int health = 20;
-            const int happy = 10;
+            const int health = 2;
+            var happy = Mathf.CeilToInt(price / 20f);
             const int cal = 5;
 
             if (player.GetWealth() >= price)
@@ -77,7 +76,7 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetSatiated(+cal);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: buy fried");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy fried");
                 timer.DecreaseTime(2);
             }
             else
@@ -90,9 +89,9 @@ namespace Script.Locations
         public void BuyChicken()
         {
             var player = GameManager.Instance.GetPlayer();
-            const int price = 100;
-            const int health = 20;
-            const int happy = 10;
+            const int price = 150;
+            const int health = 2;
+            var happy = Mathf.CeilToInt(price / 20f);
             const int cal = 20;
 
             if (player.GetWealth() >= price)
@@ -103,7 +102,7 @@ namespace Script.Locations
                 player.SetHealth(+happy);
                 player.SetSatiated(+cal);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: buy chicken");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy chicken");
                 timer.DecreaseTime(2);
             }
             else
@@ -126,7 +125,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -137,7 +136,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

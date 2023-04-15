@@ -84,7 +84,7 @@ namespace Script
 
                     player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
                     player.SetInfectionChance(infectionChance);
-                    GameManager.Instance.ShowFloatingText($"{player.name} move to {location}");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()} move to {location}");
                 }
             }
             else if (player.GetPosition().Equals(location) &&

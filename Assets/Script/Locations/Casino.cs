@@ -47,11 +47,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
-                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Slot {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: WIN Slot {price * reward} G");
                 }
                 else
                 {
-                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE Slot -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: LOSE Slot -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -99,11 +99,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
-                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Card {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: WIN Card {price * reward} G");
                 }
                 else
                 {
-                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE card -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: LOSE card -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -150,11 +150,11 @@ namespace Script.Locations
                 {
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
-                    GameManager.Instance.ShowFloatingText($"{player.name}: WIN Roulette {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: WIN Roulette {price * reward} G");
                 }
                 else
                 {
-                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE Roulette -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: LOSE Roulette -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -186,11 +186,11 @@ namespace Script.Locations
                     player.SetWealth(+Mathf.CeilToInt(price * reward));
                     player.SetHappy(+happy);
 
-                    GameManager.Instance.ShowFloatingText($"{player.name}: JACKPOT WIN {price * reward} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: JACKPOT WIN {price * reward} G");
                 }
                 else
                 {
-                    GameManager.Instance.ShowFloatingText($"{player.name}: LOSE ALL IN -{price} G");
+                    GameManager.Instance.ShowFloatingText($"{player.GetName()}: LOSE ALL IN -{price} G");
                     player.SetHappy(-happy);
                 }
 
@@ -216,7 +216,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -227,7 +227,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

@@ -5,15 +5,14 @@ namespace Script.Locations
     public class Mall : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
         public void BuyCloth()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
+            const int price = 300;
+            var happy = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -21,10 +20,9 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Cloth");
+
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cloth");
                 timer.DecreaseTime(2);
             }
             else
@@ -36,9 +34,8 @@ namespace Script.Locations
 
         public void WatchMovie()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
+            const int price = 150;
+            var happy = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -46,10 +43,9 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                GameManager.Instance.ShowFloatingText($"{player.name}: Watch Movie");
+
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Watch Movie");
                 timer.DecreaseTime(2);
             }
             else
@@ -58,12 +54,11 @@ namespace Script.Locations
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
-        
+
         public void BuyFurniture()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
+            const int price = 1000;
+            var happy = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -71,10 +66,9 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Furniture");
+
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Furniture");
                 timer.DecreaseTime(2);
             }
             else
@@ -83,12 +77,11 @@ namespace Script.Locations
                 GameManager.Instance.ShowFloatingText("No Money");
             }
         }
-        
+
         public void BuyToy()
         {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
+            const int price = 500;
+            var happy = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -96,10 +89,9 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
                 player.SetHealth(+happy);
-                
-                GameManager.Instance.ShowFloatingText($"{player.name}: Buy Toy");
+
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Toy");
                 timer.DecreaseTime(2);
             }
             else
@@ -122,7 +114,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -133,7 +125,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }

@@ -402,7 +402,7 @@ namespace Script
             {
                 infectionPanel.SetActive(true);
                 player.SetInfectionChance(0);
-                timer.DecreaseTime(timer.GetTime() * 0.2f);
+                timer.DecreaseTime(timer.GetTime() * 0.5f);
                 return;
             }
 
@@ -414,7 +414,7 @@ namespace Script
             if (player.GetInfectionStatus())
             {
                 infectionPanel.SetActive(true);
-                timer.DecreaseTime(timer.GetTime() * 0.2f);
+                timer.DecreaseTime(timer.GetTime() * 0.5f);
             }
         }
 
@@ -422,13 +422,17 @@ namespace Script
         {
             if (_turnCount < 2f) return;
 
-            if (player.GetSatiated() == 0)
+            if (player.GetSatiated() < 10)
             {
                 hungryPanel.SetActive(true);
+                player.SetHappy(-Mathf.CeilToInt(player.GetHappy() * 0.1f));
+                player.SetHealth(-Mathf.CeilToInt(player.GetHealth() * 0.1f));
             }
             else if (player.GetSatiated() > 100)
             {
                 diarrheaPanel.SetActive(true);
+                player.SetHappy(-Mathf.CeilToInt(player.GetHappy() * 0.1f));
+                player.SetHealth(-Mathf.CeilToInt(player.GetHealth() * 0.1f));
             }
 
             player.SetSatiated(-player.GetSatiated());
@@ -440,7 +444,7 @@ namespace Script
 
             if (!player.GetCatEat())
             {
-                var amount = Mathf.FloorToInt(player.GetHappy() * 0.2f);
+                var amount = Mathf.CeilToInt(player.GetHappy() * 0.1f);
                 player.SetHappy(-amount);
                 catPanel.SetActive(true);
             }
@@ -452,9 +456,9 @@ namespace Script
         {
             if (_turnCount < 2f) return;
 
-            if (ProbabilityManager.ProbabilityCheckByPercent(25))
+            if (ProbabilityManager.ProbabilityCheckByPercent(20))
             {
-                var amount = Mathf.FloorToInt(player.GetWealth() * 0.25f);
+                var amount = Mathf.CeilToInt(player.GetWealth() * 0.20f);
                 player.SetWealth(-amount);
                 robPanel.SetActive(true);
             }
@@ -467,7 +471,9 @@ namespace Script
             if (!player.GetSleep())
             {
                 sleepPanel.SetActive(true);
-                timer.DecreaseTime(timer.GetTime() * 0.2f);
+                player.SetHappy(-Mathf.CeilToInt(player.GetHappy() * 0.1f));
+                player.SetHealth(-Mathf.CeilToInt(player.GetHealth() * 0.1f));
+                timer.DecreaseTime(timer.GetTime() * 0.1f);
             }
 
             player.SetSleep(false);
@@ -480,7 +486,8 @@ namespace Script
             if (player.GetStamina() <= 0)
             {
                 musclePanel.SetActive(true);
-                player.SetHealth(-Mathf.FloorToInt(player.GetHealth() * 0.2f));
+                player.SetHappy(-Mathf.CeilToInt(player.GetHappy() * 0.1f));
+                player.SetHealth(-Mathf.CeilToInt(player.GetHealth() * 0.1f));
             }
 
             player.SetStamina(-player.GetStamina());
@@ -494,8 +501,8 @@ namespace Script
             if (player.GetBurnOut() >= 100)
             {
                 burnOutPanel.SetActive(true);
-                player.SetHealth(-Mathf.FloorToInt(player.GetHealth() * 0.2f));
-                player.SetHappy(-Mathf.FloorToInt(player.GetHappy() * 0.2f));
+                player.SetHappy(-Mathf.CeilToInt(player.GetHappy() * 0.1f));
+                player.SetHealth(-Mathf.CeilToInt(player.GetHealth() * 0.1f));
             }
 
             player.SetBurnOut(-player.GetBurnOut());

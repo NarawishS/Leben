@@ -5,16 +5,14 @@ namespace Script.Locations
     public class Gym : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
         public void BuyProtein()
         {
-            const int price = 0;
-            const int health = 5;
-            const int happy = 0;
-            const int cal = 5;
+            const int price = 50;
+            var health = Mathf.CeilToInt(price / 10f);
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -23,10 +21,8 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+health);
-                player.SetHealth(+happy);
-                player.SetSatiated(+cal);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Drink Protein Shake");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Drink Protein Shake");
                 timer.DecreaseTime(2);
             }
             else
@@ -38,9 +34,8 @@ namespace Script.Locations
 
         public void DoWeightTrain()
         {
-            const int price = 0;
-            const int health = 20;
-            const int happy = 0;
+            const int price = 100;
+            var health = Mathf.CeilToInt(price / 10f);
             const int stamina = 20;
 
             var player = GameManager.Instance.GetPlayer();
@@ -50,10 +45,9 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(+health);
-                player.SetHealth(+happy);
                 player.SetStamina(-stamina);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Weight train");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Weight train");
                 timer.DecreaseTime(2);
             }
             else
@@ -65,9 +59,8 @@ namespace Script.Locations
 
         public void DoTrainer()
         {
-            const int price = 0;
-            const int health = 50;
-            const int happy = 0;
+            const int price = 500;
+            var health = Mathf.CeilToInt(price / 10f);
             const int stamina = 90;
 
             var player = GameManager.Instance.GetPlayer();
@@ -77,10 +70,9 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
                 player.SetStamina(-stamina);
 
-                GameManager.Instance.ShowFloatingText($"{player.name}: Trainer train");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Trainer train");
                 timer.DecreaseTime(2);
             }
             else
@@ -103,7 +95,7 @@ namespace Script.Locations
             if (player.GetJob() == Job.University)
             {
                 coinSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: work at {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: work at {Job.University}");
 
                 player.SetWealth(+salary);
                 player.SetWorkExp(+workExp);
@@ -114,7 +106,7 @@ namespace Script.Locations
             else
             {
                 actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText($"{player.name}: You did not apply for {Job.University}");
+                GameManager.Instance.ShowFloatingText($"{player.GetName()}: You did not apply for {Job.University}");
             }
         }
     }
