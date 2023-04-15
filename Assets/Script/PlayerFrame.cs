@@ -19,7 +19,8 @@ public class PlayerFrame : MonoBehaviour
         for (var i = 0; i < board.transform.childCount; i++)
         {
             var child = board.transform.GetChild(i).gameObject;
-            if (player.transform.position != child.transform.position)
+            var location = (LocationMovement)child.GetComponent(typeof(LocationMovement));
+            if (!player.GetPosition().Equals(location.location))
             {
                 child.GetComponent<BoxCollider2D>().enabled = false;
             }

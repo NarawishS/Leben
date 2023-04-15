@@ -208,7 +208,7 @@ namespace Script
             p3Frame.SetActive(false);
             p4Frame.SetActive(false);
             botFrame.SetActive(false);
-            
+
             var scene = SceneManager.LoadSceneAsync("Scenes/EndGame");
             scene.allowSceneActivation = false;
             loadPanel.SetActive(true);
@@ -349,7 +349,7 @@ namespace Script
             PlayerPrefs.SetInt("p4MoneyScore", player4.GetMoneyScore());
             PlayerPrefs.SetInt("p4HealthScore", player4.GetHealthScore());
             PlayerPrefs.SetInt("p4HappyScore", player4.GetHappyScore());
-            
+
             PlayerPrefs.SetString("bot", playerBot.GetName());
             PlayerPrefs.SetInt("botScore", playerBot.GetTotalScore());
             PlayerPrefs.SetInt("botMoneyScore", playerBot.GetMoneyScore());
@@ -458,7 +458,9 @@ namespace Script
         {
             if (_turnCount < 2f) return;
 
-            if (ProbabilityManager.ProbabilityCheckByPercent(20))
+            var chance = Mathf.CeilToInt(player.GetWealth() / 100f);
+
+            if (ProbabilityManager.ProbabilityCheckByPercent(chance))
             {
                 var amount = Mathf.CeilToInt(player.GetWealth() * 0.20f);
                 player.SetWealth(-amount);

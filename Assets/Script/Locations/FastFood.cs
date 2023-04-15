@@ -22,7 +22,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
                 player.SetSatiated(+cal);
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy burger");
                 timer.DecreaseTime(2);
@@ -47,7 +47,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
                 player.SetSatiated(+cal);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy coke");
@@ -73,7 +73,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
                 player.SetSatiated(+cal);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy fried");
@@ -99,7 +99,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetHealth(-health);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
                 player.SetSatiated(+cal);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: buy chicken");

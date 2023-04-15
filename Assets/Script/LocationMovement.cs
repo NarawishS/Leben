@@ -90,7 +90,7 @@ namespace Script
             else if (player.GetPosition().Equals(location) &&
                      player.transform.position == gameObject.transform.position)
             {
-                if (locationPanel != null)
+                if (!locationPanel.activeSelf)
                 {
                     locationPanel.SetActive(true);
                     DoDisableBoard();
@@ -106,7 +106,7 @@ namespace Script
         {
             Player player = GameManager.Instance.GetPlayer();
 
-            if (locationPanel != null && player.GetPosition().Equals(location))
+            if (!locationPanel.activeSelf && player.GetPosition().Equals(location))
             {
                 player.SetWalkState(false);
                 locationPanel.SetActive(true);

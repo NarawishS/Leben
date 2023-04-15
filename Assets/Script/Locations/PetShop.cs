@@ -22,7 +22,6 @@ namespace Script.Locations
         public void BuyCat()
         {
             const int price = 1000;
-            const int happy = 0;
 
             var player = GameManager.Instance.GetPlayer();
 
@@ -30,7 +29,6 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
                 player.SetCat(true);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat");
@@ -56,31 +54,6 @@ namespace Script.Locations
                 player.SetCatEat(true);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat Food");
-                timer.DecreaseTime(2);
-            }
-            else
-            {
-                actionFailSFX.Play();
-                GameManager.Instance.ShowFloatingText("No Money");
-            }
-        }
-
-        public void BuyCatToy()
-        {
-            const int price = 0;
-            const int health = 0;
-            const int happy = 0;
-
-            var player = GameManager.Instance.GetPlayer();
-
-            if (player.GetWealth() >= price)
-            {
-                coinSFX.Play();
-                player.SetWealth(-price);
-                player.SetHealth(-health);
-                player.SetHealth(+happy);
-
-                GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cat Toy");
                 timer.DecreaseTime(2);
             }
             else

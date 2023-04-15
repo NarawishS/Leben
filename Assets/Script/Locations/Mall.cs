@@ -20,7 +20,7 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Cloth");
                 timer.DecreaseTime(2);
@@ -43,7 +43,7 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Watch Movie");
                 timer.DecreaseTime(2);
@@ -66,7 +66,7 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(+happy);
+                player.SetHappy(+happy);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Buy Furniture");
                 timer.DecreaseTime(2);

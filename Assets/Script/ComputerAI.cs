@@ -50,7 +50,6 @@ namespace Script
 
         private IEnumerator MoveTo(Location newLocation)
         {
-            Debug.Log($"MoveTo({newLocation})");
             for (var i = 0; i < board.transform.childCount; i++)
             {
                 var child = board.transform.GetChild(i).gameObject;

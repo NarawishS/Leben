@@ -69,7 +69,7 @@ namespace Script.Locations
             {
                 coinSFX.Play();
                 player.SetWealth(-price);
-                player.SetHealth(-health);
+                player.SetHealth(+health);
                 player.SetStamina(-stamina);
 
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Trainer train");

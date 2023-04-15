@@ -32,10 +32,10 @@ namespace Script
         private void Awake()
         {
             Instance = this;
-            _wealth = 200;
+            _wealth = 350;
             _bankMoney = 0;
-            _health = 20;
-            _happy = 20;
+            _health = 50;
+            _happy = 50;
             _education = 0;
             _workExp = 0;
             _job = Job.None;
