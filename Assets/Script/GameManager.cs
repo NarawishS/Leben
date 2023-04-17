@@ -95,7 +95,7 @@ namespace Script
         {
             if (floatingTextPrefab)
             {
-                var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+                var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
                 go.GetComponent<TextMesh>().text = text;
             }
         }
