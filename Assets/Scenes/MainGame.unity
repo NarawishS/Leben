@@ -47091,6 +47091,11 @@ MonoBehaviour:
   p3Frame: {fileID: 822006828}
   p4Frame: {fileID: 1068575004}
   botFrame: {fileID: 806113978}
+  p1Panel: {fileID: 795507394}
+  p2Panel: {fileID: 1453289138}
+  p3Panel: {fileID: 1202216880}
+  p4Panel: {fileID: 1511380192}
+  botPanel: {fileID: 1344857477}
   player1: {fileID: 1536731022}
   player2: {fileID: 1715603780}
   player3: {fileID: 1652785826}

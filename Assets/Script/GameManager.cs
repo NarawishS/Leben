@@ -16,21 +16,31 @@ namespace Script
 
         public GameState state;
         public GameObject floatingTextPrefab;
+
         public GameObject p1;
         public GameObject p2;
         public GameObject p3;
         public GameObject p4;
         public GameObject bot;
+
         public GameObject p1Frame;
         public GameObject p2Frame;
         public GameObject p3Frame;
         public GameObject p4Frame;
         public GameObject botFrame;
+
+        public GameObject p1Panel;
+        public GameObject p2Panel;
+        public GameObject p3Panel;
+        public GameObject p4Panel;
+        public GameObject botPanel;
+
         public Player player1;
         public Player player2;
         public Player player3;
         public Player player4;
         public Player playerBot;
+
         public List<Player> playerList;
         public List<Player> scoreOrderedPlayerList;
         public AudioSource bgm;
@@ -55,7 +65,7 @@ namespace Script
         public GameObject catPanel;
 
         private float _turnCount = 1f;
-        private const float MaxTurn = 10f;
+        private const float MaxTurn = 2f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
@@ -85,7 +95,7 @@ namespace Script
         {
             if (floatingTextPrefab)
             {
-                var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform);
+                var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
                 go.GetComponent<TextMesh>().text = text;
             }
         }
@@ -127,12 +137,20 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(false);
             p4.SetActive(false);
+            bot.SetActive(true);
+
             p1Frame.SetActive(false);
             p2Frame.SetActive(false);
             p3Frame.SetActive(false);
             p4Frame.SetActive(false);
-            bot.SetActive(true);
             botFrame.SetActive(true);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
+
             StartTurnText($"{playerBot.GetName()} turn");
         }
 
@@ -142,12 +160,20 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(false);
             p4.SetActive(true);
+            bot.SetActive(false);
+
             p1Frame.SetActive(false);
             p2Frame.SetActive(false);
             p3Frame.SetActive(false);
             p4Frame.SetActive(true);
-            bot.SetActive(false);
             botFrame.SetActive(false);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
+
             StartTurnText($"{player4.GetName()} turn");
         }
 
@@ -157,12 +183,20 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(true);
             p4.SetActive(false);
+            bot.SetActive(false);
+
             p1Frame.SetActive(false);
             p2Frame.SetActive(false);
             p3Frame.SetActive(true);
             p4Frame.SetActive(false);
-            bot.SetActive(false);
             botFrame.SetActive(false);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
+
             StartTurnText($"{player3.GetName()} turn");
         }
 
@@ -172,12 +206,20 @@ namespace Script
             p2.SetActive(true);
             p3.SetActive(false);
             p4.SetActive(false);
+            bot.SetActive(false);
+
             p1Frame.SetActive(false);
             p2Frame.SetActive(true);
             p3Frame.SetActive(false);
             p4Frame.SetActive(false);
-            bot.SetActive(false);
             botFrame.SetActive(false);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
+
             StartTurnText($"{player2.GetName()} turn");
         }
 
@@ -187,12 +229,20 @@ namespace Script
             p2.SetActive(false);
             p3.SetActive(false);
             p4.SetActive(false);
+            bot.SetActive(false);
+
             p1Frame.SetActive(true);
             p2Frame.SetActive(false);
             p3Frame.SetActive(false);
             p4Frame.SetActive(false);
-            bot.SetActive(false);
             botFrame.SetActive(false);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
+
             StartTurnText($"{player1.GetName()} turn");
         }
 
@@ -203,11 +253,18 @@ namespace Script
             p3.SetActive(false);
             p4.SetActive(false);
             bot.SetActive(false);
+
             p1Frame.SetActive(false);
             p2Frame.SetActive(false);
             p3Frame.SetActive(false);
             p4Frame.SetActive(false);
             botFrame.SetActive(false);
+
+            p1Panel.SetActive(false);
+            p2Panel.SetActive(false);
+            p3Panel.SetActive(false);
+            p4Panel.SetActive(false);
+            botPanel.SetActive(false);
 
             var scene = SceneManager.LoadSceneAsync("Scenes/EndGame");
             scene.allowSceneActivation = false;
@@ -299,11 +356,6 @@ namespace Script
         public int GetTurn()
         {
             return Mathf.FloorToInt(_turnCount);
-        }
-
-        public int GetLastTurn()
-        {
-            return Mathf.FloorToInt(MaxTurn);
         }
 
         public Player GetPlayer()
