@@ -5,7 +5,7 @@ namespace Script.Locations
     public class Hospital : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 
@@ -51,7 +51,7 @@ namespace Script.Locations
                 coinSFX.Play();
                 player.SetWealth(-price);
                 player.SetInfectionStatus(false);
-                
+
                 GameManager.Instance.ShowFloatingText($"{player.GetName()}: Get vaccinate");
                 timer.DecreaseTime(2);
             }

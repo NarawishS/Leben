@@ -48,13 +48,11 @@ namespace Script.Locations
             var canBuy = true;
 
             foreach (var vehicle in vehicles)
-            {
                 if (player.GetVehicle().Equals(vehicle))
                 {
                     canBuy = false;
                     break;
                 }
-            }
 
             if (player.GetWealth() >= price && canBuy)
             {
@@ -83,19 +81,17 @@ namespace Script.Locations
             const int price = 2000;
 
 
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             Vehicle[] vehicles = { Vehicle.Car, Vehicle.SuperCar };
             var canBuy = true;
 
             foreach (var vehicle in vehicles)
-            {
                 if (player.GetVehicle().Equals(vehicle))
                 {
                     canBuy = false;
                     break;
                 }
-            }
 
             if (player.GetWealth() >= price && canBuy)
             {

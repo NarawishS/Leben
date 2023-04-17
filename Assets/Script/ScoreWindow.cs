@@ -9,25 +9,25 @@ public class ScoreWindow : MonoBehaviour
     public Text p1HealthScore;
     public Text p1HappyScore;
     public Text p1TotalScore;
-    
+
     public Text p2Rank;
     public Text p2MoneyScore;
     public Text p2HealthScore;
     public Text p2HappyScore;
     public Text p2TotalScore;
-    
+
     public Text p3Rank;
     public Text p3MoneyScore;
     public Text p3HealthScore;
     public Text p3HappyScore;
     public Text p3TotalScore;
-    
+
     public Text p4Rank;
     public Text p4MoneyScore;
     public Text p4HealthScore;
     public Text p4HappyScore;
     public Text p4TotalScore;
-    
+
     public Text vsBotResult;
     public Text botMoneyScore;
     public Text botHealthScore;
@@ -68,36 +68,30 @@ public class ScoreWindow : MonoBehaviour
         botTotalScore.text = "Total Score: " + PlayerPrefs.GetInt("botScore").ToString();
 
         if (PlayerPrefs.GetInt("p1Score") == PlayerPrefs.GetInt("botScore"))
-        {
             vsBotResult.text = "Draw!";
-        }
         else if (PlayerPrefs.GetInt("p1Score") > PlayerPrefs.GetInt("botScore"))
-        {
             vsBotResult.text = "Player Win!";
-        }
         else
-        {
             vsBotResult.text = "Bot Win!";
-        }
     }
-    
+
     public void HandleVsPlayer()
     {
         p1MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p1MoneyScore").ToString();
         p2MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p2MoneyScore").ToString();
         p3MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p3MoneyScore").ToString();
         p4MoneyScore.text = "Money Score: " + PlayerPrefs.GetInt("p4MoneyScore").ToString();
-        
+
         p1HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p1HealthScore").ToString();
         p2HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p2HealthScore").ToString();
         p3HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p3HealthScore").ToString();
         p4HealthScore.text = "Health Score: " + PlayerPrefs.GetInt("p4HealthScore").ToString();
-        
+
         p1HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p1HappyScore").ToString();
         p2HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p2HappyScore").ToString();
         p3HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p3HappyScore").ToString();
         p4HappyScore.text = "Happiness Score: " + PlayerPrefs.GetInt("p4HappyScore").ToString();
-        
+
         p1TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p1Score").ToString();
         p2TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p2Score").ToString();
         p3TotalScore.text = "Total Score: " + PlayerPrefs.GetInt("p3Score").ToString();
@@ -118,7 +112,7 @@ public class ScoreWindow : MonoBehaviour
                 p4Rank.text = "1st";
                 break;
         }
-        
+
         switch (PlayerPrefs.GetString("2nd"))
         {
             case "Player 1":
@@ -134,7 +128,7 @@ public class ScoreWindow : MonoBehaviour
                 p4Rank.text = "2nd";
                 break;
         }
-        
+
         switch (PlayerPrefs.GetString("3rd"))
         {
             case "Player 1":
@@ -150,7 +144,7 @@ public class ScoreWindow : MonoBehaviour
                 p4Rank.text = "3rd";
                 break;
         }
-        
+
         switch (PlayerPrefs.GetString("4th"))
         {
             case "Player 1":

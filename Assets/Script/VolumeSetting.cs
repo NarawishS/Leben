@@ -36,14 +36,14 @@ namespace Script
 
         public void SetMusicVolume()
         {
-            float volume = musicSlider.value;
+            var volume = musicSlider.value;
             myMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
             PlayerPrefs.SetFloat("musicVolume", volume);
         }
-        
+
         public void SetSFXVolume()
         {
-            float volume = sfxSlider.value;
+            var volume = sfxSlider.value;
             myMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
             PlayerPrefs.SetFloat("sfxVolume", volume);
         }
@@ -52,7 +52,7 @@ namespace Script
         {
             musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
             sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
-            
+
             SetMusicVolume();
             SetSFXVolume();
         }

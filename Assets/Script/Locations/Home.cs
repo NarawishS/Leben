@@ -13,15 +13,11 @@ namespace Script.Locations
             clickSFX.Play();
             var player = GameManager.Instance.GetPlayer();
             player.SetSleep(true);
-            
+
             if (player.GetCat() && player.GetCatEat())
-            {
                 player.SetHappy(+Mathf.CeilToInt(timer.GetTime()));
-            }
             else
-            {
                 player.SetHappy(+Mathf.CeilToInt(timer.GetTime() / 2));
-            }
 
             timer.ResetTime();
         }

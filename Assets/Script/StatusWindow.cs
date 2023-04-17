@@ -16,7 +16,7 @@ public class StatusWindow : MonoBehaviour
     public Text maskAmountText;
     public GameObject petCheckMark;
     public GameObject infectedCheckMark;
-    
+
     private void Update()
     {
         wealthText.text = "Money: " + player.GetWealth().ToString() + " G";
@@ -25,7 +25,7 @@ public class StatusWindow : MonoBehaviour
         educationText.text = "Education: " + player.GetEducation().ToString();
         workexpText.text = "WorkExp: " + player.GetWorkExp().ToString();
         jobText.text = "Workplace: " + player.GetJob();
-        
+
         depositText.text = " : " + player.GetDepositMoney().ToString() + " G";
         maskAmountText.text = "x " + player.GetMask().ToString();
         petCheckMark.SetActive(player.GetCat());

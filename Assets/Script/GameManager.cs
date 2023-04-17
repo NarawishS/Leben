@@ -85,10 +85,7 @@ namespace Script
 
         private void OnApplicationFocus(bool hasFocus)
         {
-            if (hasFocus)
-            {
-                Cursor.lockState = CursorLockMode.Confined;
-            }
+            if (hasFocus) Cursor.lockState = CursorLockMode.Confined;
         }
 
         public void ShowFloatingText(string text)
@@ -296,23 +293,15 @@ namespace Script
             player.SetWalkState(false);
 
             if (Training)
-            {
                 _turnCount += 0.5f;
-            }
             else
-            {
                 _turnCount += 0.25f;
-            }
 
             turnText.text = $"Turn {Mathf.FloorToInt(_turnCount)}";
 
-            if (_turnCount.Equals(MaxTurn + 1))
-            {
-                UpdateGameState(GameState.Ended);
-            }
+            if (_turnCount.Equals(MaxTurn + 1)) UpdateGameState(GameState.Ended);
 
             if (Training)
-            {
                 switch (state)
                 {
                     case GameState.P1Turn:
@@ -324,9 +313,7 @@ namespace Script
                     case GameState.Ended:
                         break;
                 }
-            }
             else
-            {
                 switch (state)
                 {
                     case GameState.P1Turn:
@@ -344,7 +331,6 @@ namespace Script
                     case GameState.Ended:
                         break;
                 }
-            }
 
             if (_turnCount.Equals(MaxTurn))
             {

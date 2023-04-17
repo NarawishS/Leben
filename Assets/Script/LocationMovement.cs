@@ -11,10 +11,10 @@ namespace Script
         public Location location;
         public AudioSource clickSFX;
         public AudioSource actionFailSFX;
-        
+
         public void OnMouseUpAsButton()
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
             MoveTo(player);
         }
 
@@ -62,24 +62,16 @@ namespace Script
                     if (player.transform.position.x < gameObject.transform.position.x)
                     {
                         if (player.transform.localScale.x > 0)
-                        {
                             player.transform.localScale = new Vector3(-playerX, playerY, playerZ);
-                        }
                         else
-                        {
                             player.transform.localScale = new Vector3(playerX, playerY, playerZ);
-                        }
                     }
                     else
                     {
                         if (player.transform.localScale.x > 0)
-                        {
                             player.transform.localScale = new Vector3(playerX, playerY, playerZ);
-                        }
                         else
-                        {
                             player.transform.localScale = new Vector3(-playerX, playerY, playerZ);
-                        }
                     }
 
                     player.transform.DOMove(transform.position, s / v).SetEase(Ease.InOutQuad);
@@ -104,7 +96,7 @@ namespace Script
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Player player = GameManager.Instance.GetPlayer();
+            var player = GameManager.Instance.GetPlayer();
 
             if (!locationPanel.activeSelf && player.GetPosition().Equals(location))
             {
@@ -131,10 +123,7 @@ namespace Script
             for (var i = 0; i < board.transform.childCount; i++)
             {
                 var child = board.transform.GetChild(i).gameObject;
-                if (child.name != gameObject.name)
-                {
-                    child.GetComponent<BoxCollider2D>().enabled = false;
-                }
+                if (child.name != gameObject.name) child.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
 

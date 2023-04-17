@@ -299,37 +299,27 @@ namespace Script
             int moneyScore;
             var maxMoney = 25_000;
             if (_wealth + _bankMoney > maxMoney)
-            {
                 moneyScore = maxMoney;
-            }
             else
-            {
                 moneyScore = _wealth + _bankMoney;
-            }
 
             return moneyScore / (maxMoney / 100);
         }
 
         public int GetHappyScore()
         {
-            int happyScore = _happy;
+            var happyScore = _happy;
             var maxHappy = 1000;
-            if (happyScore > maxHappy)
-            {
-                happyScore = maxHappy;
-            }
+            if (happyScore > maxHappy) happyScore = maxHappy;
 
             return happyScore / (maxHappy / 100);
         }
 
         public int GetHealthScore()
         {
-            int healthScore = _health;
+            var healthScore = _health;
             var maxHealth = 1000;
-            if (healthScore > maxHealth)
-            {
-                healthScore = maxHealth;
-            }
+            if (healthScore > maxHealth) healthScore = maxHealth;
 
             return healthScore / (maxHealth / 100);
         }

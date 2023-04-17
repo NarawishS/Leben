@@ -17,7 +17,7 @@ namespace Script.Locations
             const float reward = 5f;
             var player = GameManager.Instance.GetPlayer();
             int price;
-            
+
             try
             {
                 price = int.Parse(inputField.text);
@@ -27,8 +27,9 @@ namespace Script.Locations
                 GameManager.Instance.ShowFloatingText(e.Message);
                 return;
             }
+
             price = int.Parse(inputField.text);
-            
+
             const int health = 5;
             var happy = Mathf.CeilToInt(price / 100f * reward);
 
@@ -69,9 +70,9 @@ namespace Script.Locations
             const float reward = 1.5f;
             var player = GameManager.Instance.GetPlayer();
             const int health = 5;
-            
+
             int price;
-            
+
             try
             {
                 price = int.Parse(inputField.text);
@@ -81,6 +82,7 @@ namespace Script.Locations
                 GameManager.Instance.ShowFloatingText(e.Message);
                 return;
             }
+
             price = int.Parse(inputField.text);
             var happy = Mathf.CeilToInt(price / 100f * reward);
 
@@ -122,7 +124,7 @@ namespace Script.Locations
             var player = GameManager.Instance.GetPlayer();
             const int health = 5;
             int price;
-            
+
             try
             {
                 price = int.Parse(inputField.text);
@@ -132,6 +134,7 @@ namespace Script.Locations
                 GameManager.Instance.ShowFloatingText(e.Message);
                 return;
             }
+
             price = int.Parse(inputField.text);
             var happy = Mathf.CeilToInt(price / 100f * reward);
 

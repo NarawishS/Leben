@@ -6,7 +6,7 @@ namespace Script
     {
         public static bool ProbabilityCheckByPercent(int percentProbability)
         {
-            int rnd = Random.Range(1, 101);
+            var rnd = Random.Range(1, 101);
             return rnd <= percentProbability;
         }
     }

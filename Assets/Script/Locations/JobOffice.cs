@@ -6,7 +6,7 @@ namespace Script.Locations
     public class JobOffice : MonoBehaviour
     {
         public Timer timer;
-        
+
         public AudioSource clickSFX;
         public AudioSource actionFailSFX;
 
@@ -81,4 +81,3 @@ namespace Script.Locations
         }
     }
 }
-

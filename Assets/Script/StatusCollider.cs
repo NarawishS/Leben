@@ -14,16 +14,13 @@ public class StatusCollider : MonoBehaviour
 
     private void DoEnableBoard()
     {
-        Player player = GameManager.Instance.GetPlayer();
+        var player = GameManager.Instance.GetPlayer();
 
         for (var i = 0; i < board.transform.childCount; i++)
         {
             var child = board.transform.GetChild(i).gameObject;
             var location = (LocationMovement)child.GetComponent(typeof(LocationMovement));
-            if (!player.GetPosition().Equals(location.location))
-            {
-                child.GetComponent<BoxCollider2D>().enabled = true;
-            }
+            if (!player.GetPosition().Equals(location.location)) child.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 }

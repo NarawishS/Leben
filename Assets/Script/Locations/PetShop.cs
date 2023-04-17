@@ -8,7 +8,7 @@ namespace Script.Locations
     {
         public Timer timer;
         public Button buyCatBtn;
-        
+
         public AudioSource coinSFX;
         public AudioSource actionFailSFX;
 

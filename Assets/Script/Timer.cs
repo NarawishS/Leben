@@ -63,10 +63,7 @@ namespace Script
 
         private void DisplayTime(float timeToDisplay)
         {
-            if (timeToDisplay < 0)
-            {
-                timeToDisplay = 0;
-            }
+            if (timeToDisplay < 0) timeToDisplay = 0;
 
             float minutes = Mathf.FloorToInt(timeToDisplay / 60);
             float seconds = Mathf.FloorToInt(timeToDisplay % 60);
