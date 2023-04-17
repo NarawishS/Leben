@@ -65,7 +65,7 @@ namespace Script
         public GameObject catPanel;
 
         private float _turnCount = 1f;
-        private const float MaxTurn = 2f;
+        private const float MaxTurn = 10f;
         public static event Action<GameState> OnGameStateChanged;
 
         private void Awake()
