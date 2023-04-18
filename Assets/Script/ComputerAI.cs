@@ -91,7 +91,7 @@ namespace Script
                 for (var i = 0; i < 5; i++)
                 {
                     hospitalScript.BuyMask();
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
                 }
             }
 
@@ -120,7 +120,7 @@ namespace Script
 
                 jobOfficeScript.ApplyJob(jobToApply);
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
             }
 
             yield return StartCoroutine(Vaccinate());
@@ -138,7 +138,7 @@ namespace Script
 
                 hospitalScript.BuyVaccine();
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
             }
 
             yield return StartCoroutine(BuyCar());
@@ -156,7 +156,7 @@ namespace Script
 
                 vehicleShopScript.BuyCar();
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
             }
 
             yield return StartCoroutine(RandomAction());
@@ -197,14 +197,14 @@ namespace Script
 
                     var bankScript = (Bank)bankPanel.transform.GetComponent(typeof(Bank));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         bankScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -215,14 +215,14 @@ namespace Script
 
                     var casinoScript = (Casino)casinoPanel.transform.GetComponent(typeof(Casino));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         casinoScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -233,14 +233,14 @@ namespace Script
 
                     var gymScript = (Gym)gymPanel.transform.GetComponent(typeof(Gym));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         gymScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -251,14 +251,14 @@ namespace Script
 
                     var hospitalScript = (Hospital)hospitalPanel.transform.GetComponent(typeof(Hospital));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         hospitalScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -269,14 +269,14 @@ namespace Script
 
                     var mallScript = (Mall)mallPanel.transform.GetComponent(typeof(Mall));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         mallScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -287,14 +287,14 @@ namespace Script
 
                     var marketScript = (Market)marketPanel.transform.GetComponent(typeof(Market));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         marketScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -305,14 +305,14 @@ namespace Script
 
                     var universityScript = (University)universityPanel.transform.GetComponent(typeof(University));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         universityScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -323,14 +323,14 @@ namespace Script
 
                     var fastFoodScript = (FastFood)fastFoodPanel.transform.GetComponent(typeof(FastFood));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         fastFoodScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -341,14 +341,14 @@ namespace Script
 
                     var petShopScript = (PetShop)petShopPanel.transform.GetComponent(typeof(PetShop));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         petShopScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -359,14 +359,14 @@ namespace Script
 
                     var vehicleShopScript = (VehicleShop)vehiclePanel.transform.GetComponent(typeof(VehicleShop));
 
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.5f);
 
                     while (player.GetBurnOut() < 90)
                     {
                         if (gameTimer.GetTime() <= 20f) break;
 
                         vehicleShopScript.Work();
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.5f);
                     }
 
                     break;
@@ -388,7 +388,7 @@ namespace Script
             marketScript.BuyFreshFood();
 
             _planState = PlanState.End;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(EndTurn());
         }
 
@@ -402,7 +402,7 @@ namespace Script
 
             gymScript.DoWeightTrain();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(WorkLoop());
         }
 
@@ -416,7 +416,7 @@ namespace Script
 
             mallScript.BuyCloth();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(WorkLoop());
         }
 
@@ -430,7 +430,7 @@ namespace Script
 
             universityScript.Classroom();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             yield return StartCoroutine(WorkLoop());
         }
 
@@ -442,7 +442,7 @@ namespace Script
 
             var homeScript = (Home)homePanel.transform.GetComponent(typeof(Home));
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
 
             homeScript.EndTurn();
 
