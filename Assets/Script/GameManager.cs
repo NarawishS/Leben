@@ -81,6 +81,7 @@ namespace Script
             player4.SetName("Player 4");
             playerBot.SetName("Bot");
             UpdateGameState(GameState.P1Turn);
+            StartTurnText($"{playerBot.GetName()} turn");
         }
 
         private void OnApplicationFocus(bool hasFocus)
